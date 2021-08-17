@@ -23,7 +23,7 @@ spring:
     timeout-per-shutdown-phase: 10S
   # 数据源
   datasource:
-    url: jdbc:mysql://rm-bp1ka47q1c925092xyo.mysql.rds.aliyuncs.com:1701/webgis?useUnicode=true&characterEncoding=utf-8&useSSL=false&allowMultiQueries=true
+    url: jdbc:mysql://rm-bp1ka47q1c925092xyo.mysql.rds.aliyuncs.com:1701/template?useUnicode=true&characterEncoding=utf-8&useSSL=false&allowMultiQueries=true
     username: artsky
     password: ENC(Ixm1siLcJuwh/+lTqDTN6ud4R+Yz+zV0YwOOaJZ57zTXsBS6ZmGRZF8RynzmXxGw)
     type: com.alibaba.druid.pool.DruidDataSource
