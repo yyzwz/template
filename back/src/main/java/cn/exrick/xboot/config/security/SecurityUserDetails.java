@@ -15,7 +15,7 @@ import java.util.Collection;
 import java.util.List;
 
 /**
- * @author Exrickx
+ * @author 郑为中
  */
 @Slf4j
 public class SecurityUserDetails extends User implements UserDetails {

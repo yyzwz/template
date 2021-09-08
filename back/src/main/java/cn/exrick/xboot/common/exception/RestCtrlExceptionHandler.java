@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 import javax.validation.ConstraintViolationException;
 
 /**
- * @author Exrickx
+ * @author 郑为中
  */
 @Slf4j
 @RestControllerAdvice

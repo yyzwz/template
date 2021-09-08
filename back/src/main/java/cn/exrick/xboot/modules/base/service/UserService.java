@@ -13,7 +13,7 @@ import java.util.List;
 
 /**
  * 用户接口
- * @author Exrickx
+ * @author 郑为中
  */
 @CacheConfig(cacheNames = "user")
 public interface UserService extends XbootBaseService<User, String> {
@@ -32,13 +32,6 @@ public interface UserService extends XbootBaseService<User, String> {
      * @return
      */
     User findByMobile(String mobile);
-
-    /**
-     * 通过邮件和状态获取用户
-     * @param email
-     * @return
-     */
-    User findByEmail(String email);
 
     /**
      * 多条件分页获取用户

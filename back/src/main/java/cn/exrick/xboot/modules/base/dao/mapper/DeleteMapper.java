@@ -3,7 +3,7 @@ package cn.exrick.xboot.modules.base.dao.mapper;
 import org.apache.ibatis.annotations.Param;
 
 /**
- * @author Exrickx
+ * @author 郑为中
  */
 public interface DeleteMapper {
     /**

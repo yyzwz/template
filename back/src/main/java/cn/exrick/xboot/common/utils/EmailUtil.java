@@ -20,7 +20,7 @@ import javax.mail.internet.MimeMessage;
 import java.util.Properties;
 
 /**
- * @author Exrickx
+ * @author 郑为中
  */
 @Component
 @Slf4j

@@ -32,7 +32,7 @@ import java.util.concurrent.TimeUnit;
 
 /**
  * 登录成功处理类
- * @author Exrickx
+ * @author 郑为中
  */
 @Slf4j
 @Component

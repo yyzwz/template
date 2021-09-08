@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
- * @author Exrickx
+ * @author 郑为中
  */
 @Slf4j
 @RestController

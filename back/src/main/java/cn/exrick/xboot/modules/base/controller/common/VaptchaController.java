@@ -21,7 +21,7 @@ import java.security.SecureRandom;
 import java.util.concurrent.TimeUnit;
 
 /**
- * @author Exrickx
+ * @author 郑为中
  */
 @Api(tags = "Vaptcha验证码离线验证接口")
 @RequestMapping("/xboot/common/vaptcha")

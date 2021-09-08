@@ -87,8 +87,6 @@ public class Oauth2Controller {
         User user;
         if (NameUtil.mobile(username)) {
             user = userService.findByMobile(username);
-        } else if (NameUtil.email(username)) {
-            user = userService.findByEmail(username);
         } else {
             user = userService.findByUsername(username);
         }

@@ -8,7 +8,7 @@ import org.springframework.data.repository.NoRepositoryBean;
 import java.io.Serializable;
 
 /**
- * @author Exrickx
+ * @author 郑为中
  */
 // 自定义接口 不会创建接口的实例 必须加此注解
 @NoRepositoryBean

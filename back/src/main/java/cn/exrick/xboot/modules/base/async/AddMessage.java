@@ -13,7 +13,7 @@ import java.util.List;
 
 /**
  * 异步添加消息
- * @author Exrickx
+ * @author 郑为中
  */
 @Component
 public class AddMessage {

@@ -33,7 +33,7 @@ import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 /**
- * @author Exrickx
+ * @author 郑为中
  */
 @Slf4j
 public class JWTAuthenticationFilter extends BasicAuthenticationFilter {

@@ -4,7 +4,7 @@ import lombok.Data;
 
 /**
  * https://ding-doc.dingtalk.com/doc#/serverapi2/ege851/AaRQe
- * @author Exrickx
+ * @author 郑为中
  */
 @Data
 public class DingdingUserInfo {

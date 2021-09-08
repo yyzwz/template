@@ -17,7 +17,10 @@ export const getDictData = `${config.baseApi}/dictData/getByType/`
 // Websocket
 export const ws = `${config.baseApi}/ws`
 
-
+// 按部门查询员工
+export const getByDepPage = (params) => {
+    return getRequest('/user/getByDepPage', params)
+}
 
 // 登陆
 export const login = (params) => {

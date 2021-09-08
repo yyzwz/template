@@ -9,7 +9,7 @@ import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.scheduling.annotation.EnableScheduling;
 
 /**
- * @author Exrickx
+ * @author 郑为中
  */
 @SpringBootApplication
 // 启用JPA审计

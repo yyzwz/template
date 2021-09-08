@@ -118,6 +118,21 @@
             <FormItem label="部门名称" prop="title">
               <Input v-model="form.title" />
             </FormItem>
+            <FormItem label="部门简称" prop="smallTitle">
+              <Input v-model="form.smallTitle" />
+            </FormItem>
+            <FormItem label="组织类别" prop="depType">
+              <Input v-model="form.depType" />
+            </FormItem>
+            <FormItem label="区域" prop="area">
+              <Input v-model="form.area" />
+            </FormItem>
+            <FormItem label="地址" prop="address">
+              <Input v-model="form.address" />
+            </FormItem>
+            <FormItem label="电话" prop="mobile">
+              <Input v-model="form.mobile" />
+            </FormItem>
             <FormItem label="部门负责人" prop="mainHeader">
               <user-select
                 v-model="form.mainHeader"
@@ -188,6 +203,32 @@
         v-if="showType == 'list'"
       ></Table>
     </Card>
+    <Card>
+      <Row>
+        <Table
+          :loading="userLoading"
+          border
+          :columns="userColumns"
+          :data="userData"
+          ref="table1"
+          sortable="custom"
+        ></Table>
+      </Row>
+      <Row type="flex" justify="end" class="page">
+        <Page
+          :current="form.pageNumber"
+          :total="userTotal"
+          :page-size="form.pageSize"
+          @on-change="changePage"
+          @on-page-size-change="changePageSize"
+          :page-size-opts="[10,20,50]"
+          size="small"
+          show-total
+          show-elevator
+          show-sizer
+        ></Page>
+      </Row>
+    </Card>
 
     <Modal
       :title="modalTitle"
@@ -206,6 +247,21 @@
         </div>
         <FormItem label="部门名称" prop="title">
           <Input v-model="formAdd.title" />
+        </FormItem>
+        <FormItem label="部门简称" prop="smallTitle">
+          <Input v-model="formAdd.smallTitle" />
+        </FormItem>
+        <FormItem label="组织类别" prop="depType">
+          <Input v-model="formAdd.depType" />
+        </FormItem>
+        <FormItem label="区域" prop="area">
+          <Input v-model="formAdd.area" />
+        </FormItem>
+        <FormItem label="地址" prop="address">
+          <Input v-model="formAdd.address" />
+        </FormItem>
+        <FormItem label="电话" prop="mobile">
+          <Input v-model="formAdd.mobile" />
         </FormItem>
         <FormItem label="排序值" prop="sortOrder">
           <Tooltip
@@ -239,6 +295,12 @@
         >
       </div>
     </Modal>
+    <addEdit
+      :data="userForm"
+      :type="showUserType"
+      v-model="showUser"
+      @on-submit="init"
+    />
   </div>
 </template>
 
@@ -250,15 +312,24 @@ import {
   editDepartment,
   deleteDepartment,
   searchDepartment,
+  getByDepPage,
+  enableUser,
+  disableUser,
+  deleteUser,
 } from "@/api/index";
 import userSelect from "@/views/my-components/xboot/user-select";
+import addEdit from "./addEdit.vue";
 export default {
   name: "department-manage",
   components: {
     userSelect,
+    addEdit
   },
   data() {
     return {
+      userForm: {},
+      showUserType: "",
+      showUser: false,
       showType: "tree",
       loading: true,
       maxHeight: "500px",
@@ -272,11 +343,14 @@ export default {
       searchKey: "",
       form: {
         id: "",
+        departmentId: "",
         title: null,
         parentId: "",
         parentTitle: "",
         sortOrder: 0,
         status: 0,
+        pageNumber: 1,
+        pageSize: 10
       },
       formAdd: {},
       formValidate: {
@@ -293,6 +367,154 @@ export default {
       submitLoading: false,
       data: [],
       dataEdit: [],
+      userColumns: [
+        {
+          type: "selection",
+          width: 60,
+          align: "center",
+        },
+        {
+          type: "index",
+          width: 60,
+          align: "center",
+        },
+        {
+          title: "姓名",
+          key: "nickname",
+          minWidth: 120,
+          sortable: true,
+        },
+        {
+          title: "头像",
+          key: "avatar",
+          width: 80,
+          align: "center",
+          render: (h, params) => {
+            return h("Avatar", {
+              props: {
+                src: params.row.avatar,
+              },
+            });
+          },
+        },
+        {
+          title: "状态",
+          key: "status",
+          align: "center",
+          width: 100,
+          render: (h, params) => {
+            if (params.row.status == 0) {
+              return h("div", [
+                h("Badge", {
+                  props: {
+                    status: "success",
+                    text: "启用",
+                  },
+                }),
+              ]);
+            } else if (params.row.status == -1) {
+              return h("div", [
+                h("Badge", {
+                  props: {
+                    status: "error",
+                    text: "禁用",
+                  },
+                }),
+              ]);
+            }
+          }
+        },
+        {
+          title: "身份证",
+          key: "idCard",
+          minWidth: 120,
+          sortable: true,
+        },
+        {
+          title: "电话",
+          key: "mobile",
+          minWidth: 120,
+          sortable: true,
+        },
+        {
+          title: "性别",
+          key: "sex",
+          minWidth: 120,
+          sortable: true,
+        },
+        {
+          title: "操作",
+          key: "action",
+          width: 170,
+          align: "center",
+          fixed: "right",
+          render: (h, params) => {
+            let enableOrDisable = "";
+            if (params.row.status == 0) {
+              enableOrDisable = h(
+                "a",
+                {
+                  on: {
+                    click: () => {
+                      this.disableUser(params.row);
+                    },
+                  },
+                },
+                "禁用"
+              );
+            } else {
+              enableOrDisable = h(
+                "a",
+                {
+                  on: {
+                    click: () => {
+                      this.enableUser(params.row);
+                    },
+                  },
+                },
+                "启用"
+              );
+            }
+            return h("div", [
+              h(
+                "a",
+                {
+                  on: {
+                    click: () => {
+                      this.editUser(params.row);
+                    },
+                  },
+                },
+                "编辑"
+              ),
+              h("Divider", {
+                props: {
+                  type: "vertical",
+                },
+              }),
+              enableOrDisable,
+              h("Divider", {
+                props: {
+                  type: "vertical",
+                },
+              }),
+              h(
+                "a",
+                {
+                  on: {
+                    click: () => {
+                      this.removeUser(params.row);
+                    },
+                  },
+                },
+                "删除"
+              ),
+            ]);
+          },
+        },
+      ],
+      userData: [],
+      userTotal: 0,
       columns: [
         {
           type: "selection",
@@ -370,6 +592,14 @@ export default {
       this.getParentList();
       this.getParentListEdit();
     },
+    getByDepPageFx() {
+      var that = this;
+      getByDepPage(this.form).then(res => {
+        console.log(res);
+        that.userData = res.result.records;
+
+      })
+    },
     getParentList() {
       this.loading = true;
       initDepartment().then((res) => {
@@ -443,6 +673,8 @@ export default {
     },
     selectTree(v) {
       if (v.length > 0) {
+        this.form.departmentId = v[0].id;
+        this.getByDepPageFx();
         // 转换null为""
         for (let attr in v[0]) {
           if (v[0][attr] == null) {
@@ -606,6 +838,68 @@ export default {
               this.selectList = [];
               this.cancelEdit();
               this.init();
+            }
+          });
+        },
+      });
+    },
+    editUser(v) {
+      // 转换null为""
+      for (let attr in v) {
+        if (v[attr] == null) {
+          v[attr] = "";
+        }
+      }
+      let str = JSON.stringify(v);
+      let data = JSON.parse(str);
+      this.userForm = data;
+      this.showUserType = "1";
+      this.showUser = true;
+    },
+    enableUser(v) {
+      this.$Modal.confirm({
+        title: "确认启用",
+        content: "您确认要启用用户 " + v.username + " ?",
+        loading: true,
+        onOk: () => {
+          enableUser(v.id).then((res) => {
+            this.$Modal.remove();
+            if (res.success) {
+              this.$Message.success("操作成功");
+              this.getDataList();
+            }
+          });
+        },
+      });
+    },
+    disableUser(v) {
+      this.$Modal.confirm({
+        title: "确认禁用",
+        content: "您确认要禁用用户 " + v.username + " ?",
+        loading: true,
+        onOk: () => {
+          disableUser(v.id).then((res) => {
+            this.$Modal.remove();
+            if (res.success) {
+              this.$Message.success("操作成功");
+              this.getDataList();
+            }
+          });
+        },
+      });
+    },
+    removeUser(v) {
+      this.$Modal.confirm({
+        title: "确认删除",
+        content: "您确认要删除用户 " + v.username + " ?",
+        loading: true,
+        onOk: () => {
+          deleteUser({ ids: v.id }).then((res) => {
+            this.$Modal.remove();
+            if (res.success) {
+              this.clearSelectAll();
+              this.$Message.success("删除成功");
+              this.getDataList();
             }
           });
         },

@@ -9,7 +9,7 @@ import java.util.List;
 
 /**
  * 用户角色接口
- * @author Exrickx
+ * @author 郑为中
  */
 public interface UserRoleService extends XbootBaseService<UserRole, String> {
 

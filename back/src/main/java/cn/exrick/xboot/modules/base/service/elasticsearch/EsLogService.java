@@ -6,7 +6,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
 /**
- * @author Exrickx
+ * @author 郑为中
  */
 public interface EsLogService {
 

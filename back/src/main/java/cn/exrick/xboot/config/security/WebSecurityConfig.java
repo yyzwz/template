@@ -30,7 +30,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 /**
  * Security 核心配置类
  * 开启注解控制权限至Controller
- * @author Exrickx
+ * @author 郑为中
  */
 @Slf4j
 @Configuration

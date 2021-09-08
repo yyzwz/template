@@ -36,7 +36,7 @@ import java.util.concurrent.TimeUnit;
 
 /**
  * http://wiki.connect.qq.com/
- * @author Exrickx
+ * @author 郑为中
  */
 @Slf4j
 @Api(tags = "QQ登录接口")

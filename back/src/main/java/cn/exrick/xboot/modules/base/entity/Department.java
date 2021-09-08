@@ -35,6 +35,21 @@ public class Department extends XbootBaseEntity {
     @ApiModelProperty(value = "部门名称")
     private String title;
 
+    @ApiModelProperty(value = "部门简称")
+    private String smallTitle;
+
+    @ApiModelProperty(value = "组织类别")
+    private String depType;
+
+    @ApiModelProperty(value = "区域")
+    private String area;
+
+    @ApiModelProperty(value = "地址")
+    private String address;
+
+    @ApiModelProperty(value = "电话")
+    private String mobile;
+
     @ApiModelProperty(value = "父id")
     @Column(nullable = false)
     private String parentId;

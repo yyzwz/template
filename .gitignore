@@ -1,0 +1,8 @@
+/front/dist
+/front/node_modules
+/front/src/.svn
+/back/target
+/back/out
+/back/src/.svn
+/back/work
+/back/xboot-logs

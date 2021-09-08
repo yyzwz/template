@@ -4,7 +4,7 @@ import lombok.Data;
 
 /**
  * http://open.weibo.com/wiki/2/users/show
- * @author Exrickx
+ * @author 郑为中
  */
 @Data
 public class WeiboUserInfo {

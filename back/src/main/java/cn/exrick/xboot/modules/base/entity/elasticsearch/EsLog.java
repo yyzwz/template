@@ -19,7 +19,7 @@ import java.util.Map;
 
 /**
  * Elasticsearch文档实体类
- * @author Exrickx
+ * @author 郑为中
  */
 @Data
 @Document(indexName = "log", replicas = 0, refreshInterval = "1m")

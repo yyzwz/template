@@ -8,7 +8,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 /**
- * @author Exrickx
+ * @author 郑为中
  */
 @Configuration
 @MapperScan({"cn.exrick.xboot.modules.*.mapper", "cn.exrick.xboot.modules.*.*.mapper"})

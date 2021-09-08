@@ -8,7 +8,6 @@ import cn.exrick.xboot.common.utils.HibernateProxyTypeAdapter;
 import cn.exrick.xboot.common.utils.ResultUtil;
 import cn.exrick.xboot.common.utils.SecurityUtil;
 import cn.exrick.xboot.common.vo.Result;
-import cn.exrick.xboot.modules.base.dao.mapper.DeleteMapper;
 import cn.exrick.xboot.modules.base.entity.Department;
 import cn.exrick.xboot.modules.base.entity.DepartmentHeader;
 import cn.exrick.xboot.modules.base.entity.User;
@@ -16,6 +15,8 @@ import cn.exrick.xboot.modules.base.service.DepartmentHeaderService;
 import cn.exrick.xboot.modules.base.service.DepartmentService;
 import cn.exrick.xboot.modules.base.service.RoleDepartmentService;
 import cn.exrick.xboot.modules.base.service.UserService;
+import cn.exrick.xboot.modules.base.service.mybatis.IDepartmentService;
+import cn.exrick.xboot.modules.base.service.mybatis.IUserService;
 import cn.hutool.core.util.StrUtil;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -48,6 +49,12 @@ public class DepartmentController {
     private DepartmentService departmentService;
 
     @Autowired
+    private IDepartmentService iDepartmentService;
+
+    @Autowired
+    private IUserService iUserService;
+
+    @Autowired
     private UserService userService;
 
     @Autowired
@@ -57,13 +64,12 @@ public class DepartmentController {
     private DepartmentHeaderService departmentHeaderService;
 
     @Autowired
-    private DeleteMapper deleteMapper;
-
-    @Autowired
     private RedisTemplateHelper redisTemplate;
 
     @Autowired
     private SecurityUtil securityUtil;
+
+    
 
     @RequestMapping(value = "/getByParentId/{parentId}", method = RequestMethod.GET)
     @ApiOperation(value = "通过parentId获取")
@@ -186,8 +192,6 @@ public class DepartmentController {
         roleDepartmentService.deleteByDepartmentId(id);
         // 删除关联部门负责人
         departmentHeaderService.deleteByDepartmentId(id);
-        // 删除流程关联节点
-        deleteMapper.deleteActNode(id);
         // 判断父节点是否还有子节点
         if (parent != null) {
             List<Department> childrenDeps = departmentService.findByParentIdOrderBySortOrder(parent.getId(), false);

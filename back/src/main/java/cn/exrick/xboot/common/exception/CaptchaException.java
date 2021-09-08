@@ -3,7 +3,7 @@ package cn.exrick.xboot.common.exception;
 import lombok.Data;
 
 /**
- * @author Exrickx
+ * @author 郑为中
  */
 @Data
 public class CaptchaException extends RuntimeException {

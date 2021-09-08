@@ -21,7 +21,7 @@ import java.io.Serializable;
 import java.util.Date;
 
 /**
- * @author Exrickx
+ * @author 郑为中
  */
 @Data
 @MappedSuperclass

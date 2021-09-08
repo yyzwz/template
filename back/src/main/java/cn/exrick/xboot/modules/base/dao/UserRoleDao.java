@@ -9,7 +9,7 @@ import java.util.List;
 
 /**
  * 用户角色数据处理层
- * @author Exrickx
+ * @author 郑为中
  */
 public interface UserRoleDao extends XbootBaseDao<UserRole, String> {
 

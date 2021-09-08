@@ -14,15 +14,19 @@ import cn.exrick.xboot.common.vo.Result;
 import cn.exrick.xboot.common.vo.SearchVo;
 import cn.exrick.xboot.config.security.SecurityUserDetails;
 import cn.exrick.xboot.modules.base.async.AddMessage;
-import cn.exrick.xboot.modules.base.dao.mapper.DeleteMapper;
 import cn.exrick.xboot.modules.base.entity.Department;
 import cn.exrick.xboot.modules.base.entity.Role;
 import cn.exrick.xboot.modules.base.entity.User;
 import cn.exrick.xboot.modules.base.entity.UserRole;
 import cn.exrick.xboot.modules.base.service.*;
+import cn.exrick.xboot.modules.base.service.mybatis.IDepartmentService;
 import cn.exrick.xboot.modules.base.service.mybatis.IUserRoleService;
+import cn.exrick.xboot.modules.base.service.mybatis.IUserService;
+import cn.exrick.xboot.modules.base.utils.NullUtils;
 import cn.exrick.xboot.modules.base.vo.RoleDTO;
 import cn.hutool.core.util.StrUtil;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
@@ -49,7 +53,7 @@ import java.util.stream.Collectors;
 
 
 /**
- * @author Exrickx
+ * @author 郑为中
  */
 @Slf4j
 @RestController
@@ -63,6 +67,12 @@ public class UserController {
 
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private IDepartmentService iDepartmentService;
+
+    @Autowired
+    private IUserService iUserService;
 
     @Autowired
     private RoleService roleService;
@@ -83,9 +93,6 @@ public class UserController {
     private AddMessage addMessage;
 
     @Autowired
-    private DeleteMapper deleteMapper;
-
-    @Autowired
     private RedisTemplateHelper redisTemplate;
 
     @Autowired
@@ -93,6 +100,26 @@ public class UserController {
 
     @PersistenceContext
     private EntityManager entityManager;
+
+    @ApiOperation(value = "按部门查询员工")
+    @RequestMapping(value = "/getByDepPage", method = RequestMethod.GET)
+    public Result<IPage<User>> getByPage(@ModelAttribute User user, @ModelAttribute PageVo page){
+        QueryWrapper<User> qw = new QueryWrapper<>();
+        if(user.getDepartmentId() != null && !NullUtils.isNull(user.getDepartmentId())) {
+            qw.eq("department_id",user.getDepartmentId());
+        }
+        IPage<User> data = iUserService.page(PageUtil.initMpPage(page),qw);
+        for (User u : data.getRecords()) {
+            List<Role> list = iUserRoleService.findByUserId(u.getId());
+            List<RoleDTO> roleDTOList = list.stream().map(e -> {
+                return new RoleDTO().setId(e.getId()).setName(e.getName()).setDescription(e.getDescription());
+            }).collect(Collectors.toList());
+            u.setRoles(roleDTOList);
+            entityManager.detach(u);
+            u.setPassword(null);
+        }
+        return new ResultUtil<IPage<User>>().setData(data);
+    }
 
     @RequestMapping(value = "/smsLogin", method = RequestMethod.POST)
     @SystemLog(description = "短信登录", type = LogType.LOGIN)
@@ -131,7 +158,7 @@ public class UserController {
     public Result<Object> regist(@Valid User u) {
 
         // 校验是否已存在
-        checkUserInfo(u.getUsername(), u.getMobile(), u.getEmail());
+        checkUserInfo(u.getUsername(), u.getMobile());
 
         String encryptPass = new BCryptPasswordEncoder().encode(u.getPassword());
         u.setPassword(encryptPass).setType(CommonConstant.USER_TYPE_NORMAL);
@@ -314,7 +341,7 @@ public class UserController {
                               @RequestParam(required = false) String[] roleIds) {
 
         // 校验是否已存在
-        checkUserInfo(u.getUsername(), u.getMobile(), u.getEmail());
+        checkUserInfo(u.getUsername(), u.getMobile());
 
         String encryptPass = new BCryptPasswordEncoder().encode(u.getPassword());
         u.setPassword(encryptPass);
@@ -354,9 +381,6 @@ public class UserController {
         // 若修改了手机和邮箱判断是否唯一
         if (!old.getMobile().equals(u.getMobile()) && userService.findByMobile(u.getMobile()) != null) {
             return ResultUtil.error("该手机号已绑定其他账户");
-        }
-        if (!old.getEmail().equals(u.getEmail()) && userService.findByEmail(u.getEmail()) != null) {
-            return ResultUtil.error("该邮箱已绑定其他账户");
         }
 
         if (StrUtil.isNotBlank(u.getDepartmentId())) {
@@ -430,15 +454,6 @@ public class UserController {
             userRoleService.deleteByUserId(id);
             // 删除关联部门负责人
             departmentHeaderService.deleteByUserId(id);
-
-            // 删除关联流程、社交账号数据
-            try {
-                deleteMapper.deleteActNode(u.getId());
-                deleteMapper.deleteActStarter(u.getId());
-                deleteMapper.deleteSocial(u.getUsername());
-            } catch (Exception e) {
-                log.warn(e.toString());
-            }
         }
         return ResultUtil.success("批量通过id删除数据成功");
     }
@@ -453,17 +468,15 @@ public class UserController {
         for (User u : users) {
             count++;
             // 验证用户名、密码、手机、邮箱不为空
-            if (StrUtil.isBlank(u.getUsername()) || StrUtil.isBlank(u.getPassword()) || StrUtil.isBlank(u.getMobile())
-                    || StrUtil.isBlank(u.getEmail())) {
+            if (StrUtil.isBlank(u.getUsername()) || StrUtil.isBlank(u.getPassword()) || StrUtil.isBlank(u.getMobile())) {
                 errors.add(count);
-                reasons.add("用户名、密码、手机、邮箱不能为空");
+                reasons.add("用户名、密码、手机不能为空");
                 continue;
             }
             // 验证用户名、手机、邮箱唯一
-            if (userService.findByUsername(u.getUsername()) != null || userService.findByMobile(u.getMobile()) != null
-                    || userService.findByEmail(u.getEmail()) != null) {
+            if (userService.findByUsername(u.getUsername()) != null || userService.findByMobile(u.getMobile()) != null) {
                 errors.add(count);
-                reasons.add("用户名、手机、邮箱已存在");
+                reasons.add("用户名、手机已存在");
                 continue;
             }
             // 加密密码
@@ -511,18 +524,14 @@ public class UserController {
      * 校验
      * @param username 用户名 不校验传空字符或null 下同
      * @param mobile   手机号
-     * @param email    邮箱
      */
-    public void checkUserInfo(String username, String mobile, String email) {
+    public void checkUserInfo(String username, String mobile) {
 
         // 禁用词
         StopWordsUtil.matchWord(username);
 
         if (StrUtil.isNotBlank(username) && userService.findByUsername(username) != null) {
             throw new XbootException("该登录账号已被注册");
-        }
-        if (StrUtil.isNotBlank(email) && userService.findByEmail(email) != null) {
-            throw new XbootException("该邮箱已被注册");
         }
         if (StrUtil.isNotBlank(mobile) && userService.findByMobile(mobile) != null) {
             throw new XbootException("该手机号已被注册");

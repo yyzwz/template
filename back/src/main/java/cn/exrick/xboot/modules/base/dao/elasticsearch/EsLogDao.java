@@ -7,7 +7,7 @@ import org.springframework.data.elasticsearch.repository.ElasticsearchRepository
 
 
 /**
- * @author Exrickx
+ * @author 郑为中
  */
 public interface EsLogDao extends ElasticsearchRepository<EsLog, String> {
 

@@ -25,7 +25,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.concurrent.TimeUnit;
 
 /**
- * @author Exrickx
+ * @author 郑为中
  */
 @Slf4j
 @Api(tags = "绑定第三方账号接口")

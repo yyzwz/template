@@ -4,7 +4,7 @@ import lombok.Data;
 import org.springframework.security.authentication.InternalAuthenticationServiceException;
 
 /**
- * @author Exrickx
+ * @author 郑为中
  */
 @Data
 public class LoginFailLimitException extends InternalAuthenticationServiceException {

@@ -3,7 +3,7 @@ package cn.exrick.xboot.common.constant;
 import cn.hutool.core.util.IdUtil;
 
 /**
- * @author Exrickx
+ * @author 郑为中
  */
 public interface SecurityConstant {
 

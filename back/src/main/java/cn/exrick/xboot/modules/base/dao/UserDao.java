@@ -9,7 +9,7 @@ import java.util.List;
 
 /**
  * 用户数据处理层
- * @author Exrickx
+ * @author 郑为中
  */
 public interface UserDao extends XbootBaseDao<User, String> {
 
@@ -27,12 +27,6 @@ public interface UserDao extends XbootBaseDao<User, String> {
      */
     User findByMobile(String mobile);
 
-    /**
-     * 通过邮件获取用户
-     * @param email
-     * @return
-     */
-    User findByEmail(String email);
 
     /**
      * 通过部门id获取

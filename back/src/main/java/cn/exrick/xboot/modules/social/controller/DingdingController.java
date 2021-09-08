@@ -39,7 +39,7 @@ import java.util.concurrent.TimeUnit;
 
 /**
  * https://ding-doc.dingtalk.com/doc#/serverapi2/kymkv6
- * @author Exrickx
+ * @author 郑为中
  */
 @Slf4j
 @Api(tags = "钉钉登录接口")

@@ -25,7 +25,7 @@ import static cn.exrick.xboot.generator.XbootGenerator.*;
 
 /**
  * 后端Mybatis-Plus代码生成器
- * @author Exrickx
+ * @author 郑为中
  */
 @Slf4j
 public class XbootMPGenerator {

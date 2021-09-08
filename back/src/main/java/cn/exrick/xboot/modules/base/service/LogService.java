@@ -9,7 +9,7 @@ import org.springframework.data.domain.Pageable;
 
 /**
  * 日志接口
- * @author Exrickx
+ * @author 郑为中
  */
 public interface LogService extends XbootBaseService<Log, String> {
 

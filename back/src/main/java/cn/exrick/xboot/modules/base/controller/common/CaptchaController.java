@@ -28,7 +28,7 @@ import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
 /**
- * @author Exrickx
+ * @author 郑为中
  */
 @Api(tags = "验证码接口")
 @RequestMapping("/xboot/common/captcha")

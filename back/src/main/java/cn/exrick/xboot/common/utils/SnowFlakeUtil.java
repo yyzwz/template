@@ -5,7 +5,7 @@ import cn.hutool.core.util.IdUtil;
 import lombok.extern.slf4j.Slf4j;
 
 /**
- * @author Exrickx
+ * @author 郑为中
  */
 @Slf4j
 public class SnowFlakeUtil {

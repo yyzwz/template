@@ -16,7 +16,7 @@ import javax.persistence.Transient;
 import java.util.List;
 
 /**
- * @author Exrickx
+ * @author 郑为中
  */
 @Data
 @Entity

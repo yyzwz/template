@@ -7,7 +7,7 @@ import java.util.List;
 
 /**
  * 角色数据处理层
- * @author Exrickx
+ * @author 郑为中
  */
 public interface RoleDao extends XbootBaseDao<Role, String> {
 

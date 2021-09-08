@@ -24,7 +24,7 @@ import java.util.List;
 
 /**
  * 后端JPA代码生成器 支持生成树结构、工作流所需接口
- * @author Exrickx
+ * @author 郑为中
  */
 @Slf4j
 public class XbootGenerator {

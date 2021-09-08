@@ -23,7 +23,7 @@ import static springfox.documentation.builders.PathSelectors.ant;
 import static springfox.documentation.builders.PathSelectors.regex;
 
 /**
- * @author Exrickx
+ * @author 郑为中
  */
 @Slf4j
 @Configuration

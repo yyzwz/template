@@ -11,7 +11,7 @@ import java.io.*;
 
 /**
  * base64转为multipartFile工具类
- * @author Exrickx
+ * @author 郑为中
  */
 @Slf4j
 public class Base64DecodeMultipartFile implements MultipartFile {

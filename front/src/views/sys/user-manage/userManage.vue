@@ -33,15 +33,6 @@
                 style="width: 200px"
               />
             </FormItem>
-            <FormItem label="邮箱" prop="email">
-              <Input
-                type="text"
-                v-model="searchForm.email"
-                clearable
-                placeholder="请输入邮箱"
-                style="width: 200px"
-              />
-            </FormItem>
             <FormItem label="性别" prop="sex">
               <dict dict="sex" v-model="searchForm.sex" style="width: 200px" />
             </FormItem>
@@ -359,12 +350,6 @@ export default {
           title: "手机",
           key: "mobile",
           minWidth: 125,
-          sortable: true,
-        },
-        {
-          title: "邮箱",
-          key: "email",
-          minWidth: 180,
           sortable: true,
         },
         {

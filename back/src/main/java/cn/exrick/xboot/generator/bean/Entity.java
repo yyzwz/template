@@ -3,7 +3,7 @@ package cn.exrick.xboot.generator.bean;
 import lombok.Data;
 
 /**
- * @author Exrickx
+ * @author 郑为中
  */
 @Data
 public class Entity {

@@ -6,7 +6,7 @@ import com.baomidou.mybatisplus.extension.service.IService;
 import java.util.List;
 
 /**
- * @author Exrickx
+ * @author 郑为中
  */
 public interface IPermissionService extends IService<Permission> {
 

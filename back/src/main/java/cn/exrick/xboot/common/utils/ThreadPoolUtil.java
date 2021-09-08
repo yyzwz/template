@@ -3,7 +3,7 @@ package cn.exrick.xboot.common.utils;
 import java.util.concurrent.*;
 
 /**
- * @author Exrickx
+ * @author 郑为中
  */
 public class ThreadPoolUtil {
 

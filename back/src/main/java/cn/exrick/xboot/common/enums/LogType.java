@@ -1,7 +1,7 @@
 package cn.exrick.xboot.common.enums;
 
 /**
- * @author Exrickx
+ * @author 郑为中
  */
 public enum LogType {
 

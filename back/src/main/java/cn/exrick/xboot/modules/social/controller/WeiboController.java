@@ -37,7 +37,7 @@ import java.util.concurrent.TimeUnit;
 
 /**
  * http://open.weibo.com/wiki/Connect/login
- * @author Exrickx
+ * @author 郑为中
  */
 @Slf4j
 @Api(tags = "微博登录接口")

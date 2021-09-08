@@ -4,7 +4,7 @@ import lombok.Data;
 
 /**
  * http://wiki.connect.qq.com/get_user_info
- * @author Exrickx
+ * @author 郑为中
  */
 @Data
 public class QQUserInfo {

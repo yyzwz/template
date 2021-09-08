@@ -12,7 +12,7 @@ import java.security.SecureRandom;
 
 /**
  * 随机字符验证码生成工具类
- * @author Exrickx
+ * @author 郑为中
  */
 public class CreateVerifyCode {
 

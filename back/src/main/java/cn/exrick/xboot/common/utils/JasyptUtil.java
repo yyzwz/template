@@ -6,7 +6,7 @@ import org.jasypt.encryption.pbe.config.SimpleStringPBEConfig;
 
 
 /**
- * @author Exrickx
+ * @author 郑为中
  */
 @Slf4j
 public class JasyptUtil {

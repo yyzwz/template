@@ -37,7 +37,7 @@ import java.util.concurrent.TimeUnit;
 
 /**
  * https://work.weixin.qq.com/api/doc/90000/90135/91020
- * @author Exrickx
+ * @author 郑为中
  */
 @Slf4j
 @Api(tags = "企业微信登录接口")

@@ -26,7 +26,7 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.concurrent.TimeUnit;
 
 /**
- * @author Exrickx
+ * @author 郑为中
  */
 @Slf4j
 @RestController
@@ -93,7 +93,7 @@ public class EmailValidateController {
         EmailValidate e = new EmailValidate();
         e.setOperation(operation);
         // 验证是否注册
-        User user = userService.findByEmail(email);
+        User user = null;
         if ("修改邮箱".equals(operation)) {
             if (user != null) {
                 return ResultUtil.error("该邮箱已绑定账号");
@@ -131,7 +131,6 @@ public class EmailValidateController {
     public Result<Object> editEmail(@RequestParam String email) {
 
         User u = securityUtil.getCurrUser();
-        u.setEmail(email);
         userService.update(u);
         // 删除缓存
         redisTemplate.delete("user::" + u.getUsername());
@@ -144,13 +143,7 @@ public class EmailValidateController {
                                        @RequestParam String password,
                                        @RequestParam String passStrength) {
 
-        User u = userService.findByEmail(email);
-
-        // 在线DEMO所需
-        if ("test".equals(u.getUsername()) || "test2".equals(u.getUsername())) {
-            return ResultUtil.error("演示账号不支持重置密码");
-        }
-
+        User u = null;
         String encryptPass = new BCryptPasswordEncoder().encode(password);
         u.setPassword(encryptPass);
         u.setPassStrength(passStrength);

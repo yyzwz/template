@@ -32,8 +32,18 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/java/cn/exrick/xboot/modules/base/utils" />
     <property name="settings.editor.selected.configurable" value="MavenSettings" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\java\git\sharing-alliance\back\src\main\java\cn\exrick\xboot\modules\base\utils" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="cn.exrick.xboot.modules.base.serviceimpl.mybatis" />
+      <recent name="cn.exrick.xboot.modules.base.service.mybatis" />
+      <recent name="cn.exrick.xboot.modules.base.dao.mapper" />
+    </key>
   </component>
   <component name="RunManager">
     <configuration name="XbootApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
@@ -72,6 +82,7 @@
       <workItem from="1624255859668" duration="3076000" />
       <workItem from="1629187582580" duration="825000" />
       <workItem from="1629188475457" duration="465000" />
+      <workItem from="1631080837031" duration="5907000" />
     </task>
     <servers />
   </component>

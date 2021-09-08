@@ -18,7 +18,7 @@ import java.util.*;
 /**
  * 权限资源管理器
  * 为权限决断器提供支持
- * @author Exrickx
+ * @author 郑为中
  */
 @Slf4j
 @Component

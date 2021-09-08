@@ -7,7 +7,7 @@ import lombok.Data;
 import java.io.Serializable;
 
 /**
- * @author Exrickx
+ * @author 郑为中
  * 前后端交互数据标准
  */
 @Data

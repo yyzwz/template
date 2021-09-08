@@ -16,7 +16,7 @@ import org.springframework.stereotype.Component;
 import java.util.concurrent.TimeUnit;
 
 /**
- * @author Exrickx
+ * @author 郑为中
  */
 @Slf4j
 @Component
@@ -41,8 +41,6 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         User user;
         if (NameUtil.mobile(username)) {
             user = userService.findByMobile(username);
-        } else if (NameUtil.email(username)) {
-            user = userService.findByEmail(username);
         } else {
             user = userService.findByUsername(username);
         }

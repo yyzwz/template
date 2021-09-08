@@ -15,7 +15,7 @@ import javax.persistence.Table;
 import javax.persistence.Transient;
 
 /**
- * @author Exrickx
+ * @author 郑为中
  */
 @Data
 @Accessors(chain = true)

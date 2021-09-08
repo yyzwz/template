@@ -38,7 +38,7 @@ import java.util.concurrent.TimeUnit;
 
 /**
  * https://developers.weixin.qq.com/doc/oplatform/Website_App/WeChat_Login/Wechat_Login.html
- * @author Exrickx
+ * @author 郑为中
  */
 @Slf4j
 @Api(tags = "微信登录接口")

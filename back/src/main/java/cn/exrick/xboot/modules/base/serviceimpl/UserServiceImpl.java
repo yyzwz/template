@@ -31,7 +31,7 @@ import java.util.stream.Collectors;
 
 /**
  * 用户接口实现
- * @author Exrickx
+ * @author 郑为中
  */
 @Slf4j
 @Service
@@ -69,13 +69,6 @@ public class UserServiceImpl implements UserService {
         return userToDTO(user);
     }
 
-    @Override
-    public User findByEmail(String email) {
-
-        User user = userDao.findByEmail(email);
-        return userToDTO(user);
-    }
-
     public User userToDTO(User user) {
 
         if (user == null) {
@@ -110,7 +103,6 @@ public class UserServiceImpl implements UserService {
                 Path<String> usernameField = root.get("username");
                 Path<String> nicknameField = root.get("nickname");
                 Path<String> mobileField = root.get("mobile");
-                Path<String> emailField = root.get("email");
                 Path<String> departmentIdField = root.get("departmentId");
                 Path<String> sexField = root.get("sex");
                 Path<Integer> typeField = root.get("type");
@@ -132,9 +124,6 @@ public class UserServiceImpl implements UserService {
                 }
                 if (StrUtil.isNotBlank(user.getMobile())) {
                     list.add(cb.like(mobileField, '%' + user.getMobile() + '%'));
-                }
-                if (StrUtil.isNotBlank(user.getEmail())) {
-                    list.add(cb.like(emailField, '%' + user.getEmail() + '%'));
                 }
 
                 // 部门

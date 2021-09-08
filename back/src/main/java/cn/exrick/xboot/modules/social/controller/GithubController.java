@@ -36,7 +36,7 @@ import java.util.concurrent.TimeUnit;
 
 /**
  * https://developer.github.com/apps/building-oauth-apps/authorizing-oauth-apps/
- * @author Exrickx
+ * @author 郑为中
  */
 @Slf4j
 @Api(tags = "Github登录接口")

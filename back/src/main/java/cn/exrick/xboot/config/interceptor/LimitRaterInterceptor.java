@@ -26,7 +26,7 @@ import java.lang.reflect.Method;
 
 /**
  * 限流拦截器
- * @author Exrickx
+ * @author 郑为中
  */
 @Slf4j
 @Component
