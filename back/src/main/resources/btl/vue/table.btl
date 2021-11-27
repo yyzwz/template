@@ -13,65 +13,47 @@
             <%
             if(item.searchType=="text"){
             %>
-            <FormItem label="${item.name}" prop="${item.field}">
+            <Form-item label="${item.name}" prop="${item.field}">
               <Input type="text" v-model="searchForm.${item.field}" placeholder="请输入${item.name}" clearable style="width: 200px"/>
-            </FormItem>
+            </Form-item>
             <%
             }
             %>
             <%
             if(item.searchType=="select"){
             %>
-            <FormItem label="${item.name}" prop="${item.field}">
+            <Form-item label="${item.name}" prop="${item.field}">
               <Select v-model="searchForm.${item.field}" placeholder="请选择" clearable style="width: 200px">
                 <Option value="0">请自行编辑下拉菜单</Option>
               </Select>
-            </FormItem>
+            </Form-item>
             <%
             }
             %>
             <%
             if(item.searchType=="date"){
             %>
-            <FormItem label="${item.name}" prop="${item.field}">
+            <Form-item label="${item.name}" prop="${item.field}">
               <DatePicker type="date" v-model="searchForm.${item.field}" placeholder="请选择" clearable style="width: 200px"></DatePicker>
-            </FormItem>
+            </Form-item>
             <%
             }
             %>
             <%
             if(item.searchType=="daterange"){
             %>
-            <FormItem label="${item.name}" prop="${item.field}">
-              <DatePicker :options="options" v-model="selectDate" type="daterange" format="yyyy-MM-dd" clearable @on-change="selectDateRange" placeholder="选择起始时间" style="width: 200px"></DatePicker>
-            </FormItem>
+            <Form-item label="${item.name}" prop="${item.field}">
+              <DatePicker v-model="selectDate" type="daterange" format="yyyy-MM-dd" clearable @on-change="selectDateRange" placeholder="选择起始时间" style="width: 200px"></DatePicker>
+            </Form-item>
             <%
             }
             %>
             <%
             if(item.searchType=="area"){
             %>
-            <FormItem label="${item.name}" prop="${item.field}">
-              <al-cascader v-model="searchForm.${item.field}" data-type="name" level="${item.searchLevel}" style="width:200px"/>
-            </FormItem>
-            <%
-            }
-            %>
-            <%
-            if(item.searchType=="dict"){
-            %>
-            <FormItem label="${item.name}" prop="${item.field}">
-              <dict v-model="searchForm.${item.field}" dict="${item.searchDictType}" transfer style="width:200px"/>
-            </FormItem>
-            <%
-            }
-            %>
-            <%
-            if(item.searchType=="customList"){
-            %>
-            <FormItem label="${item.name}" prop="${item.field}">
-              <customList v-model="searchForm.${item.field}" url="${item.searchCustomUrl}" transfer style="width:200px"/>
-            </FormItem>
+            <Form-item label="${item.name}" prop="${item.field}">
+              <al-cascader v-model="searchForm.${item.field}" data-type="code" level="${item.searchLevel}" style="width:200px"/>
+            </Form-item>
             <%
             }
             %>
@@ -79,10 +61,10 @@
           }
         }
         %>
-          <FormItem style="margin-left:-35px;" class="br">
+          <Form-item style="margin-left:-35px;" class="br">
             <Button @click="handleSearch" type="primary" icon="ios-search">搜索</Button>
             <Button @click="handleReset">重置</Button>
-          </FormItem>
+          </Form-item>
         </Form>
       </Row>
       <%
@@ -99,65 +81,47 @@
           <%
           if(item.searchType=="text"){
           %>
-          <FormItem label="${item.name}" prop="${item.field}">
+          <Form-item label="${item.name}" prop="${item.field}">
             <Input type="text" v-model="searchForm.${item.field}" placeholder="请输入${item.name}" clearable style="width: 200px"/>
-          </FormItem>
+          </Form-item>
           <%
           }
           %>
           <%
           if(item.searchType=="select"){
           %>
-          <FormItem label="${item.name}" prop="${item.field}">
+          <Form-item label="${item.name}" prop="${item.field}">
             <Select v-model="searchForm.${item.field}" placeholder="请选择" clearable style="width: 200px">
               <Option value="0">请自行编辑下拉菜单</Option>
             </Select>
-          </FormItem>
+          </Form-item>
           <%
           }
           %>
           <%
           if(item.searchType=="date"){
           %>
-          <FormItem label="${item.name}" prop="${item.field}">
+          <Form-item label="${item.name}" prop="${item.field}">
             <DatePicker type="date" v-model="searchForm.${item.field}" placeholder="请选择" clearable style="width: 200px"></DatePicker>
-          </FormItem>
+          </Form-item>
           <%
           }
           %>
           <%
           if(item.searchType=="daterange"){
           %>
-          <FormItem label="${item.name}" prop="${item.field}">
-            <DatePicker :options="options" v-model="selectDate" type="daterange" format="yyyy-MM-dd" clearable @on-change="selectDateRange" placeholder="选择起始时间" style="width: 200px"></DatePicker>
-          </FormItem>
+          <Form-item label="${item.name}" prop="${item.field}">
+            <DatePicker v-model="selectDate" type="daterange" format="yyyy-MM-dd" clearable @on-change="selectDateRange" placeholder="选择起始时间" style="width: 200px"></DatePicker>
+          </Form-item>
           <%
           }
           %>
           <%
           if(item.searchType=="area"){
           %>
-          <FormItem label="${item.name}" prop="${item.field}">
-            <al-cascader v-model="searchForm.${item.field}" data-type="name" level="${item.searchLevel}" style="width:200px"/>
-          </FormItem>
-          <%
-          }
-          %>
-          <%
-          if(item.searchType=="dict"){
-          %>
-          <FormItem label="${item.name}" prop="${item.field}">
-            <dict v-model="searchForm.${item.field}" dict="${item.searchDictType}" transfer style="width:200px"/>
-          </FormItem>
-          <%
-          }
-          %>
-          <%
-          if(item.searchType=="customList"){
-          %>
-          <FormItem label="${item.name}" prop="${item.field}">
-            <customList v-model="searchForm.${item.field}" url="${item.searchCustomUrl}" transfer style="width:200px"/>
-          </FormItem>
+          <Form-item label="${item.name}" prop="${item.field}">
+            <al-cascader v-model="searchForm.${item.field}" data-type="code" level="${item.searchLevel}" style="width:200px"/>
+          </Form-item>
           <%
           }
           %>
@@ -171,65 +135,47 @@
             <%
             if(item.searchType=="text"){
             %>
-            <FormItem label="${item.name}" prop="${item.field}">
+            <Form-item label="${item.name}" prop="${item.field}">
               <Input type="text" v-model="searchForm.${item.field}" placeholder="请输入${item.name}" clearable style="width: 200px"/>
-            </FormItem>
+            </Form-item>
             <%
             }
             %>
             <%
             if(item.searchType=="select"){
             %>
-            <FormItem label="${item.name}" prop="${item.field}">
+            <Form-item label="${item.name}" prop="${item.field}">
               <Select v-model="searchForm.${item.field}" placeholder="请选择" clearable style="width: 200px">
                 <Option value="0">请自行编辑下拉菜单</Option>
               </Select>
-            </FormItem>
+            </Form-item>
             <%
             }
             %>
             <%
             if(item.searchType=="date"){
             %>
-            <FormItem label="${item.name}" prop="${item.field}">
+            <Form-item label="${item.name}" prop="${item.field}">
               <DatePicker type="date" v-model="searchForm.${item.field}" placeholder="请选择" clearable style="width: 200px"></DatePicker>
-            </FormItem>
+            </Form-item>
             <%
             }
             %>
             <%
             if(item.searchType=="daterange"){
             %>
-            <FormItem label="${item.name}" prop="${item.field}">
-              <DatePicker :options="options" v-model="selectDate" type="daterange" format="yyyy-MM-dd" clearable @on-change="selectDateRange" placeholder="选择起始时间" style="width: 200px"></DatePicker>
-            </FormItem>
+            <Form-item label="${item.name}" prop="${item.field}">
+              <DatePicker v-model="selectDate" type="daterange" format="yyyy-MM-dd" clearable @on-change="selectDateRange" placeholder="选择起始时间" style="width: 200px"></DatePicker>
+            </Form-item>
             <%
             }
             %>
             <%
             if(item.searchType=="area"){
             %>
-            <FormItem label="${item.name}" prop="${item.field}">
-              <al-cascader v-model="searchForm.${item.field}" data-type="name" level="${item.searchLevel}" style="width:200px"/>
-            </FormItem>
-            <%
-            }
-            %>
-            <%
-            if(item.searchType=="dict"){
-            %>
-            <FormItem label="${item.name}" prop="${item.field}">
-              <dict v-model="searchForm.${item.field}" dict="${item.searchDictType}" transfer style="width:200px"/>
-            </FormItem>
-            <%
-            }
-            %>
-            <%
-            if(item.searchType=="customList"){
-            %>
-            <FormItem label="${item.name}" prop="${item.field}">
-              <customList v-model="searchForm.${item.field}" url="${item.searchCustomUrl}" transfer style="width:200px"/>
-            </FormItem>
+            <Form-item label="${item.name}" prop="${item.field}">
+              <al-cascader v-model="searchForm.${item.field}" data-type="code" level="${item.searchLevel}" style="width:200px"/>
+            </Form-item>
             <%
             }
             %>
@@ -237,14 +183,14 @@
           }
           %>
           </span>
-          <FormItem style="margin-left:-35px;" class="br">
+          <Form-item style="margin-left:-35px;" class="br">
             <Button @click="handleSearch" type="primary" icon="ios-search">搜索</Button>
             <Button @click="handleReset">重置</Button>
             <a class="drop-down" @click="dropDown">
               {{dropDownContent}}
               <Icon :type="dropDownIcon"></Icon>
             </a>
-          </FormItem>
+          </Form-item>
         </Form>
       </Row>
       <%
@@ -259,196 +205,142 @@
         <% } %>
         <Button type="dashed" @click="openTip=!openTip">{{openTip ? "关闭提示" : "开启提示"}}</Button>
       </Row>
-      <Alert show-icon v-show="openTip">
-        已选择 <span class="select-count">{{selectList.length}}</span> 项
-        <a class="select-clear" @click="clearSelectAll">清空</a>
-      </Alert>
-      <Table :loading="loading" border :columns="columns" :data="data" ref="table" sortable="custom" @on-sort-change="changeSort" @on-selection-change="changeSelect"></Table>
+      <Row v-show="openTip">
+        <Alert show-icon>
+          已选择 <span class="select-count">{{selectCount}}</span> 项
+          <a class="select-clear" @click="clearSelectAll">清空</a>
+        </Alert>
+      </Row>
+      <Row>
+        <Table :loading="loading" border :columns="columns" :data="data" ref="table" sortable="custom" @on-sort-change="changeSort" @on-selection-change="changeSelect"></Table>
+      </Row>
       <Row type="flex" justify="end" class="page">
         <Page :current="searchForm.pageNumber" :total="total" :page-size="searchForm.pageSize" @on-change="changePage" @on-page-size-change="changePageSize" :page-size-opts="[10,20,50]" size="small" show-total show-elevator show-sizer></Page>
       </Row>
     </Card>
     <Modal :title="modalTitle" v-model="modalVisible" :mask-closable='false' :width="${modalWidth}">
-      <Form ref="form" :model="form" :rules="formValidate" <% if(labelPosition=="left"){ %>:label-width="100"<% } %> label-position="${labelPosition}">
+      <Form ref="form" :model="form" :label-width="100" :rules="formValidate" label-position="left" <% if(rowNum>1){ %>inline<% } %>>
+        <%
+        for(item in fields){
+          if(item.editable){
+        %>
+        <FormItem label="${item.name}" prop="${item.field}" <% if(rowNum>1&&(item.type=="switch"||item.type=="radio")){ %>style="width:${itemWidth}"<% } %> <% if(item.type=="wangEditor"||item.type=="quill"){ %>class="form-${item.type}"<% } %>>
           <%
-          var curr = 1;
-          for(var i=0; i<totalRow; i++){
+          if(item.type=="text"){
           %>
-          <% if(labelPosition!="left"){ %>
-          <Row :gutter="32">
-          <% } %>
-            <%
-            for(var j=0; j<rowNum; j++){
-            if(fields.~size==0||curr>fields.~size){
-                break;
-            }
-            var item = fields[curr-1];
-            while(!item.editable && curr <= fields.~size){
-                curr++;
-                item = fields[curr-1];
-            }
-            curr++;
-            var spanData = span;
-            if(item.type=="editor"||item.type=="textarea"){
-                spanData = 24;
-            }
-            %>
-            <% if(labelPosition!="left"){ %>
-            <Col span="${spanData}">
-            <% } %>
-              <FormItem label="${item.name}" prop="${item.field}" <% if(item.type=="upload"){ %>class="form-noheight"<% } %>>
-                <%
-                if(item.type=="text"){
-                %>
-                <Input v-model="form.${item.field}" clearable/>
-                <%
-                }
-                %>
-                <%
-                if(item.type=="textarea"){
-                %>
-                <Input v-model="form.${item.field}" type="textarea" :rows="4" maxlength="250" show-word-limit/>
-                <%
-                }
-                %>
-                <%
-                if(item.type=="select"){
-                %>
-                <Select v-model="form.${item.field}" clearable>
-                  <Option value="0">请自行编辑下拉菜单</Option>
-                </Select>
-                <%
-                }
-                %>
-                <%
-                if(item.type=="switch"){
-                %>
-                <i-switch v-model="form.${item.field}"></i-switch>
-                <%
-                }
-                %>
-                <%
-                if(item.type=="radio"){
-                %>
-                <RadioGroup v-model="form.${item.field}">
-                  <Radio label="0">请自行编辑单选框</Radio>
-                  <Radio label="1">请自行编辑单选框</Radio>
-                </RadioGroup>
-                <%
-                }
-                %>
-                <%
-                if(item.type=="number"){
-                %>
-                <InputNumber v-model="form.${item.field}" style="width:100%"></InputNumber>
-                <%
-                }
-                %>
-                <%
-                if(item.type=="date"){
-                %>
-                <DatePicker type="date" v-model="form.${item.field}" clearable style="width:100%"></DatePicker>
-                <%
-                }
-                %>
-                <%
-                if(item.type=="datetime"){
-                %>
-                <DatePicker type="datetime" v-model="form.${item.field}" clearable transfer style="width: 100%"></DatePicker>
-                <%
-                }
-                %>
-                <%
-                  if(item.type=="daterange"){
-                %>
-                <DatePicker type="daterange" v-model="form.${item.field}" clearable style="width:100%"></DatePicker>
-                <%
-                }
-                %>
-                <%
-                if(item.type=="time"){
-                %>
-                <TimePicker type="time" v-model="form.${item.field}" clearable style="width:100%"></TimePicker>
-                <%
-                }
-                %>
-                <%
-                if(item.type=="area"){
-                %>
-                <al-cascader v-model="form.${item.field}" data-type="name" level="${item.level}"/>
-                <%
-                }
-                %>
-                <%
-                if(item.type=="slider"){
-                %>
-                <Slider v-model="form.${item.field}"></Slider>
-                <%
-                }
-                %>
-                <%
-                if(item.type=="upload"){
-                %>
-                <upload-pic-input v-model="form.${item.field}"></upload-pic-input>
-                <%
-                }
-                %>
-                <%
-                if(item.type=="uploadThumb"){
-                %>
-                <uploadThumb v-model="form.${item.field}" multiple></uploadThumb>
-                <%
-                }
-                %>
-                <%
-                if(item.type=="editor"){
-                %>
-                <editor id="editor-${i}-${j}" v-model="form.${item.field}"></editor>
-                <%
-                }
-                %>
-                <%
-                if(item.type=="password"){
-                %>
-                <password v-model="form.${item.field}"></password>
-                <%
-                }
-                %>
-                <%
-                if(item.type=="dict"){
-                %>
-                <dict v-model="form.${item.field}" dict="${item.dictType}" transfer></dict>
-                <%
-                }
-                %>
-                <%
-                if(item.type=="customList"){
-                %>
-                <customList v-model="form.${item.field}" url="${item.customUrl}" transfer></customList>
-                <%
-                }
-                %>
-                <%
-                if(item.type=="fileUpload"){
-                %>
-                <fileUpload v-model="form.${item.field}"></fileUpload>
-                <%
-                }
-                %>
-              </FormItem>
-            <% if(labelPosition!="left"){ %>
-            </Col>
-            <% } %>
-            <%
-            }
-            %>
-          <% if(labelPosition!="left"){ %>
-          </Row>
-          <% } %>
+          <Input v-model="form.${item.field}" clearable style="width:${width}"/>
           <%
           }
           %>
-        </Form>
+          <%
+          if(item.type=="select"){
+          %>
+          <Select v-model="form.${item.field}" clearable style="width:${width}">
+            <Option value="0">请自行编辑下拉菜单</Option>
+          </Select>
+          <%
+          }
+          %>
+          <%
+          if(item.type=="switch"){
+          %>
+          <i-switch v-model="form.${item.field}"></i-switch>
+          <%
+          }
+          %>
+          <%
+          if(item.type=="radio"){
+          %>
+          <RadioGroup v-model="form.${item.field}">
+            <Radio label="0">请自行编辑单选框</Radio>
+            <Radio label="1">请自行编辑单选框</Radio>
+          </RadioGroup>
+          <%
+          }
+          %>
+          <%
+          if(item.type=="number"){
+          %>
+          <InputNumber v-model="form.${item.field}" style="width:${width}"></InputNumber>
+          <%
+          }
+          %>
+          <%
+          if(item.type=="date"){
+          %>
+          <DatePicker type="date" v-model="form.${item.field}" clearable style="width:${width}"></DatePicker>
+          <%
+          }
+          %>
+          <%
+            if(item.type=="daterange"){
+          %>
+          <DatePicker type="daterange" v-model="form.${item.field}" clearable style="width:${width}"></DatePicker>
+          <%
+          }
+          %>
+          <%
+          if(item.type=="time"){
+          %>
+          <TimePicker type="time" v-model="form.${item.field}" clearable style="width:${width}"></TimePicker>
+          <%
+          }
+          %>
+          <%
+          if(item.type=="area"){
+          %>
+          <al-cascader v-model="form.${item.field}" data-type="code" level="${item.level}" style="width:${width}"/>
+          <%
+          }
+          %>
+          <%
+          if(item.type=="slider"){
+          %>
+          <Slider v-model="form.${item.field}" style="width:${width}"></Slider>
+          <%
+          }
+          %>
+          <%
+          if(item.type=="upload"){
+          %>
+          <upload-pic-input v-model="form.${item.field}" style="width:${width}"></upload-pic-input>
+          <%
+          }
+          %>
+          <%
+          if(item.type=="uploadThumb"){
+          %>
+          <uploadThumb v-model="form.${item.field}" multiple style="width:${width}"></uploadThumb>
+          <%
+          }
+          %>
+          <%
+          if(item.type=="wangEditor"&&!toQuill){
+          %>
+          <wangEditor v-model="form.${item.field}" style="width:${wangEditorWidth}"></wangEditor>
+          <%
+          }
+          %>
+          <%
+          if(item.type=="quill"||(item.type=="wangEditor"&&toQuill)){
+          %>
+          <quill v-model="form.${item.field}" style="width:${quillWidth}"></quill>
+          <%
+          }
+          %>
+          <%
+          if(item.type=="password"){
+          %>
+          <password v-model="form.${item.field}" style="width:${width}"></password>
+          <%
+          }
+          %>
+        </FormItem>
+        <%
+          }
+        }
+        %>
+      </Form>
       <div slot="footer">
         <Button type="text" @click="modalVisible=false">取消</Button>
         <Button type="primary" :loading="submitLoading" @click="handleSubmit">提交</Button>
@@ -461,71 +353,48 @@
 <%
 if(api){
 %>
-// 根据你的实际请求api.js位置路径修改
-import { get${apiName}List, add${apiName}, edit${apiName}, delete${apiName} } from "@/api/index";
-<%
-}
-%>
-<%
-if(fileUpload){
-%>
-import fileUpload from "@/views/my-components/xboot/file-upload";
+import { get${apiName}List, add${apiName}, edit${apiName}, delete${apiName} } from "./api.js";
 <%
 }
 %>
 <%
 if(upload){
 %>
-import uploadPicInput from "@/views/my-components/xboot/upload-pic-input";
+import uploadPicInput from "@/views/my-components/zwz/upload-pic-input";
 <%
 }
 %>
 <%
 if(uploadThumb){
 %>
-import uploadThumb from "@/views/my-components/xboot/upload-pic-thumb";
+import uploadThumb from "@/views/my-components/zwz/upload-pic-thumb";
 <%
 }
 %>
 <%
-if(editor){
+if(wangEditor&&!toQuill){
 %>
-import editor from "@/views/my-components/xboot/editor";
+import wangEditor from "@/views/my-components/zwz/editor";
+<%
+}
+%>
+<%
+if(quill||(wangEditor&&!toQuill)){
+%>
+import quill from "@/views/my-components/zwz/quill";
 <%
 }
 %>
 <%
 if(password){
 %>
-import password from "@/views/my-components/xboot/set-password";
+import password from "@/views/my-components/zwz/set-password";
 <%
 }
 %>
-<%
-if(dict||searchDict){
-%>
-import dict from "@/views/my-components/xboot/dict";
-<%
-}
-%>
-<%
-if(customList||searchCustomList){
-%>
-import customList from "@/views/my-components/xboot/custom-list";
-<%
-}
-%>
-import { shortcuts } from "@/libs/shortcuts";
 export default {
   name: "${vueName}",
   components: {
-    <%
-    if(fileUpload){
-    %>
-    fileUpload,
-    <%
-    }
-    %>
     <%
     if(upload){
     %>
@@ -541,9 +410,16 @@ export default {
     }
     %>
     <%
-    if(editor){
+    if(wangEditor&&!toQuill){
     %>
-    editor,
+    wangEditor,
+    <%
+    }
+    %>
+    <%
+    if(quill||(wangEditor&&!toQuill)){
+    %>
+    quill,
     <%
     }
     %>
@@ -551,20 +427,6 @@ export default {
     if(password){
     %>
     password,
-    <%
-    }
-    %>
-    <%
-    if(dict||searchDict){
-    %>
-    dict,
-    <%
-    }
-    %>
-    <%
-    if(customList||searchCustomList){
-    %>
-    customList,
     <%
     }
     %>
@@ -591,23 +453,11 @@ export default {
         order: "desc", // 默认排序方式
         <% if(daterangeSearch){ %>
         startDate: "", // 起始时间
-        endDate: "", // 终止时间
+        endDate: "" // 终止时间
         <% } %>
-        <%
-        for(item in fields){
-          if(item.searchable && item.searchType=="area"){
-        %>
-        ${item.field}: [],
-        <%
-          }
-        }
-        %>
       },
       <% if(daterangeSearch){ %>
       selectDate: null,
-      options: {
-        shortcuts: shortcuts,
-      },
       <% } %>
       form: { // 添加或编辑表单对象初始化数据
         <%
@@ -618,7 +468,7 @@ export default {
         ${item.field}: true,
         <% }else if(item.type=="number"||item.type=="slider"){ %>
         ${item.field}: 0,
-        <% }else if(item.type=="daterange"||item.type=="area"||item.type=="uploadThumb"){ %>
+        <% }else if(item.type=="area"||item.type=="uploadThumb"){ %>
         ${item.field}: [],
         <% }else{ %>
         ${item.field}: "",
@@ -634,18 +484,16 @@ export default {
         for(item in fields){
           if(item.editable&&item.validate){
         %>
-        <% if(item.type=="area"||item.type=="uploadThumb"){ %>
-        ${item.field}: [{ type: "array", required: true, message: "不能为空", trigger: "change" }],
-        <% }else if(item.type=="date"||item.type=="datetime"){ %>
-        ${item.field}: [{ type: "date", required: true, message: "不能为空", trigger: "change" }],
-        <% }else if(item.type=="daterange"){ %>
-        ${item.field}: [{ type: "array", required: true, trigger: "change", fields: { 0: { type: "date", message: "起始日期不能为空", required: true }, 1: { type: "date", message: "结束日期不能为空", required: true } }, }],
+        <% if(item.type=="daterange"||item.type=="area"||item.type=="uploadThumb"){ %>
+        ${item.field}: [{ type: "array", required: true, message: "不能为空", trigger: "blur" }],
+        <% }else if(item.type=="date"){ %>
+        ${item.field}: [{ type: "date", required: true, message: "不能为空", trigger: "blur" }],
         <% }else if(item.type=="number"||item.type=="slider"){ %>
-        ${item.field}: [{ type: "number", required: true, message: "不能为空", trigger: "change" }],
+        ${item.field}: [{ type: "number", required: true, message: "不能为空", trigger: "blur" }],
         <% }else if(item.type=="switch"){ %>
-        ${item.field}: [{ type: "boolean", required: true, message: "不能为空", trigger: "change" }],
+        ${item.field}: [{ type: "boolean", required: true, message: "不能为空", trigger: "blur" }],
         <% }else{ %>
-        ${item.field}: [{ required: true, message: "不能为空", trigger: "change" }],
+        ${item.field}: [{ required: true, message: "不能为空", trigger: "blur" }],
         <% } %>
         <%
           }
@@ -654,6 +502,7 @@ export default {
       },
       submitLoading: false, // 添加或编辑提交状态
       selectList: [], // 多选数据
+      selectCount: 0, // 多选计数
       columns: [
         // 表头
         {
@@ -701,12 +550,20 @@ export default {
           title: "操作",
           key: "action",
           align: "center",
-          width: 150,
+          width: 200,
           render: (h, params) => {
             return h("div", [
               h(
-                "a",
+                "Button",
                 {
+                  props: {
+                    type: "primary",
+                    size: "small",
+                    icon: "ios-create-outline"
+                  },
+                  style: {
+                    marginRight: "5px"
+                  },
                   on: {
                     click: () => {
                       this.edit(params.row);
@@ -715,14 +572,14 @@ export default {
                 },
                 "编辑"
               ),
-              h("Divider", {
-                props: {
-                  type: "vertical",
-                },
-              }),
               h(
-                "a",
+                "Button",
                 {
+                  props: {
+                    type: "error",
+                    size: "small",
+                    icon: "md-trash"
+                  },
                   on: {
                     click: () => {
                       this.remove(params.row);
@@ -784,6 +641,7 @@ export default {
     },
     changeSelect(e) {
       this.selectList = e;
+      this.selectCount = e.length;
     },
     <% if(daterangeSearch){ %>
     selectDateRange(v) {
@@ -813,12 +671,8 @@ export default {
       get${apiName}List(this.searchForm).then(res => {
         this.loading = false;
         if (res.success) {
-          this.data = res.result.content;
-          this.total = res.result.totalElements;
-          if (this.data.length == 0 && this.searchForm.pageNumber > 1) {
-            this.searchForm.pageNumber -= 1;
-            this.getDataList();
-          }
+          this.data = res.result.records;
+          this.total = res.result.total;
         }
       });
       <%
@@ -830,10 +684,6 @@ export default {
       //   if (res.success) {
       //     this.data = res.result.content;
       //     this.total = res.result.totalElements;
-      //     if (this.data.length == 0 && this.searchForm.pageNumber > 1) {
-      //       this.searchForm.pageNumber -= 1;
-      //       this.getDataList();
-      //     }
       //   }
       // });
       // 以下为模拟数据
@@ -848,23 +698,6 @@ export default {
     handleSubmit() {
       this.$refs.form.validate(valid => {
         if (valid) {
-          <%
-          for(item in fields){
-            if(item.editable&&item.type=="date"){
-          %>
-          if (typeof this.form.${item.field} == "object") {
-            this.form.${item.field} = this.format(this.form.${item.field}, "yyyy-MM-dd");
-          }
-          <%
-          }else if(item.editable&&item.type=="datetime"){
-          %>
-          if (typeof this.form.${item.field} == "object") {
-            this.form.${item.field} = this.format(this.form.${item.field}, "yyyy-MM-dd HH:mm:ss");
-          }
-          <%
-            }
-          }
-          %>
           this.submitLoading = true;
           if (this.modalType === 0) {
             // 添加 避免编辑后传入id等数据 记得删除
@@ -961,7 +794,7 @@ export default {
       this.$Modal.confirm({
         title: "确认删除",
         // 记得确认修改此处
-        content: "您确认要删除该条数据?",
+        content: "您确认要删除 " + v.id + " ?",
         loading: true,
         onOk: () => {
           // 删除
@@ -972,7 +805,6 @@ export default {
             this.$Modal.remove();
             if (res.success) {
               this.$Message.success("操作成功");
-              this.clearSelectAll();
               this.getDataList();
             }
           });
@@ -983,13 +815,11 @@ export default {
           //   this.$Modal.remove();
           //   if (res.success) {
           //     this.$Message.success("操作成功");
-          //     this.clearSelectAll();
           //     this.getDataList();
           //   }
           // });
           // 模拟请求成功
           this.$Message.success("操作成功");
-          this.clearSelectAll();
           this.$Modal.remove();
           this.getDataList();
           <%
@@ -999,13 +829,13 @@ export default {
       });
     },
     delAll() {
-      if (this.selectList.length <= 0) {
+      if (this.selectCount <= 0) {
         this.$Message.warning("您还未选择要删除的数据");
         return;
       }
       this.$Modal.confirm({
         title: "确认删除",
-        content: "您确认要删除所选的 " + this.selectList.length + " 条数据?",
+        content: "您确认要删除所选的 " + this.selectCount + " 条数据?",
         loading: true,
         onOk: () => {
           let ids = "";
@@ -1055,7 +885,7 @@ export default {
 </script>
 <style lang="less">
 // 建议引入通用样式 具体路径自行修改 可删除下面样式代码
-// @import "@/styles/table-common.less";
+// @import "../../../styles/table-common.less";
 .search {
     .operation {
         margin-bottom: 2vh;

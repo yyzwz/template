@@ -1,42 +1,36 @@
 <template>
   <div class="foot">
-    <Row type="flex" justify="space-around" class="foot-item">
-      <a
-        class="item"
-        href="https://www.kancloud.cn/zwz/xboot/1009234"
-        target="_blank"
-        >{{ $t("docs") }}</a
-      >
-      <a class="item" href="https://github.com/zwz/x-boot" target="_blank">
-        <Icon custom="iconfont icon-github" size="16" />
-      </a>
-      <a class="item" href="http://xpay.zwz.cn/pay?xboot" target="_blank">{{
-        $t("fullVersion")
-      }}</a>
+    <Row type="flex" justify="space-around" class="help">
+      <a class="item" href="https://github.com/Exrick/x-boot" target="_blank">{{ $t('help') }}</a>
+      <a class="item" href="https://github.com/Exrick/x-boot" target="_blank">{{ $t('privacy') }}</a>
+      <a class="item" href="https://github.com/Exrick/x-boot" target="_blank">{{ $t('terms') }}</a>
     </Row>
     <Row type="flex" justify="center" class="copyright">
       Copyright © 2018 - Present
-      <a href="http://zwz.cn" target="_blank" style="margin: 0 5px"
-        >zwz</a
-      >
-      {{ $t("rights") }}
+      <a
+        href="http://exrick.cn"
+        target="_blank"
+        style="margin:0 5px;"
+      >Exrick</a>
+      {{ $t('rights') }}
     </Row>
   </div>
 </template>
 
 <script>
 export default {
-  name: "xboot-footer",
+  name: "footer"
 };
 </script>
 
 <style lang="less">
 .foot {
   width: 100%;
-  margin: 48px 0 24px;
+  margin-top: 10vh;
+  margin-bottom: 3vh;
   color: rgba(0, 0, 0, 0.45);
   font-size: 14px;
-  .foot-item {
+  .help {
     margin: 0 auto;
     margin-bottom: 1vh;
     width: 60%;

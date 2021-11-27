@@ -10,7 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 <%
 if(!entity.isTree){
 %>
-import cn.exrick.xboot.common.vo.SearchVo;
+import cn.zwz.common.vo.SearchVo;
 import cn.hutool.core.date.DateUtil;
 import cn.hutool.core.util.StrUtil;
 import org.springframework.data.domain.Page;
@@ -28,6 +28,7 @@ if(!entity.isTree){
 import javax.persistence.criteria.*;
 import java.util.ArrayList;
 import java.util.Date;
+import java.lang.reflect.Field;
 <%
 }
 %>
@@ -63,7 +64,7 @@ public class ${entity.className}ServiceImpl implements ${entity.className}Servic
                 // TODO 可添加你的其他搜索过滤条件 默认已有创建时间过滤
                 Path<Date> createTimeField = root.get("createTime");
 
-                List<Predicate> list = new ArrayList<>();
+                List<Predicate> list = new ArrayList<Predicate>();
 
                 // 创建时间
                 if(StrUtil.isNotBlank(searchVo.getStartDate())&&StrUtil.isNotBlank(searchVo.getEndDate())){

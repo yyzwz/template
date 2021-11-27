@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c4488c37-12a8-4f85-aaad-c3cecab90a48" name="Default Changelist" comment="" />
+    <list default="true" id="5a834373-bc20-48f5-8099-5dc2a14cead8" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -18,7 +18,7 @@
       </MavenGeneralSettings>
     </option>
   </component>
-  <component name="ProjectId" id="1uCf3yEYiyeSlLI3dGPEHnUn8Xn" />
+  <component name="ProjectId" id="21UJ1gpt1Z1MhQ0jbfPxyPgjNxe" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -31,58 +31,56 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/java/cn/exrick/xboot/modules/base/utils" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/java/cn/zwz/modules/base/utils" />
+    <property name="project.structure.last.edited" value="Artifacts" />
+    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.side.proportion" value="0.2" />
     <property name="settings.editor.selected.configurable" value="MavenSettings" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\java\git\sharing-alliance\back\src\main\java\cn\exrick\xboot\modules\base\utils" />
+      <recent name="C:\java\git\template\back\src\main\java\cn\zwz\modules\base\utils" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
-      <recent name="cn.exrick.xboot.modules.base.serviceimpl.mybatis" />
-      <recent name="cn.exrick.xboot.modules.base.service.mybatis" />
-      <recent name="cn.exrick.xboot.modules.base.dao.mapper" />
+      <recent name="cn.zwz.modules.base.controller" />
+      <recent name="cn.zwz.modules.base.serviceimpl.mybatis" />
+      <recent name="cn.zwz.modules.base.service.mybatis" />
+      <recent name="cn.zwz.modules.base.dao.mapper" />
     </key>
   </component>
   <component name="RunManager">
-    <configuration name="XbootApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
-      <module name="xboot-plus" />
-      <option name="SPRING_BOOT_MAIN_CLASS" value="cn.exrick.xboot.XbootApplication" />
+    <configuration default="true" type="JetRunConfigurationType">
+      <module name="template" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
+      <module name="template" />
+      <option name="filePath" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ZwzApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="template" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="cn.zwz.ZwzApplication" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="SHORTEN_COMMAND_LINE" value="NONE" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
   </component>
-  <component name="ServiceViewManager">
-    <option name="viewStates">
-      <list>
-        <serviceView>
-          <treeState>
-            <expand />
-            <select />
-          </treeState>
-        </serviceView>
-      </list>
-    </option>
-  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
-  <component name="SvnConfiguration">
-    <configuration />
-  </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="c4488c37-12a8-4f85-aaad-c3cecab90a48" name="Default Changelist" comment="" />
-      <created>1624174295985</created>
+      <changelist id="5a834373-bc20-48f5-8099-5dc2a14cead8" name="Changes" comment="" />
+      <created>1637989519921</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1624174295985</updated>
-      <workItem from="1624174297908" duration="756000" />
-      <workItem from="1624237862941" duration="1915000" />
-      <workItem from="1624255859668" duration="3076000" />
-      <workItem from="1629187582580" duration="825000" />
-      <workItem from="1629188475457" duration="465000" />
-      <workItem from="1631080837031" duration="5907000" />
+      <updated>1637989519921</updated>
+      <workItem from="1637989521144" duration="8465000" />
     </task>
     <servers />
   </component>

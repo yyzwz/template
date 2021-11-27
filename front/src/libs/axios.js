@@ -3,8 +3,7 @@ import { getStore, setStore } from './storage';
 import { router } from '../router/index';
 import { Message } from 'view-design';
 import Cookies from 'js-cookie';
-// 统一请求路径前缀
-let baseApi = config.baseApi;
+let base = '/zwz';
 // 超时设定
 axios.defaults.timeout = 15000;
 
@@ -65,7 +64,7 @@ export const getRequest = (url, params) => {
     let accessToken = getStore('accessToken');
     return axios({
         method: 'get',
-        url: `${baseApi}${url}`,
+        url: `${base}${url}`,
         params: params,
         headers: {
             'accessToken': accessToken
@@ -77,7 +76,7 @@ export const postRequest = (url, params) => {
     let accessToken = getStore("accessToken");
     return axios({
         method: 'post',
-        url: `${baseApi}${url}`,
+        url: `${base}${url}`,
         data: params,
         transformRequest: [function (data) {
             let ret = '';
@@ -98,7 +97,7 @@ export const putRequest = (url, params) => {
     let accessToken = getStore("accessToken");
     return axios({
         method: 'put',
-        url: `${baseApi}${url}`,
+        url: `${base}${url}`,
         data: params,
         transformRequest: [function (data) {
             let ret = '';
@@ -119,7 +118,7 @@ export const postBodyRequest = (url, params) => {
     let accessToken = getStore('accessToken');
     return axios({
         method: 'post',
-        url: `${baseApi}${url}`,
+        url: `${base}${url}`,
         data: params,
         headers: {
             'accessToken': accessToken
@@ -135,7 +134,7 @@ export const postBodyRequest = (url, params) => {
 export const getNoAuthRequest = (url, params) => {
     return axios({
         method: 'get',
-        url: `${baseApi}${url}`,
+        url: `${base}${url}`,
         params: params
     });
 };
@@ -143,7 +142,7 @@ export const getNoAuthRequest = (url, params) => {
 export const postNoAuthRequest = (url, params) => {
     return axios({
         method: 'post',
-        url: `${baseApi}${url}`,
+        url: `${base}${url}`,
         data: params,
         transformRequest: [function (data) {
             let ret = '';

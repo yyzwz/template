@@ -7,21 +7,21 @@
       @keydown.enter="submitRegist"
       style="height:100%"
     >
-      <Col class="content">
+      <Col class="layout">
         <div>
           <Header />
-          <div class="success">
+          <Row class="success">
             <Icon type="md-checkmark-circle" color="#52c41a" size="64"></Icon>
             <p class="success-words">恭喜您，您的账户：{{username}} 注册成功</p>
-            <div class="buttons">
+            <Row class="buttons">
               <router-link to="/login">
                 <Button type="primary" size="large" style="margin-right:10px;">立即登录</Button>
               </router-link>
               <router-link to="/regist">
                 <Button size="large">返回注册</Button>
               </router-link>
-            </div>
-          </div>
+            </Row>
+          </Row>
         </div>
         <Footer />
       </Col>

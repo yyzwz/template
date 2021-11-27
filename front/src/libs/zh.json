@@ -8,7 +8,6 @@
         "toolbar": {
             "exportToSVG": "下载图表 SVG",
             "exportToPNG": "下载图表 PNG",
-            "exportToCSV": "导出数据 CSV",
             "menu": "菜单",
             "selection": "选择",
             "selectionZoom": "区域缩放",

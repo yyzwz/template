@@ -326,12 +326,10 @@ util.initRouter = function (vm) {
         return;
     }
     if (!vm.$store.state.app.added) {
-        vm.$Loading.start();
         // 第一次加载 读取数据
         let accessToken = window.localStorage.getItem('accessToken');
         // 加载菜单
         axios.get(getMenuList, { headers: { 'accessToken': accessToken } }).then(res => {
-            vm.$Loading.finish();
             let menuData = res.result;
             if (!menuData) {
                 return;
@@ -385,10 +383,7 @@ util.initMenuData = function (vm, data) {
         let nav = {
             name: e.name,
             title: e.title,
-            icon: e.icon,
-            isMenu: e.isMenu,
-            url: e.url,
-            description: e.description
+            icon: e.icon
         }
         navList.push(nav);
     })
@@ -439,7 +434,6 @@ util.initRouterNode = function (routers, data) {
 
     for (var item of data) {
         let menu = Object.assign({}, item);
-        // menu.component = import(`@/views/${menu.component}.vue`);
         menu.component = lazyLoading(menu.component);
 
         if (item.children && item.children.length > 0) {
@@ -450,7 +444,7 @@ util.initRouterNode = function (routers, data) {
         let meta = {};
         // 给页面添加权限、标题、第三方网页链接
         meta.permTypes = menu.permTypes ? menu.permTypes : null;
-        meta.title = menu.title ? menu.title + " - XXXX管理系统 By: zwz" : null;
+        meta.title = menu.title ? menu.title + " - XXXX管理系统" : null;
         meta.url = menu.url ? menu.url : null;
         menu.meta = meta;
 

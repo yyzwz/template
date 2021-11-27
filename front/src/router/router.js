@@ -5,7 +5,7 @@ export const loginRouter = {
     path: '/login',
     name: 'login',
     meta: {
-        title: '登录 - XXXX管理系统 '
+        title: '登录 - XXXX管理系统'
     },
     component: () => import('@/views/login.vue')
 };
@@ -37,32 +37,14 @@ export const reset = {
     component: () => import('@/views/reset.vue')
 };
 
-export const relateRouter = {
-    path: '/relate',
-    name: 'relate',
+export const page404 = {
+    path: '/*',
+    name: 'error-404',
     meta: {
-        title: '绑定账号 - XXXX管理系统 '
+        title: '404-页面不存在'
     },
-    component: () => import('@/views/relate.vue')
+    component: () => import('@/views/error-page/404.vue')
 };
-
-export const authorizeRouter = {
-    path: '/authorize',
-    name: 'authorize',
-    meta: {
-        title: '统一认证平台 - XXXX管理系统 '
-    },
-    component: () => import('@/views/authorize.vue')
-};
-
-// export const page404 = {
-//     path: '/*',
-//     name: 'error-404',
-//     meta: {
-//         title: '404-页面不存在'
-//     },
-//     component: () => import('@/views/error-page/404.vue')
-// };
 
 export const page403 = {
     path: '/403',
@@ -82,7 +64,12 @@ export const page500 = {
     component: () => import('@/views/error-page/500.vue')
 };
 
-// 作为Main组件的子页面展示但是不在左侧菜单显示的路由写在otherRouter里
+export const locking = {
+    path: '/locking',
+    name: 'locking',
+    component: () => import('@/views/main-components/lockscreen/components/locking-page.vue')
+};
+
 export const otherRouter = {
     path: '/',
     name: 'otherRouter',
@@ -91,24 +78,19 @@ export const otherRouter = {
     children: [
         { path: 'home', title: { i18n: 'home' }, name: 'home_index', component: () => import('@/views/home/home.vue') },
         { path: 'ownspace', title: '个人中心', name: 'ownspace_index', component: () => import('@/views/own-space/own-space.vue') },
-        { path: 'message', title: '消息中心', name: 'message_index', component: () => import('@/views/message/message.vue') },
-        { path: 'add', title: '添加', name: 'add', component: () => import('@/views/xboot-vue-template/new-window/add.vue') },
-        { path: 'edit', title: '编辑', name: 'edit', component: () => import('@/views/xboot-vue-template/new-window/edit.vue') },
+        { path: 'change-pass', title: '修改密码', name: 'change_pass', component: () => import('@/views/change-pass/change-pass.vue') },
+        { path: 'add', title: '添加', name: 'add', component: () => import('@/views/my-components/add.vue') },
+        { path: 'edit', title: '编辑', name: 'edit', component: () => import('@/views/my-components/edit.vue')}
     ]
 };
 
-export const appRouter = [];
-
-// 所有上面定义的路由都要写在下面的routers里
 export const routers = [
     loginRouter,
     registRouter,
     registResult,
     reset,
-    relateRouter,
-    authorizeRouter,
     otherRouter,
-    ...appRouter,
+    locking,
     page500,
     page403
 ];

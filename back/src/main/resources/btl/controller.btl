@@ -1,11 +1,11 @@
 package ${entity.controllerPackage};
 
-import cn.exrick.xboot.base.XbootBaseController;
-import cn.exrick.xboot.common.utils.PageUtil;
-import cn.exrick.xboot.common.utils.ResultUtil;
-import cn.exrick.xboot.common.vo.PageVo;
-import cn.exrick.xboot.common.vo.Result;
-import cn.exrick.xboot.common.vo.SearchVo;
+import cn.zwz.base.XbootBaseController;
+import cn.zwz.common.utils.PageUtil;
+import cn.zwz.common.utils.ResultUtil;
+import cn.zwz.common.vo.PageVo;
+import cn.zwz.common.vo.Result;
+import cn.zwz.common.vo.SearchVo;
 import ${entity.entityPackage}.${entity.className};
 import ${entity.servicePackage}.${entity.className}Service;
 import io.swagger.annotations.Api;
@@ -18,9 +18,9 @@ import org.springframework.transaction.annotation.Transactional;
 <%
 if(entity.activiti){
 %>
-import cn.exrick.xboot.common.utils.SecurityUtil;
-import cn.exrick.xboot.modules.activiti.entity.ActBusiness;
-import cn.exrick.xboot.modules.activiti.service.ActBusinessService;
+import cn.zwz.common.utils.SecurityUtil;
+import cn.zwz.modules.activiti.entity.ActBusiness;
+import cn.zwz.modules.activiti.service.ActBusinessService;
 import cn.hutool.core.util.StrUtil;
 <%
 }
@@ -31,7 +31,7 @@ import cn.hutool.core.util.StrUtil;
  */
 @Slf4j
 @RestController
-@Api(tags = "${entity.description}管理接口")
+@Api(description = "${entity.description}管理接口")
 @RequestMapping("/xboot/${entity.classNameLowerCase}")
 @Transactional
 public class ${entity.className}Controller extends XbootBaseController<${entity.className}, ${entity.primaryKeyType}> {
@@ -58,7 +58,9 @@ public class ${entity.className}Controller extends XbootBaseController<${entity.
 
     @RequestMapping(value = "/getByCondition", method = RequestMethod.GET)
     @ApiOperation(value = "多条件分页获取")
-    public Result<Page<${entity.className}>> getByCondition(${entity.className} ${entity.classNameLowerCase}, SearchVo searchVo, PageVo pageVo) {
+    public Result<Page<${entity.className}>> getByCondition(${entity.className} ${entity.classNameLowerCase},
+                                                            SearchVo searchVo,
+                                                            PageVo pageVo){
 
         Page<${entity.className}> page = ${entity.classNameLowerCase}Service.findByCondition(${entity.classNameLowerCase}, searchVo, PageUtil.initPage(pageVo));
         <%
@@ -86,7 +88,7 @@ public class ${entity.className}Controller extends XbootBaseController<${entity.
     %>
     @RequestMapping(value = "/add",method = RequestMethod.POST)
     @ApiOperation(value = "添加关联流程")
-    public Result<Object> add(${entity.className} ${entity.classNameLowerCase}) {
+    public Result<Object> add(${entity.className} ${entity.classNameLowerCase}){
 
         ${entity.className} obj = ${entity.classNameLowerCase}Service.save(${entity.classNameLowerCase});
         // 保存至我的申请业务

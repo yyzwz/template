@@ -1,26 +1,15 @@
 <template>
   <div>
-    <div class="header">
-      <img
-        src="@/assets/logo-white.png"
-        width="220px"
-        v-if="mainTheme == 'darkMode'"
-      />
-      <img src="@/assets/logo-black.png" width="220px" v-else />
-      <div class="description">{{ $t("xboot") }}</div>
-    </div>
+    <Row class="header">
+      <img src="../../assets/logo-white.png" width="220px">
+      <div class="description">XXXX管理系统</div>
+    </Row>
   </div>
 </template>
 
 <script>
 export default {
-  name: "xboot-header",
-  computed: {
-    // 主题
-    mainTheme() {
-      return this.$store.state.theme.theme.mainTheme;
-    },
-  },
+  name: "header"
 };
 </script>
 

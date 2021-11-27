@@ -3,10 +3,10 @@ const CompressionPlugin = require('compression-webpack-plugin');
 module.exports = {
     devServer: {
         host: '127.0.0.1',
-        port: 8080,
+        port: 9999,
         proxy: {
-            '/xboot': {
-                target: 'http://127.0.0.1:8888',  // 请求本地 需要xboot后端项目
+            '/zwz': {
+                target: 'http://127.0.0.1:8888',
                 ws: true
             },
             '/foo': {
@@ -14,7 +14,6 @@ module.exports = {
             }
         }
     },
-    // 打包时不生成.map文件 避免看到源码
     productionSourceMap: false,
     // 部署优化
     configureWebpack: {
@@ -39,16 +38,15 @@ module.exports = {
             'js-cookie': 'Cookies',
             wangEditor: 'wangEditor',
             quill: 'Quill',
-            stompjs: 'Stomp',
             'sockjs-client': 'SockJS',
             vuedraggable: 'vuedraggable',
             viewerjs: 'Viewer'
         },
+        // GZIP压缩
         plugins: [
-            // GZIP压缩
             new CompressionPlugin({
-                test: /\.js$|\.html$|\.css/, // 匹配文件
-                threshold: 10240 // 对超过10k文件压缩
+                test: /\.js$|\.html$|\.css/,
+                threshold: 10240
             })
         ]
     }

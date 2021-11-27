@@ -5,24 +5,19 @@
       justify="center"
       align="middle"
       @keydown.enter.native="submitReset"
-      style="height: 100%"
+      style="height:100%"
     >
-      <Col class="content">
+      <Col class="layout">
         <div>
           <Header />
-          <div class="reset">
+          <Row class="reset">
             <Tabs value="1">
               <TabPane :label="label" name="1" :icon="icon"></TabPane>
             </Tabs>
             <Form ref="resetForm" :model="form" :rules="rules" class="form">
-              <div v-if="type == '0'">
+              <div v-if="type=='0'">
                 <FormItem prop="mobile" :error="errorMobile">
-                  <Input
-                    v-model="form.mobile"
-                    size="large"
-                    clearable
-                    placeholder="请输入注册或绑定手机号"
-                  ></Input>
+                  <Input v-model="form.mobile" size="large" clearable placeholder="请输入注册或绑定手机号"></Input>
                 </FormItem>
                 <FormItem prop="code">
                   <Row type="flex" justify="space-between">
@@ -47,12 +42,7 @@
               </div>
               <div v-else>
                 <FormItem prop="email" :error="errorEmail">
-                  <Input
-                    v-model="form.email"
-                    size="large"
-                    clearable
-                    placeholder="请输入绑定邮箱"
-                  ></Input>
+                  <Input v-model="form.email" size="large" clearable placeholder="请输入绑定邮箱"></Input>
                 </FormItem>
                 <FormItem prop="code">
                   <Row type="flex" justify="space-between">
@@ -76,11 +66,7 @@
                 </FormItem>
               </div>
               <FormItem prop="password">
-                <SetPassword
-                  v-model="form.password"
-                  size="large"
-                  @on-change="changeInputPass"
-                />
+                <SetPassword v-model="form.password" size="large" @on-change="changeInputPass" />
               </FormItem>
               <FormItem prop="confirmPass">
                 <Input
@@ -94,23 +80,19 @@
               </FormItem>
             </Form>
             <Button
-              style="margin-bottom: 3vh"
+              style="margin-bottom:3vh"
               type="primary"
               size="large"
               :loading="loading"
               @click="submitReset"
               long
-              >重置密码</Button
-            >
+            >重置密码</Button>
             <Row type="flex">
               <a @click="$router.go(-1)" class="back">
-                <Icon
-                  type="md-arrow-round-back"
-                  style="margin-right: 3px"
-                />返回
+                <Icon type="md-arrow-round-back" style="margin-right:3px;" />返回
               </a>
             </Row>
-          </div>
+          </Row>
         </div>
         <Footer />
       </Col>
@@ -122,25 +104,25 @@
 <script>
 import {
   vaptchaID,
-  vaptchaOffline,
   sendResetSms,
   resetByMobile,
   sendResetEmail,
-  resetByEmail,
+  resetByEmail
 } from "@/api/index";
 import { validateMobile, validatePassword } from "@/libs/validate";
 import Header from "@/views/main-components/header";
 import Footer from "@/views/main-components/footer";
 import LangSwitch from "@/views/main-components/lang-switch";
-import CountDownButton from "@/views/my-components/xboot/count-down-button";
-import SetPassword from "@/views/my-components/xboot/set-password";
+import CountDownButton from "@/views/my-components/zwz/count-down-button";
+import SetPassword from "@/views/my-components/zwz/set-password";
+var vaptchaObject;
 export default {
   components: {
     CountDownButton,
     LangSwitch,
     SetPassword,
     Header,
-    Footer,
+    Footer
   },
   data() {
     const validateConfirmPass = (rule, value, callback) => {
@@ -162,7 +144,7 @@ export default {
         email: "",
         token: "",
         password: "",
-        passStrength: "",
+        passStrength: ""
       },
       sended: false,
       sending: false,
@@ -175,56 +157,55 @@ export default {
           {
             required: true,
             message: "手机号不能为空",
-            trigger: "change",
+            trigger: "blur"
           },
           {
             validator: validateMobile,
-            trigger: "change",
-          },
+            trigger: "blur"
+          }
         ],
         email: [
           {
             required: true,
             message: "请输入邮箱地址",
-            trigger: "change",
+            trigger: "blur"
           },
           {
             type: "email",
             message: "邮箱格式不正确",
-            trigger: "change",
-          },
+            trigger: "blur"
+          }
         ],
         password: [
           {
             required: true,
             message: "密码不能为空",
-            trigger: "change",
+            trigger: "blur"
           },
           {
             validator: validatePassword,
-            trigger: "change",
-          },
+            trigger: "blur"
+          }
         ],
         code: [
           {
             required: true,
             message: "验证码不能为空",
-            trigger: "change",
-          },
+            trigger: "blur"
+          }
         ],
         confirmPass: [
           {
             required: true,
             message: "确认密码不能为空",
-            trigger: "change",
+            trigger: "blur"
           },
           {
             validator: validateConfirmPass,
-            trigger: "change",
-          },
-        ],
-      },
-      vaptchaObject: null
+            trigger: "blur"
+          }
+        ]
+      }
     };
   },
   methods: {
@@ -234,10 +215,10 @@ export default {
         //配置参数
         vid: vaptchaID, // 验证单元id
         type: "invisible", // 展现类型 隐藏式
-        offline_server: vaptchaOffline, // 离线验证接口地址 可选但此处不能为空
-      }).then(function (vaptchaObj) {
-        that.vaptchaObject = vaptchaObj;
-        vaptchaObj.listen("pass", function () {
+        offline_server: "你的离线验证接口地址 可选但此处不能为空"
+      }).then(function(vaptchaObj) {
+        vaptchaObject = vaptchaObj;
+        vaptchaObj.listen("pass", function() {
           that.form.token = vaptchaObj.getToken();
           // 验证成功 发送验证码
           if (that.type == "0") {
@@ -266,15 +247,15 @@ export default {
           this.errorEmail = "";
         }
       }
-      this.vaptchaObject.validate(); // 若没验证验证码 开始验证
+      vaptchaObject.validate(); // 若没验证验证码 开始验证
     },
     sendSmsCode() {
       this.sending = true;
       this.getSms = "发送中";
-      sendResetSms(this.form.mobile, this.form).then((res) => {
+      sendResetSms(this.form.mobile, this.form).then(res => {
         this.getSms = "获取验证码";
         this.sending = false;
-        this.vaptchaObject.reset();
+        vaptchaObject.reset();
         if (res.success) {
           this.$Message.success("发送短信验证码成功");
           // 开始倒计时
@@ -285,10 +266,10 @@ export default {
     sendEmailCode() {
       this.sending = true;
       this.getSms = "发送中";
-      sendResetEmail(this.form.email, this.form).then((res) => {
+      sendResetEmail(this.form.email, this.form).then(res => {
         this.getSms = "获取验证码";
         this.sending = false;
-        this.vaptchaObject.reset();
+        vaptchaObject.reset();
         if (res.success) {
           this.$Message.success("发送邮件验证码成功，请注意查收");
           // 开始倒计时
@@ -300,37 +281,37 @@ export default {
       this.form.passStrength = strength;
     },
     submitReset() {
-      this.$refs.resetForm.validate((valid) => {
+      this.$refs.resetForm.validate(valid => {
         if (valid) {
           this.loading = true;
           if (this.type == "0") {
-            resetByMobile(this.form).then((res) => {
+            resetByMobile(this.form).then(res => {
               this.loading = false;
               if (res.success) {
                 this.$Message.success("重置密码成功，请牢记您的新密码");
                 this.$router.push({
-                  name: "login",
+                  name: "login"
                 });
               } else {
-                this.vaptchaObject.reset();
+                vaptchaObject.reset();
               }
             });
           } else if (this.type == "1") {
-            resetByEmail(this.form).then((res) => {
+            resetByEmail(this.form).then(res => {
               this.loading = false;
               if (res.success) {
                 this.$Message.success("重置密码成功，请牢记您的新密码");
                 this.$router.push({
-                  name: "login",
+                  name: "login"
                 });
               } else {
-                this.vaptchaObject.reset();
+                vaptchaObject.reset();
               }
             });
           }
         }
       });
-    },
+    }
   },
   mounted() {
     let type = this.$route.query.type;
@@ -340,7 +321,7 @@ export default {
       this.icon = "ios-mail-outline";
     }
     this.initVaptcha();
-  },
+  }
 };
 </script>
 

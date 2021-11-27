@@ -1,11 +1,10 @@
 package ${entity.entityPackage};
 
-import cn.exrick.xboot.base.XbootBaseEntity;
+import cn.zwz.base.ZwzBaseEntity;
 import com.baomidou.mybatisplus.annotation.TableName;
 import io.swagger.annotations.ApiModelProperty;
 import io.swagger.annotations.ApiModel;
 import lombok.Data;
-import lombok.experimental.Accessors;
 import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
 <%
@@ -36,14 +35,13 @@ import javax.persistence.Table;
  * @author ${entity.author}
  */
 @Data
-@Accessors(chain = true)
 @Entity
 @DynamicInsert
 @DynamicUpdate
 @Table(name = "${entity.tableName}")
 @TableName("${entity.tableName}")
 @ApiModel(value = "${entity.description}")
-public class ${entity.className} extends XbootBaseEntity {
+public class ${entity.className} extends ZwzBaseEntity {
 
     private static final long serialVersionUID = 1L;
 
@@ -89,11 +87,10 @@ public class ${entity.className} extends XbootBaseEntity {
     <%
     if(entity.isTree){
     %>
-    @ApiModelProperty(value = "名称")
+    @ApiModelProperty(value = "分类名称")
     private String title;
 
     @ApiModelProperty(value = "父id")
-    @Column(nullable = false)
     private String parentId;
 
     @ApiModelProperty(value = "是否为父节点(含子节点) 默认false")

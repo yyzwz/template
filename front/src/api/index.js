@@ -3,24 +3,19 @@ import { getRequest, postRequest, putRequest, postBodyRequest, getNoAuthRequest,
 
 
 // Vaptcha ID
-export const vaptchaID = config.vaptchaID
-// Vaptcha离线验证接口
-export const vaptchaOffline = `${config.baseApi}/common/vaptcha/offline`
+export const vaptchaID = "5dce36188713b71e70a41eb7"
 // 文件上传接口
-export const uploadFile = `${config.baseApi}/upload/file`
+export const uploadFile = "/zwz/upload/file"
 // 验证码渲染图片接口
-export const drawCodeImage = `${config.baseApi}/common/captcha/draw/`
+export const drawCodeImage = "/zwz/common/captcha/draw/"
 // 获取菜单
-export const getMenuList = `${config.baseApi}/permission/getMenuList`
+export const getMenuList = "/zwz/permission/getMenuList"
 // 获取数据字典
-export const getDictData = `${config.baseApi}/dictData/getByType/`
+export const getDictData = "/zwz/dictData/getByType/"
 // Websocket
-export const ws = `${config.baseApi}/ws`
+export const ws = "/zwz/ws"
 
-// 按部门查询员工
-export const getByDepPage = (params) => {
-    return getRequest('/user/getByDepPage', params)
-}
+
 
 // 登陆
 export const login = (params) => {
@@ -125,17 +120,9 @@ export const weiboLogin = (params) => {
 export const wechatLogin = (params) => {
     return getNoAuthRequest('/social/wechat/login', params)
 }
-// 钉钉登录
-export const dingdingLogin = (params) => {
-    return getNoAuthRequest('/social/dingding/login', params)
-}
-// 企业微信登录
-export const workwechatLogin = (params) => {
-    return getNoAuthRequest('/social/workwechat/login', params)
-}
 // 绑定账号
 export const relate = (params) => {
-    return postRequest('/social/relate', params)
+    return postNoAuthRequest('/social/relate', params)
 }
 // 获取JWT
 export const getJWT = (params) => {
@@ -156,12 +143,12 @@ export const unRelate = (params) => {
 export const getRelatedListData = (params) => {
     return getRequest('/relate/findByCondition', params)
 }
-
-
-
 // 获取用户数据 多条件
 export const getUserListData = (params) => {
     return getRequest('/user/getByCondition', params)
+}
+export const getMyUserListData = (params) => {
+    return getRequest('/myUser/getByPage', params)
 }
 // 通过用户名搜索
 export const searchUserByName = (username, params) => {
@@ -271,10 +258,6 @@ export const deleteRole = (params) => {
 // 获取全部权限数据
 export const getAllPermissionList = (params) => {
     return getRequest('/permission/getAllList', params)
-}
-// 加载数据
-export const loadPermission = (id, params) => {
-    return getRequest(`/permission/getByParentId/${id}`, params)
 }
 // 添加权限
 export const addPermission = (params) => {
@@ -440,15 +423,11 @@ export const getMessageSendData = (params) => {
 }
 // 编辑发送消息
 export const editMessageSend = (params) => {
-    return postRequest('/messageSend/edit', params)
+    return putRequest('/messageSend/update', params)
 }
 // 删除发送消息
 export const deleteMessageSend = (params) => {
     return postRequest('/messageSend/delByIds', params)
-}
-// 批量处理消息
-export const allMessageSend = (type, params) => {
-    return getRequest(`/messageSend/all/${type}`, params)
 }
 
 
@@ -479,10 +458,6 @@ export const aliDownloadFile = (fKey, params) => {
 export const checkOssSet = (params) => {
     return getRequest('/setting/oss/check', params)
 }
-// 检查oss配置
-export const checkSmsSet = (params) => {
-    return getRequest('/setting/sms/check', params)
-}
 // 获取oss配置
 export const getOssSet = (serviceName, params) => {
     return getRequest(`/setting/oss/${serviceName}`, params)
@@ -496,8 +471,8 @@ export const getSmsSet = (serviceName, params) => {
     return getRequest(`/setting/sms/${serviceName}`, params)
 }
 // 获取sms模板code
-export const getSmsTemplateCode = (serviceName, type, params) => {
-    return getRequest(`/setting/sms/templateCode/${serviceName}/${type}`, params)
+export const getSmsTemplateCode = (type, params) => {
+    return getRequest(`/setting/sms/templateCode/${type}`, params)
 }
 // 编辑sms配置
 export const editSmsSet = (params) => {
@@ -535,14 +510,6 @@ export const getNoticeSet = (params) => {
 export const editNoticeSet = (params) => {
     return postRequest('/setting/notice/set', params)
 }
-// 获取autoChat配置
-export const getAutoChatSet = (params) => {
-    return getRequest('/setting/autoChat', params)
-}
-// 编辑autoChat配置
-export const editAutoChatSet = (params) => {
-    return postRequest('/setting/autoChat/set', params)
-}
 // 查看私密配置
 export const seeSecretSet = (settingName, params) => {
     return getRequest(`/setting/seeSecret/${settingName}`, params)
@@ -555,31 +522,12 @@ export const generateTable = (name, rowNum, params) => {
     return postBodyRequest(`/generate/table/${name}/${rowNum}`, params)
 }
 // 树生成
-export const generateTree = (name, rowNum, enableTable, params) => {
-    return postBodyRequest(`/generate/tree/${name}/${rowNum}/${enableTable}`, params)
+export const generateTree = (name, rowNum, params) => {
+    return postBodyRequest(`/generate/tree/${name}/${rowNum}`, params)
 }
 // 通过实体类生成Vue代码Json数据
-export const getEntityData = (params) => {
-    return getRequest('/generate/getEntityData', params)
-}
-
-
-
-// 分页获取禁用词
-export const getStopWordData = (params) => {
-    return getRequest('/stopWord/getByCondition', params)
-}
-// 添加禁用词
-export const addStopWord = (params) => {
-    return postRequest('/stopWord/save', params)
-}
-// 编辑禁用词
-export const editStopWord = (params) => {
-    return postRequest('/stopWord/edit', params)
-}
-// 删除禁用词
-export const deleteStopWord = (params) => {
-    return postRequest('/stopWord/delByIds', params)
+export const getEntityData = (path, params) => {
+    return getRequest(`/generate/getEntityData/${path}`, params)
 }
 
 

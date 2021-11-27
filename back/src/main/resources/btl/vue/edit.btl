@@ -13,193 +13,137 @@
           </a>
         </div>
       </div>
-      <div style="width: ${modalWidth}px">
-        <Form ref="form" :model="form" :rules="formValidate" <% if(labelPosition=="left"){ %>:label-width="100"<% } %> label-position="${labelPosition}">
+      <Form ref="form" :model="form" :label-width="100" :rules="formValidate" label-position="left" <% if(rowNum>1){ %>inline<% } %>>
+        <%
+        for(item in fields){
+          if(item.editable){
+        %>
+        <FormItem label="${item.name}" prop="${item.field}" <% if(rowNum>1&&(item.type=="switch"||item.type=="radio")){ %>style="width:${itemWidth}"<% } %> <% if(item.type=="wangEditor"||item.type=="quill"){ %>class="form-${item.type}"<% } %>>
           <%
-          var curr = 1;
-          for(var i=0; i<totalRow; i++){
+          if(item.type=="text"){
           %>
-          <% if(labelPosition!="left"){ %>
-          <Row :gutter="32">
-          <% } %>
-            <%
-            for(var j=0; j<rowNum; j++){
-            if(fields.~size==0||curr>fields.~size){
-                break;
-            }
-            var item = fields[curr-1];
-            while(!item.editable && curr <= fields.~size){
-                curr++;
-                item = fields[curr-1];
-            }
-            curr++;
-            var spanData = span;
-            if(item.type=="editor"||item.type=="textarea"){
-                spanData = 24;
-            }
-            %>
-            <% if(labelPosition!="left"){ %>
-            <Col span="${spanData}">
-            <% } %>
-              <FormItem label="${item.name}" prop="${item.field}" <% if(item.type=="upload"){ %>class="form-noheight"<% } %>>
-                <%
-                if(item.type=="text"){
-                %>
-                <Input v-model="form.${item.field}" clearable/>
-                <%
-                }
-                %>
-                <%
-                if(item.type=="textarea"){
-                %>
-                <Input v-model="form.${item.field}" type="textarea" :rows="4" maxlength="250" show-word-limit/>
-                <%
-                }
-                %>
-                <%
-                if(item.type=="select"){
-                %>
-                <Select v-model="form.${item.field}" clearable>
-                  <Option value="0">请自行编辑下拉菜单</Option>
-                </Select>
-                <%
-                }
-                %>
-                <%
-                if(item.type=="switch"){
-                %>
-                <i-switch v-model="form.${item.field}"></i-switch>
-                <%
-                }
-                %>
-                <%
-                if(item.type=="radio"){
-                %>
-                <RadioGroup v-model="form.${item.field}">
-                  <Radio label="0">请自行编辑单选框</Radio>
-                  <Radio label="1">请自行编辑单选框</Radio>
-                </RadioGroup>
-                <%
-                }
-                %>
-                <%
-                if(item.type=="number"){
-                %>
-                <InputNumber v-model="form.${item.field}" style="width:100%"></InputNumber>
-                <%
-                }
-                %>
-                <%
-                if(item.type=="date"){
-                %>
-                <DatePicker type="date" v-model="form.${item.field}" clearable style="width: 100%"></DatePicker>
-                <%
-                }
-                %>
-                <%
-                if(item.type=="datetime"){
-                %>
-                <DatePicker type="datetime" v-model="form.${item.field}" clearable transfer style="width: 100%"></DatePicker>
-                <%
-                }
-                %>
-                <%
-                  if(item.type=="daterange"){
-                %>
-                <DatePicker type="daterange" v-model="form.${item.field}" clearable style="width: 100%"></DatePicker>
-                <%
-                }
-                %>
-                <%
-                if(item.type=="time"){
-                %>
-                <TimePicker type="time" v-model="form.${item.field}" clearable style="width: 100%"></TimePicker>
-                <%
-                }
-                %>
-                <%
-                if(item.type=="area"){
-                %>
-                <al-cascader v-model="form.${item.field}" data-type="name" level="${item.level}"/>
-                <%
-                }
-                %>
-                <%
-                if(item.type=="slider"){
-                %>
-                <Slider v-model="form.${item.field}"></Slider>
-                <%
-                }
-                %>
-                <%
-                if(item.type=="upload"){
-                %>
-                <upload-pic-input v-model="form.${item.field}"></upload-pic-input>
-                <%
-                }
-                %>
-                <%
-                if(item.type=="uploadThumb"){
-                %>
-                <uploadThumb v-model="form.${item.field}" multiple></uploadThumb>
-                <%
-                }
-                %>
-                <%
-                if(item.type=="editor"){
-                %>
-                <editor id="editor-${i}-${j}" v-model="form.${item.field}"></editor>
-                <%
-                }
-                %>
-                <%
-                if(item.type=="password"){
-                %>
-                <password v-model="form.${item.field}"></password>
-                <%
-                }
-                %>
-                <%
-                if(item.type=="dict"){
-                %>
-                <dict v-model="form.${item.field}" dict="${item.dictType}" transfer></dict>
-                <%
-                }
-                %>
-                <%
-                if(item.type=="customList"){
-                %>
-                <customList v-model="form.${item.field}" url="${item.customUrl}" transfer></customList>
-                <%
-                }
-                %>
-                <%
-                if(item.type=="fileUpload"){
-                %>
-                <fileUpload v-model="form.${item.field}"></fileUpload>
-                <%
-                }
-                %>
-              </FormItem>
-            <% if(labelPosition!="left"){ %>
-            </Col>
-            <% } %>
-            <%
-            }
-            %>
-          <% if(labelPosition!="left"){ %>
-          </Row>
-          <% } %>
+          <Input v-model="form.${item.field}" clearable style="width:${width}"/>
           <%
           }
           %>
-          <FormItem class="br">
-            <Button @click="handleSubmit" :loading="submitLoading" type="primary">提交并保存</Button>
-            <Button @click="handleReset">重置</Button>
-            <Button type="dashed" @click="close">关闭</Button>
-          </FormItem>
-        </Form>
-      </div>
+          <%
+          if(item.type=="select"){
+          %>
+          <Select v-model="form.${item.field}" clearable style="width:${width}">
+            <Option value="0">请自行编辑下拉菜单</Option>
+          </Select>
+          <%
+          }
+          %>
+          <%
+          if(item.type=="switch"){
+          %>
+          <i-switch v-model="form.${item.field}"></i-switch>
+          <%
+          }
+          %>
+          <%
+          if(item.type=="radio"){
+          %>
+          <RadioGroup v-model="form.${item.field}">
+            <Radio label="0">请自行编辑单选框</Radio>
+            <Radio label="1">请自行编辑单选框</Radio>
+          </RadioGroup>
+          <%
+          }
+          %>
+          <%
+          if(item.type=="number"){
+          %>
+          <InputNumber v-model="form.${item.field}" min="0" max="5000000" style="width:${width}"></InputNumber>
+          <%
+          }
+          %>
+          <%
+          if(item.type=="date"){
+          %>
+          <DatePicker type="date" v-model="form.${item.field}" clearable style="width:${width}"></DatePicker>
+          <%
+          }
+          %>
+          <%
+            if(item.type=="daterange"){
+          %>
+          <DatePicker type="daterange" v-model="form.${item.field}" clearable style="width:${width}"></DatePicker>
+          <%
+          }
+          %>
+          <%
+          if(item.type=="time"){
+          %>
+          <TimePicker type="time" v-model="form.${item.field}" clearable style="width:${width}"></TimePicker>
+          <%
+          }
+          %>
+          <%
+          if(item.type=="area"){
+          %>
+          <al-cascader v-model="form.${item.field}" data-type="code" level="${item.level}" style="width:${width}"/>
+          <%
+          }
+          %>
+          <%
+          if(item.type=="slider"){
+          %>
+          <Slider v-model="form.${item.field}" style="width:${width}"></Slider>
+          <%
+          }
+          %>
+          <%
+          if(item.type=="upload"){
+          %>
+          <upload-pic-input v-model="form.${item.field}" style="width:${width}"></upload-pic-input>
+          <%
+          }
+          %>
+          <%
+          if(item.type=="uploadThumb"){
+          %>
+          <uploadThumb v-model="form.${item.field}" multiple style="width:${width}"></uploadThumb>
+          <%
+          }
+          %>
+          <%
+          if(item.type=="wangEditor"){
+          %>
+          <wangEditor v-model="form.${item.field}" style="width:${wangEditorWidth}"></wangEditor>
+          <%
+          }
+          %>
+          <%
+          if(item.type=="quill"){
+          %>
+          <quill v-model="form.${item.field}" style="width:${quillWidth}"></quill>
+          <%
+          }
+          %>
+          <%
+          if(item.type=="password"){
+          %>
+          <password v-model="form.${item.field}" style="width:${width}"></password>
+          <%
+          }
+          %>
+        </FormItem>
+        <%
+          }
+        }
+        %>
+        <Form-item class="br">
+          <Button
+            @click="handleSubmit"
+            :loading="submitLoading"
+            type="primary"
+          >提交并保存</Button>
+          <Button @click="handleReset">重置</Button>
+          <Button type="dashed" @click="close">关闭</Button>
+        </Form-item>
+      </Form>
     </Card>
   </div>
 </template>
@@ -208,113 +152,84 @@
 <%
 if(api){
 %>
-// 根据你的实际请求api.js位置路径修改
-import { edit${apiName} } from "@/api/index";
-<%
-}
-%>
-<%
-if(fileUpload){
-%>
-import fileUpload from "@/views/my-components/xboot/file-upload";
+import { edit${apiName} } from "./api.js";
 <%
 }
 %>
 <%
 if(upload){
 %>
-import uploadPicInput from "@/views/my-components/xboot/upload-pic-input";
+import uploadPicInput from "@/views/my-components/zwz/upload-pic-input";
 <%
 }
 %>
 <%
 if(uploadThumb){
 %>
-import uploadThumb from "@/views/my-components/xboot/upload-pic-thumb";
+import uploadThumb from "@/views/my-components/zwz/upload-pic-thumb";
 <%
 }
 %>
 <%
-if(editor){
+if(wangEditor){
 %>
-import editor from "@/views/my-components/xboot/editor";
+import wangEditor from "@/views/my-components/zwz/editor";
+<%
+}
+%>
+<%
+if(quill){
+%>
+import quill from "@/views/my-components/zwz/quill";
 <%
 }
 %>
 <%
 if(password){
 %>
-import password from "@/views/my-components/xboot/set-password";
-<%
-}
-%>
-<%
-if(dict){
-%>
-import dict from "@/views/my-components/xboot/dict";
-<%
-}
-%>
-<%
-if(customList){
-%>
-import customList from "@/views/my-components/xboot/custom-list";
+import password from "@/views/my-components/zwz/set-password";
 <%
 }
 %>
 export default {
   name: "edit",
   components: {
-  <%
-  if(fileUpload){
-  %>
-    fileUpload,
-  <%
-  }
-  %>
-  <%
-  if(upload){
-  %>
+    <%
+    if(upload){
+    %>
     uploadPicInput,
-  <%
-  }
-  %>
-  <%
-  if(uploadThumb){
-  %>
+    <%
+    }
+    %>
+    <%
+    if(uploadThumb){
+    %>
     uploadThumb,
-  <%
-  }
-  %>
-  <%
-  if(editor){
-  %>
-    editor,
-  <%
-  }
-  %>
-  <%
-  if(password){
-  %>
+    <%
+    }
+    %>
+    <%
+    if(wangEditor){
+    %>
+    wangEditor,
+    <%
+    }
+    %>
+    <%
+    if(quill){
+    %>
+    quill,
+    <%
+    }
+    %>
+    <%
+    if(password){
+    %>
     password,
-  <%
-  }
-  %>
-  <%
-  if(dict){
-  %>
-    dict,
-  <%
-  }
-  %>
-  <%
-  if(customList){
-  %>
-    customList,
-  <%
-  }
-  %>
-  },
+    <%
+    }
+    %>
+    },
   props: {
     data: Object
   },
@@ -330,7 +245,7 @@ export default {
       ${item.field}: true,
       <% }else if(item.type=="number"||item.type=="slider"){ %>
       ${item.field}: 0,
-      <% }else if(item.type=="daterange"||item.type=="area"||item.type=="uploadThumb"){ %>
+      <% }else if(item.type=="area"||item.type=="uploadThumb"){ %>
       ${item.field}: [],
       <% }else{ %>
       ${item.field}: "",
@@ -346,18 +261,16 @@ export default {
       for(item in fields){
         if(item.editable&&item.validate){
       %>
-      <% if(item.type=="area"||item.type=="uploadThumb"){ %>
-      ${item.field}: [{ type: "array", required: true, message: "不能为空", trigger: "change" }],
-      <% }else if(item.type=="date"||item.type=="datetime"){ %>
-      ${item.field}: [{ type: "date", required: true, message: "不能为空", trigger: "change" }],
-      <% }else if(item.type=="daterange"){ %>
-      ${item.field}: [{ type: "array", required: true, trigger: "change", fields: { 0: { type: "date", message: "起始日期不能为空", required: true }, 1: { type: "date", message: "结束日期不能为空", required: true } }, }],
+      <% if(item.type=="daterange"||item.type=="area"||item.type=="uploadThumb"){ %>
+      ${item.field}: [{ type: "array", required: true, message: "不能为空", trigger: "blur" }],
+      <% }else if(item.type=="date"){ %>
+      ${item.field}: [{ type: "date", required: true, message: "不能为空", trigger: "blur" }],
       <% }else if(item.type=="number"||item.type=="slider"){ %>
-      ${item.field}: [{ type: "number", required: true, message: "不能为空", trigger: "change" }],
+      ${item.field}: [{ type: "number", required: true, message: "不能为空", trigger: "blur" }],
       <% }else if(item.type=="switch"){ %>
-      ${item.field}: [{ type: "boolean", required: true, message: "不能为空", trigger: "change" }],
+      ${item.field}: [{ type: "boolean", required: true, message: "不能为空", trigger: "blur" }],
       <% }else{ %>
-      ${item.field}: [{ required: true, message: "不能为空", trigger: "change" }],
+      ${item.field}: [{ required: true, message: "不能为空", trigger: "blur" }],
       <% } %>
       <%
         }
@@ -377,24 +290,6 @@ export default {
     handleSubmit() {
       this.$refs.form.validate(valid => {
         if (valid) {
-          <%
-          for(item in fields){
-            if(item.editable&&item.type=="date"){
-          %>
-          if (typeof this.form.${item.field} == "object") {
-            this.form.${item.field} = this.format(this.form.${item.field}, "yyyy-MM-dd");
-          }
-          <%
-          }else if(item.editable&&item.type=="datetime"){
-          %>
-          if (typeof this.form.${item.field} == "object") {
-            this.form.${item.field} = this.format(this.form.${item.field}, "yyyy-MM-dd HH:mm:ss");
-          }
-          <%
-            }
-          }
-          %>
-          this.submitLoading = true;
           <%
           if(api){
           %>
@@ -439,7 +334,7 @@ export default {
 </script>
 <style lang="less">
 // 建议引入通用样式 具体路径自行修改 可删除下面样式代码
-// @import "@/styles/single-common.less";
+// @import "../../../styles/single-common.less";
 .edit-head {
     display: flex;
     align-items: center;

@@ -10,13 +10,7 @@ Vue.use(VueI18n);
 // 根据浏览器信息自动设置语言
 const navLang = navigator.language;
 const localLang = (navLang == 'zh-CN' || navLang == 'en-US') ? navLang : false;
-if (localStorage.lang == "undefined") {
-    localStorage.lang = ""
-}
-const lang = localStorage.lang || localLang || 'zh-CN';
-if (!localStorage.lang) {
-    localStorage.lang = lang;
-}
+const lang = window.localStorage.lang || localLang || 'zh-CN';
 
 Vue.config.lang = lang;
 

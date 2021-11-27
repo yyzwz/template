@@ -1,15 +1,9 @@
 <template>
-  <div
-    @click="handleChange"
-    v-if="showFullScreenBtn"
-    style="display: inline-block"
-  >
-    <Tooltip :content="value ? $t('exitFullscreen') : $t('fullscreen')" placement="bottom">
-      <div class="header-right-icon header-action">
-        <Icon :type="value ? 'md-contract' : 'md-expand'" :size="20"></Icon>
-      </div>
-    </Tooltip>
-  </div>
+    <div @click="handleChange" v-if="showFullScreenBtn" class="full-screen-btn-con">
+        <Tooltip :content="value ? '退出全屏' : '全屏'" placement="bottom">
+            <Icon :type="value ? 'ios-contract' : 'ios-expand'" :size="24"></Icon>
+        </Tooltip>
+    </div>
 </template>
 
 <script>
@@ -18,13 +12,13 @@ export default {
   props: {
     value: {
       type: Boolean,
-      default: false,
-    },
+      default: false
+    }
   },
   computed: {
     showFullScreenBtn() {
       return window.navigator.userAgent.indexOf("MSIE") < 0;
-    },
+    }
   },
   methods: {
     handleFullscreen() {
@@ -53,7 +47,7 @@ export default {
     },
     handleChange() {
       this.handleFullscreen();
-    },
+    }
   },
   created() {
     let isFullscreen =
@@ -81,6 +75,6 @@ export default {
       this.$emit("on-change", !this.value);
     });
     this.$emit("input", isFullscreen);
-  },
+  }
 };
 </script>

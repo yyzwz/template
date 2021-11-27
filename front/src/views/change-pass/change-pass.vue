@@ -1,172 +1,158 @@
 <style lang="less">
-@import "@/styles/drawer-common.less";
+@import "./change-pass.less";
 </style>
 
 <template>
   <div>
-    <Drawer
-      title="修改密码"
-      v-model="visible"
-      width="450"
-      draggable
-      :mask-closable="false"
-    >
+    <Card class="change-pass">
+      <p slot="title">
+        <Icon type="key"></Icon>修改密码
+      </p>
       <div>
         <Form
-          ref="form"
-          :model="form"
-          label-position="top"
-          :rules="formValidate"
+          ref="editPasswordForm"
+          :model="editPasswordForm"
+          :label-width="100"
+          label-position="right"
+          :rules="passwordValidate"
+          style="width:450px"
         >
           <FormItem label="原密码" prop="oldPass">
-            <Input
-              type="password"
-              password
-              v-model="form.oldPass"
-              placeholder="请输入现在使用的密码"
-            />
+            <Input type="password" v-model="editPasswordForm.oldPass" placeholder="请输入现在使用的密码"></Input>
           </FormItem>
           <FormItem label="新密码" prop="newPass">
-            <SetPassword
-              placeholder="请输入新密码，长度为6-20个字符"
-              v-model="form.newPass"
-              @on-change="changeInputPass"
-            />
+            <SetPassword v-model="editPasswordForm.newPass" @on-change="changeInputPass" />
           </FormItem>
           <FormItem label="确认新密码" prop="rePass">
-            <Input
-              type="password"
-              password
-              v-model="form.rePass"
-              placeholder="请再次输入新密码"
-            />
+            <Input type="password" v-model="editPasswordForm.rePass" placeholder="请再次输入新密码"></Input>
+          </FormItem>
+          <FormItem>
+            <Button
+              type="primary"
+              style="width: 100px;margin-right:5px"
+              :loading="savePassLoading"
+              @click="saveEditPass"
+            >保存</Button>
+            <Button @click="cancelEditPass">取消</Button>
           </FormItem>
         </Form>
-        <div class="drawer-footer br">
-          <Button type="primary" :loading="submitLoading" @click="submit"
-            >提交</Button
-          >
-          <Button @click="visible = false">取消</Button>
-        </div>
       </div>
-    </Drawer>
+    </Card>
   </div>
 </template>
 
 <script>
-import SetPassword from "@/views/my-components/xboot/set-password";
+import SetPassword from "@/views/my-components/zwz/set-password";
 import { changePass } from "@/api/index";
 export default {
-  name: "change-pass",
+  name: "change_pass",
   components: {
-    SetPassword,
-  },
-  props: {
-    value: {
-      type: Boolean,
-      default: false,
-    },
+    SetPassword
   },
   data() {
     const valideRePassword = (rule, value, callback) => {
-      if (value !== this.form.newPass) {
+      if (value !== this.editPasswordForm.newPass) {
         callback(new Error("两次输入密码不一致"));
       } else {
         callback();
       }
     };
     return {
-      visible: this.value,
-      maxHeight: 510,
-      submitLoading: false,
-      form: {
+      savePassLoading: false,
+      editPasswordForm: {
         oldPass: "",
         newPass: "",
-        rePass: "",
+        rePass: ""
       },
       strength: "",
-      formValidate: {
+      passwordValidate: {
         oldPass: [
           {
             required: true,
             message: "请输入原密码",
-            trigger: "change",
-          },
+            trigger: "blur"
+          }
         ],
         newPass: [
           {
             required: true,
             message: "请输入新密码",
-            trigger: "change",
+            trigger: "blur"
           },
           {
             min: 6,
             message: "请至少输入6个字符",
-            trigger: "blur",
+            trigger: "blur"
           },
           {
             max: 32,
             message: "最多输入32个字符",
-            trigger: "change",
-          },
+            trigger: "blur"
+          }
         ],
         rePass: [
           {
             required: true,
             message: "请再次输入新密码",
-            trigger: "change",
+            trigger: "blur"
           },
           {
             validator: valideRePassword,
-            trigger: "change",
-          },
-        ],
-      },
+            trigger: "blur"
+          }
+        ]
+      }
     };
   },
   methods: {
     changeInputPass(v, grade, strength) {
       this.strength = strength;
     },
-    submit() {
+    saveEditPass() {
       let params = {
-        password: this.form.oldPass,
-        newPass: this.form.newPass,
-        passStrength: this.strength,
+        password: this.editPasswordForm.oldPass,
+        newPass: this.editPasswordForm.newPass,
+        passStrength: this.strength
       };
-      this.$refs["form"].validate((valid) => {
+      this.$refs["editPasswordForm"].validate(valid => {
         if (valid) {
-          this.submitLoading = true;
-          changePass(params).then((res) => {
-            this.submitLoading = false;
+          this.savePassLoading = true;
+          changePass(params).then(res => {
+            this.savePassLoading = false;
             if (res.success) {
-              this.visible = false;
               this.$Modal.success({
                 title: "修改密码成功",
-                content: "修改密码成功，请保管好您的新账号密码",
+                content: "修改密码成功，需重新登录",
+                onOk: () => {
+                  this.$store.commit("logout", this);
+                  this.$store.commit("clearOpenedSubmenu");
+                  this.$router.push({
+                    name: "login"
+                  });
+                }
               });
             }
           });
         }
       });
     },
-    setCurrentValue(value) {
-      if (value === this.visible) {
-        return;
+    cancelEditPass() {
+      this.$store.commit("removeTag", "change_pass");
+      localStorage.pageOpenedList = JSON.stringify(
+        this.$store.state.app.pageOpenedList
+      );
+      let lastPageName = "";
+      let length = this.$store.state.app.pageOpenedList.length;
+      if (length > 1) {
+        lastPageName = this.$store.state.app.pageOpenedList[length - 1].name;
+      } else {
+        lastPageName = this.$store.state.app.pageOpenedList[0].name;
       }
-      this.visible = value;
-    },
+      this.$router.push({
+        name: lastPageName
+      });
+    }
   },
-  watch: {
-    value(val) {
-      this.setCurrentValue(val);
-    },
-    visible(value) {
-      this.$emit("input", value);
-    },
-  },
-  mounted() {
-    this.maxHeight = Number(document.documentElement.clientHeight - 121) + "px";
-  },
+  mounted() {}
 };
 </script>
