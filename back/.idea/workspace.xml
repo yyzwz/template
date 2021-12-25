@@ -4,11 +4,18 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5a834373-bc20-48f5-8099-5dc2a14cead8" name="Changes" comment="" />
+    <list default="true" id="5a834373-bc20-48f5-8099-5dc2a14cead8" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cn/zwz/generator/ZwzGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/zwz/generator/ZwzGenerator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cn/zwz/generator/ZwzMPGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/zwz/generator/ZwzMPGenerator.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
   <component name="MavenImportPreferences">
     <option name="generalSettings">
@@ -19,6 +26,7 @@
     </option>
   </component>
   <component name="ProjectId" id="21UJ1gpt1Z1MhQ0jbfPxyPgjNxe" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -49,19 +57,6 @@
     </key>
   </component>
   <component name="RunManager">
-    <configuration default="true" type="JetRunConfigurationType">
-      <module name="template" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
-      <module name="template" />
-      <option name="filePath" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="ZwzApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
       <module name="template" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="cn.zwz.ZwzApplication" />
@@ -80,7 +75,11 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1637989519921</updated>
-      <workItem from="1637989521144" duration="8465000" />
+      <workItem from="1637989521144" duration="9169000" />
+      <workItem from="1638060022722" duration="1749000" />
+      <workItem from="1638064116672" duration="12000" />
+      <workItem from="1638069657779" duration="875000" />
+      <workItem from="1640409895501" duration="216000" />
     </task>
     <servers />
   </component>

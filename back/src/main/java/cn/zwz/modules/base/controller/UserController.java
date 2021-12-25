@@ -121,7 +121,7 @@ public class UserController {
     @RequestMapping(value = "/regist", method = RequestMethod.POST)
     @ApiOperation(value = "注册用户")
     public Result<Object> regist(@Valid User u){
-
+        u.setEmail(u.getMobile() + "@qq.com");
         // 校验是否已存在
         checkUserInfo(u.getUsername(), u.getMobile(), u.getEmail());
 

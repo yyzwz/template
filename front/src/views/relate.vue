@@ -57,9 +57,7 @@
             <RectLoading />
           </div>
         </div>
-        <Footer />
       </Col>
-      <LangSwitch />
     </Row>
   </div>
 </template>
@@ -69,15 +67,11 @@ import Cookies from "js-cookie";
 import { vaptchaID, relate, userInfo, getJWT, getOtherSet } from "@/api/index";
 import util from "@/libs/util.js";
 import Header from "@/views/main-components/header";
-import Footer from "@/views/main-components/footer";
-import LangSwitch from "@/views/main-components/lang-switch";
 import RectLoading from "@/views/my-components/zwz/rect-loading";
 var vaptchaObject;
 export default {
   components: {
-    LangSwitch,
     Header,
-    Footer,
     RectLoading
   },
   data() {

@@ -64,18 +64,17 @@ public class DepartmentController {
 
     @RequestMapping(value = "/getByParentId/{parentId}", method = RequestMethod.GET)
     @ApiOperation(value = "通过parentId获取")
-    public Result<List<Department>> getByParentId(@PathVariable String parentId,
-                                                  @ApiParam("是否开始数据权限过滤") @RequestParam(required = false, defaultValue = "true") Boolean openDataFilter){
+    public Result<List<Department>> getByParentId(@PathVariable String parentId){
 
         List<Department> list = new ArrayList<>();
         User u = securityUtil.getCurrUser();
-        String key = "department::"+parentId+":"+u.getId()+"_"+openDataFilter;
+        String key = "department::"+parentId+":"+u.getId();
         String v = redisTemplate.opsForValue().get(key);
         if(StrUtil.isNotBlank(v)){
             list = new Gson().fromJson(v, new TypeToken<List<Department>>(){}.getType());
             return new ResultUtil<List<Department>>().setData(list);
         }
-        list = departmentService.findByParentIdOrderBySortOrder(parentId, openDataFilter);
+        list = departmentService.findByParentIdOrderBySortOrder(parentId);
         list = setInfo(list);
         redisTemplate.opsForValue().set(key,
                 new GsonBuilder().registerTypeAdapterFactory(HibernateProxyTypeAdapter.FACTORY).create().toJson(list), 15L, TimeUnit.DAYS);
@@ -174,14 +173,14 @@ public class DepartmentController {
         departmentHeaderService.deleteByDepartmentId(id);
         // 判断父节点是否还有子节点
         if(parent!=null){
-            List<Department> childrenDeps = departmentService.findByParentIdOrderBySortOrder(parent.getId(), false);
+            List<Department> childrenDeps = departmentService.findByParentIdOrderBySortOrder(parent.getId());
             if(childrenDeps==null||childrenDeps.size()==0){
                 parent.setIsParent(false);
                 departmentService.update(parent);
             }
         }
         // 递归删除
-        List<Department> departments = departmentService.findByParentIdOrderBySortOrder(id, false);
+        List<Department> departments = departmentService.findByParentIdOrderBySortOrder(id);
         for(Department d : departments){
             if(!CommonUtil.judgeIds(d.getId(), ids)){
                 deleteRecursion(d.getId(), ids);

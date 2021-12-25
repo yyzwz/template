@@ -252,7 +252,7 @@
         <Form ref="entityForm" :model="entityForm" :label-width="130" :rules="entityFormValidate">
             <FormItem label="实体类引用路径" prop="path">
                 <Row type="flex" justify="space-between">
-                    <Input v-model="entityForm.path" placeholder="例如：cn.exrick.xboot.modules.base.entity.User" clearable style="width:410px" />
+                    <Input v-model="entityForm.path" placeholder="例如：cn.zwz.modules.base.entity.User" clearable style="width:410px" />
                     <Button type="warning" icon="md-play" @click="generateEntityData">读取字段</Button>
                 </Row>
             </FormItem>

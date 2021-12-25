@@ -35,7 +35,7 @@ CREATE TABLE IF NOT EXISTS `t_department` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
--- 正在导出表  template.t_department 的数据：~4 rows (大约)
+-- 正在导出表  template.t_department 的数据：~15 rows (大约)
 DELETE FROM `t_department`;
 /*!40000 ALTER TABLE `t_department` DISABLE KEYS */;
 INSERT INTO `t_department` (`id`, `create_by`, `create_time`, `del_flag`, `update_by`, `update_time`, `parent_id`, `sort_order`, `status`, `title`, `is_parent`) VALUES
@@ -71,7 +71,7 @@ CREATE TABLE IF NOT EXISTS `t_department_header` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
--- 正在导出表  template.t_department_header 的数据：~3 rows (大约)
+-- 正在导出表  template.t_department_header 的数据：~0 rows (大约)
 DELETE FROM `t_department_header`;
 /*!40000 ALTER TABLE `t_department_header` DISABLE KEYS */;
 /*!40000 ALTER TABLE `t_department_header` ENABLE KEYS */;
@@ -92,7 +92,7 @@ CREATE TABLE IF NOT EXISTS `t_dict` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
--- 正在导出表  template.t_dict 的数据：~7 rows (大约)
+-- 正在导出表  template.t_dict 的数据：~5 rows (大约)
 DELETE FROM `t_dict`;
 /*!40000 ALTER TABLE `t_dict` DISABLE KEYS */;
 INSERT INTO `t_dict` (`id`, `create_by`, `create_time`, `del_flag`, `update_by`, `update_time`, `description`, `title`, `type`, `sort_order`) VALUES
@@ -121,7 +121,7 @@ CREATE TABLE IF NOT EXISTS `t_dict_data` (
   KEY `sort_order` (`sort_order`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
--- 正在导出表  template.t_dict_data 的数据：~39 rows (大约)
+-- 正在导出表  template.t_dict_data 的数据：~23 rows (大约)
 DELETE FROM `t_dict_data`;
 /*!40000 ALTER TABLE `t_dict_data` DISABLE KEYS */;
 INSERT INTO `t_dict_data` (`id`, `create_by`, `create_time`, `del_flag`, `update_by`, `update_time`, `description`, `dict_id`, `sort_order`, `status`, `title`, `value`) VALUES
@@ -198,7 +198,7 @@ CREATE TABLE IF NOT EXISTS `t_log` (
   KEY `create_time` (`create_time`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
--- 正在导出表  template.t_log 的数据：~34 rows (大约)
+-- 正在导出表  template.t_log 的数据：~41 rows (大约)
 DELETE FROM `t_log`;
 /*!40000 ALTER TABLE `t_log` DISABLE KEYS */;
 INSERT INTO `t_log` (`id`, `create_by`, `create_time`, `del_flag`, `update_by`, `update_time`, `cost_time`, `ip`, `ip_info`, `name`, `request_param`, `request_type`, `request_url`, `username`, `log_type`) VALUES
@@ -244,7 +244,14 @@ INSERT INTO `t_log` (`id`, `create_by`, `create_time`, `del_flag`, `update_by`, 
 	(1464486461029093376, NULL, '2021-11-27 14:49:16', 0, NULL, '2021-11-27 14:49:16', 84, '127.0.0.1', '未知', '登录系统', '{"password":"你是看不见我的","code":"MPOP","saveLogin":"true","captchaId":"0fa393c45e8f48bf88e67952654ef708","username":"admin"}', 'POST', '/xboot/login', 'admin', 1),
 	(1464492802787381248, NULL, '2021-11-27 15:14:28', 0, NULL, '2021-11-27 15:14:28', 258, '127.0.0.1', '未知', '登录系统', '{"password":"你是看不见我的","code":"T1XL","saveLogin":"true","captchaId":"51738d0a52884c67ac5b0de6f2767aa3","username":"admin"}', 'POST', '/xboot/login', 'admin', 1),
 	(1464510533729390592, NULL, '2021-11-27 16:24:55', 0, NULL, '2021-11-27 16:24:55', 71, '127.0.0.1', '未知', '登录系统', '{"password":"你是看不见我的","code":"JZ7X","saveLogin":"true","captchaId":"985dba7cc36a4ee394ff35c53c77512e","username":"admin"}', 'POST', '/xboot/login', 'admin', 1),
-	(1464514105674174464, NULL, '2021-11-27 16:39:07', 0, NULL, '2021-11-27 16:39:07', 274, '127.0.0.1', '未知', '登录系统', '{"password":"你是看不见我的","code":"WZOV","saveLogin":"true","captchaId":"92cfa4717f0f4b3e90160d6483238e99","username":"admin"}', 'POST', '/zwz/login', 'admin', 1);
+	(1464514105674174464, NULL, '2021-11-27 16:39:07', 0, NULL, '2021-11-27 16:39:07', 274, '127.0.0.1', '未知', '登录系统', '{"password":"你是看不见我的","code":"WZOV","saveLogin":"true","captchaId":"92cfa4717f0f4b3e90160d6483238e99","username":"admin"}', 'POST', '/zwz/login', 'admin', 1),
+	(1464769522186719232, NULL, '2021-11-28 09:34:03', 0, NULL, '2021-11-28 09:34:03', 268, '127.0.0.1', '未知', '登录系统', '{"password":"你是看不见我的","code":"XIXB","saveLogin":"true","captchaId":"63e50104173c4241993d3debcb11df96","username":"17859654125 "}', 'POST', '/zwz/login', '17859654125', 1),
+	(1464771485892743168, NULL, '2021-11-28 09:41:51', 0, NULL, '2021-11-28 09:41:51', 73, '127.0.0.1', '未知', '登录系统', '{"password":"你是看不见我的","code":"KCPG","saveLogin":"true","captchaId":"4fa4d590d4c140c09c1fe1a55c16bc0b","username":"admin"}', 'POST', '/zwz/login', 'admin', 1),
+	(1464772488578863104, NULL, '2021-11-28 09:45:50', 0, NULL, '2021-11-28 09:45:50', 72, '127.0.0.1', '未知', '登录系统', '{"password":"你是看不见我的","code":"DQ2S","saveLogin":"true","captchaId":"ee40ccc99ab449c09b53b745da8ae907","username":"17859654121"}', 'POST', '/zwz/login', '17859654121', 1),
+	(1464825510038212608, NULL, '2021-11-28 13:16:32', 0, NULL, '2021-11-28 13:16:32', 277, '127.0.0.1', '未知', '登录系统', '{"password":"你是看不见我的","code":"qqub","saveLogin":"true","captchaId":"eb0b6ee8d5ea4bf7b77e374e71273eba","username":"admin"}', 'POST', '/zwz/login', 'admin', 1),
+	(1464825582037635072, NULL, '2021-11-28 13:16:49', 0, NULL, '2021-11-28 13:16:49', 81, '127.0.0.1', '未知', '登录系统', '{"password":"你是看不见我的","code":"6spi","saveLogin":"true","captchaId":"b51cc57ccb7945168a872e1506fe2024","username":"admin"}', 'POST', '/zwz/login', 'admin', 1),
+	(1474612471053553664, NULL, '2021-12-25 13:26:25', 0, NULL, '2021-12-25 13:26:25', 291, '127.0.0.1', '未知', '登录系统', '{"password":"你是看不见我的","code":"UNCK","saveLogin":"true","captchaId":"4c05f9a290444e2ebcf27ca0f65fb8ea","username":"admin"}', 'POST', '/zwz/login', 'admin', 1),
+	(1474612508877787136, NULL, '2021-12-25 13:26:34', 0, NULL, '2021-12-25 13:26:34', 86, '127.0.0.1', '未知', '登录系统', '{"password":"你是看不见我的","code":"BZMV","saveLogin":"true","captchaId":"414afdb2af8745d6b5020d54ac8aad1c","username":"admin"}', 'POST', '/zwz/login', 'admin', 1);
 /*!40000 ALTER TABLE `t_log` ENABLE KEYS */;
 
 -- 导出  表 template.t_permission 结构
@@ -273,7 +280,7 @@ CREATE TABLE IF NOT EXISTS `t_permission` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
--- 正在导出表  template.t_permission 的数据：~81 rows (大约)
+-- 正在导出表  template.t_permission 的数据：~50 rows (大约)
 DELETE FROM `t_permission`;
 /*!40000 ALTER TABLE `t_permission` DISABLE KEYS */;
 INSERT INTO `t_permission` (`id`, `create_by`, `create_time`, `del_flag`, `update_by`, `update_time`, `description`, `name`, `parent_id`, `type`, `sort_order`, `component`, `path`, `title`, `icon`, `level`, `button_type`, `status`, `url`, `show_always`) VALUES
@@ -368,7 +375,7 @@ CREATE TABLE IF NOT EXISTS `t_role_permission` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
--- 正在导出表  template.t_role_permission 的数据：~67 rows (大约)
+-- 正在导出表  template.t_role_permission 的数据：~51 rows (大约)
 DELETE FROM `t_role_permission`;
 /*!40000 ALTER TABLE `t_role_permission` DISABLE KEYS */;
 INSERT INTO `t_role_permission` (`id`, `create_by`, `create_time`, `del_flag`, `update_by`, `update_time`, `permission_id`, `role_id`) VALUES
@@ -438,7 +445,7 @@ CREATE TABLE IF NOT EXISTS `t_setting` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
--- 正在导出表  template.t_setting 的数据：~0 rows (大约)
+-- 正在导出表  template.t_setting 的数据：~2 rows (大约)
 DELETE FROM `t_setting`;
 /*!40000 ALTER TABLE `t_setting` DISABLE KEYS */;
 INSERT INTO `t_setting` (`id`, `create_by`, `create_time`, `del_flag`, `update_by`, `update_time`, `value`) VALUES
@@ -478,11 +485,13 @@ CREATE TABLE IF NOT EXISTS `t_user` (
   KEY `create_time` (`create_time`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
--- 正在导出表  template.t_user 的数据：~0 rows (大约)
+-- 正在导出表  template.t_user 的数据：~3 rows (大约)
 DELETE FROM `t_user`;
 /*!40000 ALTER TABLE `t_user` DISABLE KEYS */;
 INSERT INTO `t_user` (`id`, `create_by`, `create_time`, `update_by`, `update_time`, `address`, `avatar`, `description`, `email`, `mobile`, `nickname`, `password`, `sex`, `status`, `type`, `username`, `del_flag`, `department_id`, `street`, `pass_strength`, `department_title`, `birth`) VALUES
-	(682265633886208, '', '2020-12-13 07:07:07', 'admin', '2021-11-27 14:55:06', '["330000","330600","330602"]', 'https://i.loli.net/2019/04/28/5cc5a71a6e3b6.png', '绍兴文理学院元培学院', '916077357@qq.com', '17857054385', '管理员', '$2a$10$PS04ecXfknNd3V8d.ymLTObQciapMU4xU8.GADBZZsuTZr7ymnagy', '男', 0, 1, 'admin', 0, 1464487379074158593, '东浦街道', '弱', '设计研发部', '2000-01-08 00:00:00.000000');
+	(682265633886208, '', '2020-12-13 07:07:07', 'admin', '2021-11-27 14:55:06', '["330000","330600","330602"]', 'https://i.loli.net/2019/04/28/5cc5a71a6e3b6.png', '绍兴文理学院元培学院', '916077357@qq.com', '17857054385', '管理员', '$2a$10$PS04ecXfknNd3V8d.ymLTObQciapMU4xU8.GADBZZsuTZr7ymnagy', '男', 0, 1, 'admin', 0, 1464487379074158593, '东浦街道', '弱', '设计研发部', '2000-01-08 00:00:00.000000'),
+	(1464764315201572865, NULL, '2021-11-28 09:13:22', NULL, '2021-11-28 09:13:22', NULL, 'https://i.loli.net/2019/04/28/5cc5a71a6e3b6.png', NULL, '17859654125@qq.com', '17859654125', '测试', '$2a$10$E59nactOiILAzQvfcs0JFOYuZp06d4bLhugEadyQuygpmiLc0W.ha', NULL, 0, 0, '17859654125', 0, NULL, NULL, NULL, NULL, NULL),
+	(1464772465946398721, NULL, '2021-11-28 09:45:45', NULL, '2021-11-28 09:45:45', NULL, 'https://i.loli.net/2019/04/28/5cc5a71a6e3b6.png', NULL, '17859654121@qq.com', '17859654121', '测试2', '$2a$10$vJyLo1RhFORH/SAu3sc9aeb37I5JRy5UugaN7fIt/e2vvsz6JWJCm', NULL, 0, 0, '17859654121', 0, NULL, NULL, NULL, NULL, NULL);
 /*!40000 ALTER TABLE `t_user` ENABLE KEYS */;
 
 -- 导出  表 template.t_user_role 结构
@@ -499,11 +508,13 @@ CREATE TABLE IF NOT EXISTS `t_user_role` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
--- 正在导出表  template.t_user_role 的数据：~0 rows (大约)
+-- 正在导出表  template.t_user_role 的数据：~3 rows (大约)
 DELETE FROM `t_user_role`;
 /*!40000 ALTER TABLE `t_user_role` DISABLE KEYS */;
 INSERT INTO `t_user_role` (`id`, `create_by`, `create_time`, `del_flag`, `update_by`, `update_time`, `role_id`, `user_id`) VALUES
-	(1464487931975700480, 'admin', '2021-11-27 14:55:07', 0, 'admin', '2021-11-27 14:55:07', 496138616573952, 682265633886208);
+	(1464487931975700480, 'admin', '2021-11-27 14:55:07', 0, 'admin', '2021-11-27 14:55:07', 496138616573952, 682265633886208),
+	(1464764315797164033, NULL, '2021-11-28 09:13:22', 0, NULL, '2021-11-28 09:13:22', 496138616573953, 1464764315201572865),
+	(1464772466273554433, NULL, '2021-11-28 09:45:45', 0, NULL, '2021-11-28 09:45:45', 496138616573953, 1464772465946398721);
 /*!40000 ALTER TABLE `t_user_role` ENABLE KEYS */;
 
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;

@@ -66,14 +66,9 @@
 
                         <Row type="flex" justify="space-between" align="middle">
                             <Checkbox v-model="saveLogin" size="large">{{ $t('autoLogin') }}</Checkbox>
-                            <Dropdown trigger="click" @on-click="handleDropDown">
-                                <a class="forget-pass">{{ $t('forgetPass') }}</a>
-                                <DropdownMenu slot="list">
-                                    <DropdownItem name="test">体验测试账号</DropdownItem>
-                                    <DropdownItem name="resetByMobile">使用手机号重置密码(付费)</DropdownItem>
-                                    <DropdownItem name="resetByEmail">使用邮箱重置密码(付费)</DropdownItem>
-                                </DropdownMenu>
-                            </Dropdown>
+                            <router-link to="/regist">
+                                <a class="forget-pass">注册账号</a>
+                            </router-link>
                         </Row>
                         <Row>
                             <Button class="login-btn" type="primary" size="large" :loading="loading" @click="submitLogin" long>
@@ -112,24 +107,18 @@
 import {
     login,
     userInfo,
-    githubLogin,
-    qqLogin,
-    weiboLogin,
-    wechatLogin,
     getJWT,
     sendLoginSms,
     smsLogin,
     initCaptcha,
     drawCodeImage,
-    getOtherSet,
-    getNotice
+    getOtherSet
 } from "@/api/index";
 import {
     validateMobile
 } from "@/libs/validate";
 import Cookies from "js-cookie";
 import Header from "@/views/main-components/header";
-import Footer from "@/views/main-components/footer";
 import LangSwitch from "@/views/main-components/lang-switch";
 import RectLoading from "@/views/my-components/zwz/rect-loading";
 import CountDownButton from "@/views/my-components/zwz/count-down-button";
@@ -139,8 +128,7 @@ export default {
         CountDownButton,
         RectLoading,
         LangSwitch,
-        Header,
-        Footer
+        Header
     },
     data() {
         return {
@@ -307,46 +295,6 @@ export default {
                 });
             }
         },
-        toGithubLogin() {
-            this.socialLogining = true;
-            githubLogin().then(res => {
-                if (res.success) {
-                    window.location.href = res.result;
-                } else {
-                    this.socialLogining = false;
-                }
-            });
-        },
-        toQQLogin() {
-            this.socialLogining = true;
-            qqLogin().then(res => {
-                if (res.success) {
-                    window.location.href = res.result;
-                } else {
-                    this.socialLogining = false;
-                }
-            });
-        },
-        toWeiboLogin() {
-            this.socialLogining = true;
-            weiboLogin().then(res => {
-                if (res.success) {
-                    window.location.href = res.result;
-                } else {
-                    this.socialLogining = false;
-                }
-            });
-        },
-        toWeixinLogin() {
-            this.socialLogining = true;
-            wechatLogin().then(res => {
-                if (res.success) {
-                    window.location.href = res.result;
-                } else {
-                    this.socialLogining = false;
-                }
-            });
-        },
         relatedLogin() {
             let q = this.$route.query;
             let error = q.error;
@@ -406,53 +354,9 @@ export default {
             } else {
                 this.socialLogining = false;
             }
-        },
-        handleDropDown(v) {
-            if (v == "test") {
-                this.test();
-            } else if (v == "resetByMobile") {
-                this.$router.push({
-                    name: "reset"
-                });
-            } else if (v == "resetByEmail") {
-                this.$router.push({
-                    name: "reset",
-                    query: {
-                        type: "1"
-                    }
-                });
-            }
-        },
-        // showNotice() {
-        //   getNotice().then(res => {
-        //     if (res.success) {
-        //       if (!res.result) {
-        //         return;
-        //       }
-        //       let data = res.result;
-        //       if (
-        //         data.open &&
-        //         (data.title || data.content) &&
-        //         data.position == "LOGIN"
-        //       ) {
-        //         this.$Notice.info({
-        //           title: data.title,
-        //           desc: data.content,
-        //           duration: data.duration
-        //         });
-        //       }
-        //     }
-        //   });
-        // },
-        test() {
-            this.$Notice.info({
-                title: "测试体验账号",
-                desc: "账号：test或test2<br>密码：123456"
-            });
         }
     },
     mounted() {
-        // this.showNotice();
         this.relatedLogin();
         this.getCaptchaImg();
     }

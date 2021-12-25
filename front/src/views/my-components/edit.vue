@@ -76,9 +76,9 @@ export default {
       // 模拟获取数据成功
       this.loading = false;
       if (this.form.id == "1") {
-        this.form.name = "XBoot";
+        this.form.name = "zwz";
       } else {
-        this.form.name = "Exrick";
+        this.form.name = "zwz";
       }
     },
     handleSubmit() {

@@ -52,9 +52,9 @@ captcha:
   image:
     - /zwz/login # 登录接口
     - /zwz/oauth2/authorize # 认证接口
+    - /zwz/user/regist # 注册接口
   # 短信验证码验证
   sms:
-    - /zwz/user/regist # 注册接口
     - /zwz/user/smsLogin # 短信登录接口
     - /zwz/user/resetByMobile # 手机重置密码
     - /zwz/user/changeMobile # 更换绑定手机

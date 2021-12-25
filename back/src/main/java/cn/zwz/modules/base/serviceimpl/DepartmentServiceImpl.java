@@ -29,8 +29,7 @@ public class DepartmentServiceImpl implements DepartmentService {
     }
 
     @Override
-    public List<Department> findByParentIdOrderBySortOrder(String parentId, Boolean openDataFilter) {
-
+    public List<Department> findByParentIdOrderBySortOrder(String parentId) {
         return departmentDao.findByParentIdOrderBySortOrder(parentId);
     }
 

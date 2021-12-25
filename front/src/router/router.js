@@ -28,15 +28,6 @@ export const registResult = {
     component: () => import('@/views/regist-result.vue')
 };
 
-export const reset = {
-    path: '/reset',
-    name: 'reset',
-    meta: {
-        title: '重置密码 - XXXX管理系统'
-    },
-    component: () => import('@/views/reset.vue')
-};
-
 export const page404 = {
     path: '/*',
     name: 'error-404',
@@ -88,7 +79,6 @@ export const routers = [
     loginRouter,
     registRouter,
     registResult,
-    reset,
     otherRouter,
     locking,
     page500,

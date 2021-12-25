@@ -42,7 +42,7 @@ public class ZwzGenerator {
      * 作者名
      * 建议仅需修改
      */
-    private static final String author = "Exrick";
+    private static final String author = "郑为中";
 
     /**
      * 是否生成树形结构相关接口

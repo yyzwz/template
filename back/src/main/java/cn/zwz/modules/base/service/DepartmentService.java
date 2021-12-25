@@ -17,7 +17,7 @@ public interface DepartmentService extends ZwzBaseService<Department,String> {
      * @param openDataFilter 是否开启数据权限
      * @return
      */
-    List<Department> findByParentIdOrderBySortOrder(String parentId, Boolean openDataFilter);
+    List<Department> findByParentIdOrderBySortOrder(String parentId);
 
     /**
      * 通过父id和状态获取
