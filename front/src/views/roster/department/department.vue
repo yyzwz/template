@@ -1,32 +1,21 @@
 <style lang="less">
 @import "../../../styles/tree-common.less";
-@import "./departmentManage.less";
 </style>
 <template>
 <div class="search">
     <Card>
         <Row class="operation">
-            <Button @click="add" type="primary" icon="md-add" v-show="showType=='tree'">添加子部门</Button>
-            <Button @click="addRoot" icon="md-add">添加一级部门</Button>
-            <Button @click="delAll" icon="md-trash">批量删除</Button>
-            <Button @click="getParentList" icon="md-refresh">刷新</Button>
-            <Input v-model="searchKey" suffix="ios-search" @on-change="search" placeholder="输入部门名搜索" clearable style="width: 250px" v-show="showType=='list'" />
-            <i-switch v-model="strict" size="large" v-show="showType=='tree'" style="margin-left:5px">
+            <Button @click="add" type="primary" icon="md-add" ghost shape="circle">添加子部门</Button>
+            <Button @click="addRoot" icon="md-add" type="primary" ghost shape="circle">添加一级部门</Button>
+            <Button @click="delAll" icon="md-trash" type="error" ghost shape="circle">批量删除</Button>
+            <Button @click="getParentList" icon="md-refresh" type="info" ghost shape="circle">刷新</Button>
+            <Button @click="excelData" type="success" icon="md-paper-plane" ghost shape="circle">导出部门用户</Button>
+            <i-switch v-model="strict" size="large" style="margin-left:5px">
                 <span slot="open">级联</span>
                 <span slot="close">单选</span>
             </i-switch>
-            <div style="float: right">
-                <RadioGroup v-model="showType" type="button">
-                    <Radio title="树结构" label="tree">
-                        <Icon type="md-list"></Icon>
-                    </Radio>
-                    <Radio title="列表" label="list">
-                        <Icon type="ios-apps"></Icon>
-                    </Radio>
-                </RadioGroup>
-            </div>
         </Row>
-        <Row type="flex" justify="start" v-show="showType=='tree'">
+        <Row type="flex" justify="start">
             <Col :md="8" :lg="8" :xl="6">
             <Alert show-icon>
                 当前选择编辑：
@@ -84,18 +73,12 @@
                     </i-switch>
                 </FormItem>
                 <Form-item class="br">
-                    <Button @click="submitEdit" :loading="submitLoading" type="primary" icon="ios-create-outline">修改并保存</Button>
-                    <Button @click="handleReset">重置</Button>
+                    <Button @click="submitEdit" :loading="submitLoading" type="primary" ghost shape="circle" icon="ios-create-outline">修改并保存</Button>
+                    <Button @click="handleReset" type="info" ghost shape="circle">重置</Button>
                 </Form-item>
             </Form>
             </Col>
         </Row>
-        <Alert show-icon v-show="showType=='list'">
-            已选择
-            <span class="select-count">{{selectCount}}</span> 项
-            <a class="select-clear" @click="clearSelectAll">清空</a>
-        </Alert>
-        <Table row-key="title" :load-data="loadData" :columns="columns" :data="data" :loading="loading" border ref="table" @on-selection-change="showSelect" v-if="showType=='list'"></Table>
     </Card>
     <Divider dashed />
     <Card>
@@ -153,7 +136,7 @@ export default {
             userLoading: true, // 表单加载状态
             searchForm: { // 搜索框初始化对象
                 pageNumber: 1, // 当前页数
-                pageSize: 15, // 页面大小
+                pageSize: 10, // 页面大小
                 sort: "createTime", // 默认排序字段
                 order: "desc", // 默认排序方式
                 departmentId: ""
@@ -163,7 +146,6 @@ export default {
             selectList: [], // 多选数据
             selectCount: 0, // 多选计数
             selectRow: 0,
-            showType: "tree",
             loading: true,
             maxHeight: "500px",
             strict: true,
@@ -484,7 +466,6 @@ export default {
                             e.children = [];
                         }
                     });
-                    // 头部加入一级
                     let first = {
                         id: "0",
                         title: "一级部门"
@@ -523,9 +504,13 @@ export default {
                 this.getParentList();
             }
         },
+        excelData() {
+            this.$refs.table.exportCsv({
+                filename: "导出结果",
+            });
+        },
         selectTree(v) {
             if (v.length > 0) {
-                // 转换null为""
                 for (let attr in v[0]) {
                     if (v[0][attr] == null) {
                         v[0][attr] = "";
@@ -534,13 +519,11 @@ export default {
                 let str = JSON.stringify(v[0]);
                 let data = JSON.parse(str);
                 this.editTitle = data.title;
-                // 加载部门用户数据
                 this.userLoading = true;
                 getUserByDepartmentId(data.id).then(res => {
                     this.userLoading = false;
                     if (res.success) {
                         this.users = res.result;
-                        // 回显
                         this.form = data;
                     }
                 });

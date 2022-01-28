@@ -35,13 +35,10 @@ CREATE TABLE IF NOT EXISTS `t_department` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
--- 正在导出表  template.t_department 的数据：~15 rows (大约)
+-- 正在导出表  template.t_department 的数据：~12 rows (大约)
 DELETE FROM `t_department`;
 /*!40000 ALTER TABLE `t_department` DISABLE KEYS */;
 INSERT INTO `t_department` (`id`, `create_by`, `create_time`, `del_flag`, `update_by`, `update_time`, `parent_id`, `sort_order`, `status`, `title`, `is_parent`) VALUES
-	(40652270295060480, '', '2018-08-11 18:29:57', 0, '', '2018-08-12 18:45:01', 0, 3.00, 0, '人事部', b'1'),
-	(40652338142121984, NULL, '2018-08-11 18:30:13', 0, NULL, '2018-08-11 18:30:13', 40652270295060480, 1.00, 0, '游客', b'0'),
-	(40681289119961088, '', '2018-08-11 20:25:16', 0, '', '2018-08-11 22:47:48', 40652270295060480, 2.00, 0, 'VIP', b'0'),
 	(1464487288363945985, 'admin', '2021-11-27 14:52:33', 0, 'admin', '2021-11-27 14:53:29', 0, 1.00, 0, '人力资源部', b'1'),
 	(1464487332064399361, 'admin', '2021-11-27 14:52:43', 0, 'admin', '2021-11-27 14:53:53', 0, 2.00, 0, '行政综合部', b'1'),
 	(1464487379074158593, 'admin', '2021-11-27 14:52:55', 0, 'admin', '2021-11-27 14:54:19', 0, 3.00, 0, '设计研发部', b'1'),
@@ -98,7 +95,7 @@ DELETE FROM `t_dict`;
 INSERT INTO `t_dict` (`id`, `create_by`, `create_time`, `del_flag`, `update_by`, `update_time`, `description`, `title`, `type`, `sort_order`) VALUES
 	(75135930788220928, 'admin', '2018-11-14 22:15:43', 0, 'admin', '2018-11-27 01:39:06', '', '性别', 'sex', 0.00),
 	(75383353938808832, 'admin', '2018-11-15 14:38:53', 0, 'admin', '2018-11-27 01:39:15', '', '消息类型', 'message_type', 1.00),
-	(75388696739713024, 'admin', '2018-11-15 15:00:07', 0, 'admin', '2018-11-27 01:39:22', '', '按钮权限类型', 'permission_type', 2.00),
+	(75388696739713024, 'admin', '2018-11-15 15:00:07', 0, 'admin', '2022-01-26 14:15:12', '', '分权限', 'permission_type', 2.00),
 	(81843858882695168, 'admin', '2018-12-03 10:30:38', 0, 'admin', '2018-12-03 10:30:49', '', '优先级', 'priority', 5.00);
 /*!40000 ALTER TABLE `t_dict` ENABLE KEYS */;
 
@@ -198,7 +195,7 @@ CREATE TABLE IF NOT EXISTS `t_log` (
   KEY `create_time` (`create_time`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
--- 正在导出表  template.t_log 的数据：~41 rows (大约)
+-- 正在导出表  template.t_log 的数据：~39 rows (大约)
 DELETE FROM `t_log`;
 /*!40000 ALTER TABLE `t_log` DISABLE KEYS */;
 INSERT INTO `t_log` (`id`, `create_by`, `create_time`, `del_flag`, `update_by`, `update_time`, `cost_time`, `ip`, `ip_info`, `name`, `request_param`, `request_type`, `request_url`, `username`, `log_type`) VALUES
@@ -251,7 +248,10 @@ INSERT INTO `t_log` (`id`, `create_by`, `create_time`, `del_flag`, `update_by`, 
 	(1464825510038212608, NULL, '2021-11-28 13:16:32', 0, NULL, '2021-11-28 13:16:32', 277, '127.0.0.1', '未知', '登录系统', '{"password":"你是看不见我的","code":"qqub","saveLogin":"true","captchaId":"eb0b6ee8d5ea4bf7b77e374e71273eba","username":"admin"}', 'POST', '/zwz/login', 'admin', 1),
 	(1464825582037635072, NULL, '2021-11-28 13:16:49', 0, NULL, '2021-11-28 13:16:49', 81, '127.0.0.1', '未知', '登录系统', '{"password":"你是看不见我的","code":"6spi","saveLogin":"true","captchaId":"b51cc57ccb7945168a872e1506fe2024","username":"admin"}', 'POST', '/zwz/login', 'admin', 1),
 	(1474612471053553664, NULL, '2021-12-25 13:26:25', 0, NULL, '2021-12-25 13:26:25', 291, '127.0.0.1', '未知', '登录系统', '{"password":"你是看不见我的","code":"UNCK","saveLogin":"true","captchaId":"4c05f9a290444e2ebcf27ca0f65fb8ea","username":"admin"}', 'POST', '/zwz/login', 'admin', 1),
-	(1474612508877787136, NULL, '2021-12-25 13:26:34', 0, NULL, '2021-12-25 13:26:34', 86, '127.0.0.1', '未知', '登录系统', '{"password":"你是看不见我的","code":"BZMV","saveLogin":"true","captchaId":"414afdb2af8745d6b5020d54ac8aad1c","username":"admin"}', 'POST', '/zwz/login', 'admin', 1);
+	(1474612508877787136, NULL, '2021-12-25 13:26:34', 0, NULL, '2021-12-25 13:26:34', 86, '127.0.0.1', '未知', '登录系统', '{"password":"你是看不见我的","code":"BZMV","saveLogin":"true","captchaId":"414afdb2af8745d6b5020d54ac8aad1c","username":"admin"}', 'POST', '/zwz/login', 'admin', 1),
+	(1486220681287962624, NULL, '2022-01-26 14:13:18', 0, NULL, '2022-01-26 14:13:18', 477, '127.0.0.1', '未知', '登录系统', '{"password":"你是看不见我的","code":"YEQA","saveLogin":"true","captchaId":"569ec51bd89347968769287fadcb3a2b","username":"admin"}', 'POST', '/zwz/login', 'admin', 1),
+	(1486222017337364480, NULL, '2022-01-26 14:18:36', 0, NULL, '2022-01-26 14:18:36', 72, '127.0.0.1', '未知', '登录系统', '{"password":"你是看不见我的","code":"HCLB","saveLogin":"true","captchaId":"b9a42626e7524fbaa2bdd57451f5ceb0","username":"admin"}', 'POST', '/zwz/login', 'admin', 1),
+	(1486935736853860352, NULL, '2022-01-28 13:34:40', 0, NULL, '2022-01-28 13:34:40', 76, '127.0.0.1', '未知', '登录系统', '{"password":"你是看不见我的","code":"PBHK","saveLogin":"true","captchaId":"853b8187f27846c1aa39e372b17b66e5","username":"admin"}', 'POST', '/zwz/login', 'admin', 1);
 /*!40000 ALTER TABLE `t_log` ENABLE KEYS */;
 
 -- 导出  表 template.t_permission 结构
@@ -285,7 +285,7 @@ DELETE FROM `t_permission`;
 /*!40000 ALTER TABLE `t_permission` DISABLE KEYS */;
 INSERT INTO `t_permission` (`id`, `create_by`, `create_time`, `del_flag`, `update_by`, `update_time`, `description`, `name`, `parent_id`, `type`, `sort_order`, `component`, `path`, `title`, `icon`, `level`, `button_type`, `status`, `url`, `show_always`) VALUES
 	(5129710648430592, '', '2018-06-04 19:02:29', 0, 'admin', '2021-11-27 14:46:19', '', 'sys', 125909152017944576, 0, 4.00, 'Main', '/sys', '权限管理', 'ios-settings', 1, '', 0, '', b'1'),
-	(5129710648430593, '', '2018-06-04 19:02:32', 0, 'admin', '2021-11-27 14:43:19', '', 'user-admin', 1464484663442673664, 0, 1.10, 'sys/user-manage/userManage', 'user-admin', '用户管理', 'md-person', 2, '', 0, '', b'1'),
+	(5129710648430593, '', '2018-06-04 19:02:32', 0, 'admin', '2022-01-28 13:35:13', '', 'user-admin', 1464484663442673664, 0, 1.10, 'roster/user/user', 'user-admin', '用户管理', 'md-person', 2, '', 0, '', b'1'),
 	(5129710648430594, '', '2018-06-04 19:02:35', 0, '', '2018-10-13 13:51:36', '', 'role-manage', 5129710648430592, 0, 1.60, 'sys/role-manage/roleManage', 'role-manage', '角色权限管理', 'md-contacts', 2, '', 0, '', b'1'),
 	(5129710648430595, '', '2018-06-04 19:02:37', 0, '', '2018-09-23 23:32:02', '', 'menu-manage', 5129710648430592, 0, 1.70, 'sys/menu-manage/menuManage', 'menu-manage', '菜单权限管理', 'md-menu', 2, '', 0, '', b'1'),
 	(15701400130424832, '', '2018-06-03 22:04:06', 0, '', '2018-09-19 22:16:44', '', '', 5129710648430593, 1, 1.11, '', '/xboot/user/admin/add*', '添加用户', '', 3, 'add', 0, '', b'1'),
@@ -303,7 +303,7 @@ INSERT INTO `t_permission` (`id`, `create_by`, `create_time`, `del_flag`, `updat
 	(16695243126607872, '', '2018-06-06 15:53:17', 0, 'admin', '2020-04-28 14:29:17', '', '', 5129710648430595, 1, 1.33, '', '/xboot/permission/delByIds**', '删除菜单', '', 3, 'delete', 0, '', b'1'),
 	(25014528525733888, '', '2018-06-29 14:51:09', 0, '', '2018-10-08 11:13:27', '', '', 5129710648430593, 1, 1.16, '', '无', '上传图片', '', 3, 'upload', 0, '', b'1'),
 	(39915540965232640, '', '2018-08-09 17:42:28', 0, 'admin', '2021-11-27 14:46:28', '', 'monitor', 125909152017944576, 0, 10.00, 'Main', '/monitor', '日志管理', 'ios-analytics', 1, '', 0, '', b'1'),
-	(40238597734928384, '', '2018-08-10 15:06:10', 0, 'admin', '2021-11-27 14:44:36', '', 'department-admin', 1464485105081913345, 0, 1.20, 'sys/department-manage/departmentManage', 'department-admin', '部门管理', 'md-git-branch', 2, '', 0, '', b'1'),
+	(40238597734928384, '', '2018-08-10 15:06:10', 0, 'admin', '2022-01-28 13:35:09', '', 'department-admin', 1464485105081913345, 0, 1.20, 'roster/department/department', 'department-admin', '部门管理', 'md-git-branch', 2, '', 0, '', b'1'),
 	(41363147411427328, '', '2018-08-13 17:34:43', 0, 'admin', '2020-03-25 20:31:16', '', 'log-manage', 39915540965232640, 0, 2.20, 'sys/log-manage/logManage', 'log-manage', '日志管理', 'md-list-box', 2, '', 0, '', b'1'),
 	(41363537456533504, '', '2018-08-13 17:36:16', 0, 'admin', '2020-04-28 14:31:54', '', '', 41363147411427328, 1, 2.11, '', '/xboot/log/delByIds**', '删除日志', '', 3, 'delete', 0, '', b'1'),
 	(41364927394353152, '', '2018-08-13 17:41:48', 0, '', '2018-09-19 22:08:57', '', '', 41363147411427328, 1, 2.12, '', '/xboot/log/delAll*', '清空日志', '', 3, 'undefined', 0, '', b'1'),
@@ -449,7 +449,7 @@ CREATE TABLE IF NOT EXISTS `t_setting` (
 DELETE FROM `t_setting`;
 /*!40000 ALTER TABLE `t_setting` DISABLE KEYS */;
 INSERT INTO `t_setting` (`id`, `create_by`, `create_time`, `del_flag`, `update_by`, `update_time`, `value`) VALUES
-	('LOCAL_OSS', 'admin', '2021-11-27 14:23:13', 0, 'admin', '2021-11-27 14:51:42', '{"serviceName":"LOCAL_OSS","accessKey":"","secretKey":"**********","endpoint":"127.0.0.1:9999/xboot/file/view","bucket":"","http":"http://","bucketRegion":"","filePath":"C:\\\\oa-file"}'),
+	('LOCAL_OSS', 'admin', '2021-11-27 14:23:13', 0, 'admin', '2022-01-26 14:16:12', '{"serviceName":"LOCAL_OSS","accessKey":"","secretKey":"**********","endpoint":"127.0.0.1:9999/zwz/file/view","bucket":"","http":"http://","bucketRegion":"","filePath":"C:\\\\oa-file"}'),
 	('OSS_USED', 'admin', '2021-11-27 14:23:13', 0, 'admin', '2021-11-27 14:23:13', 'LOCAL_OSS');
 /*!40000 ALTER TABLE `t_setting` ENABLE KEYS */;
 
@@ -489,9 +489,9 @@ CREATE TABLE IF NOT EXISTS `t_user` (
 DELETE FROM `t_user`;
 /*!40000 ALTER TABLE `t_user` DISABLE KEYS */;
 INSERT INTO `t_user` (`id`, `create_by`, `create_time`, `update_by`, `update_time`, `address`, `avatar`, `description`, `email`, `mobile`, `nickname`, `password`, `sex`, `status`, `type`, `username`, `del_flag`, `department_id`, `street`, `pass_strength`, `department_title`, `birth`) VALUES
-	(682265633886208, '', '2020-12-13 07:07:07', 'admin', '2021-11-27 14:55:06', '["330000","330600","330602"]', 'https://i.loli.net/2019/04/28/5cc5a71a6e3b6.png', '绍兴文理学院元培学院', '916077357@qq.com', '17857054385', '管理员', '$2a$10$PS04ecXfknNd3V8d.ymLTObQciapMU4xU8.GADBZZsuTZr7ymnagy', '男', 0, 1, 'admin', 0, 1464487379074158593, '东浦街道', '弱', '设计研发部', '2000-01-08 00:00:00.000000'),
-	(1464764315201572865, NULL, '2021-11-28 09:13:22', NULL, '2021-11-28 09:13:22', NULL, 'https://i.loli.net/2019/04/28/5cc5a71a6e3b6.png', NULL, '17859654125@qq.com', '17859654125', '测试', '$2a$10$E59nactOiILAzQvfcs0JFOYuZp06d4bLhugEadyQuygpmiLc0W.ha', NULL, 0, 0, '17859654125', 0, NULL, NULL, NULL, NULL, NULL),
-	(1464772465946398721, NULL, '2021-11-28 09:45:45', NULL, '2021-11-28 09:45:45', NULL, 'https://i.loli.net/2019/04/28/5cc5a71a6e3b6.png', NULL, '17859654121@qq.com', '17859654121', '测试2', '$2a$10$vJyLo1RhFORH/SAu3sc9aeb37I5JRy5UugaN7fIt/e2vvsz6JWJCm', NULL, 0, 0, '17859654121', 0, NULL, NULL, NULL, NULL, NULL);
+	(682265633886208, '', '2020-12-13 07:07:07', 'admin', '2021-11-27 14:55:06', '["330000","330600","330602"]', 'https://wx.qlogo.cn/mmhead/PiajxSqBRaEKjc639z2lRF4DqweNw2aDRLbAL7yLlSgrdZeKBCwLHDQ/0', '绍兴文理学院元培学院', '916077357@qq.com', '17857054385', '管理员', '$2a$10$PS04ecXfknNd3V8d.ymLTObQciapMU4xU8.GADBZZsuTZr7ymnagy', '男', 0, 1, 'admin', 0, 1464487379074158593, '东浦街道', '弱', '设计研发部', '2000-01-08 00:00:00.000000'),
+	(1464764315201572865, '', '2021-11-28 09:13:22', 'admin', '2022-01-26 14:14:03', '', 'https://wx.qlogo.cn/mmhead/PiajxSqBRaEKjc639z2lRF4DqweNw2aDRLbAL7yLlSgrdZeKBCwLHDQ/0', '', '17859654125@qq.com', '17859654125', '测试', '$2a$10$E59nactOiILAzQvfcs0JFOYuZp06d4bLhugEadyQuygpmiLc0W.ha', '', 0, 0, '17859654125', 0, 1464487332064399361, '', '', '行政综合部', NULL),
+	(1464772465946398721, '', '2021-11-28 09:45:45', 'admin', '2022-01-26 14:14:23', '', 'https://wx.qlogo.cn/mmhead/PiajxSqBRaEKjc639z2lRF4DqweNw2aDRLbAL7yLlSgrdZeKBCwLHDQ/0', '', '17859654121@qq.com', '17859654121', '测试2', '$2a$10$vJyLo1RhFORH/SAu3sc9aeb37I5JRy5UugaN7fIt/e2vvsz6JWJCm', '', 0, 0, '17859654121', 0, 1464487432169852929, '', '', '综合发展部', NULL);
 /*!40000 ALTER TABLE `t_user` ENABLE KEYS */;
 
 -- 导出  表 template.t_user_role 结构
@@ -513,8 +513,8 @@ DELETE FROM `t_user_role`;
 /*!40000 ALTER TABLE `t_user_role` DISABLE KEYS */;
 INSERT INTO `t_user_role` (`id`, `create_by`, `create_time`, `del_flag`, `update_by`, `update_time`, `role_id`, `user_id`) VALUES
 	(1464487931975700480, 'admin', '2021-11-27 14:55:07', 0, 'admin', '2021-11-27 14:55:07', 496138616573952, 682265633886208),
-	(1464764315797164033, NULL, '2021-11-28 09:13:22', 0, NULL, '2021-11-28 09:13:22', 496138616573953, 1464764315201572865),
-	(1464772466273554433, NULL, '2021-11-28 09:45:45', 0, NULL, '2021-11-28 09:45:45', 496138616573953, 1464772465946398721);
+	(1486220872917323776, 'admin', '2022-01-26 14:14:03', 0, 'admin', '2022-01-26 14:14:03', 496138616573953, 1464764315201572865),
+	(1486220956606271488, 'admin', '2022-01-26 14:14:23', 0, 'admin', '2022-01-26 14:14:23', 496138616573953, 1464772465946398721);
 /*!40000 ALTER TABLE `t_user_role` ENABLE KEYS */;
 
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;

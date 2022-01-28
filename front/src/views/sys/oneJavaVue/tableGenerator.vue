@@ -32,13 +32,6 @@
             <Button @click="clear" size="small" type="error" ghost shape="circle" icon="md-trash">清空全部</Button>
         </Row>
         <Row>
-            <Alert show-icon>
-                将生成的代码复制粘贴至XBoot前端新建的空白组件中，再做少许修改并自行调通接口即可
-                <span @click="preview" class="preview">增删改表格预览</span>
-                【若宽度不足wangEditor将自动转换为Quill富文本编辑器】
-            </Alert>
-        </Row>
-        <Row>
             <Table border :columns="columns" :data="data" ref="table">
                 <template slot-scope="{ row }" slot="field">
                     <Input v-model="row.field" @on-blur="changeField(row, $event)" />

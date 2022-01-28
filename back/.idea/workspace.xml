@@ -6,8 +6,9 @@
   <component name="ChangeListManager">
     <list default="true" id="5a834373-bc20-48f5-8099-5dc2a14cead8" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cn/zwz/generator/ZwzGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/zwz/generator/ZwzGenerator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cn/zwz/generator/ZwzMPGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/zwz/generator/ZwzMPGenerator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cn/zwz/common/constant/CommonConstant.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/zwz/common/constant/CommonConstant.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../front/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/../front/package-lock.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -39,7 +40,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/java/cn/zwz/modules/base/utils" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="project.structure.last.edited" value="Artifacts" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.2" />
@@ -57,7 +58,7 @@
     </key>
   </component>
   <component name="RunManager">
-    <configuration name="ZwzApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+    <configuration name="ZwzApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true">
       <module name="template" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="cn.zwz.ZwzApplication" />
       <option name="ALTERNATIVE_JRE_PATH" />
@@ -66,6 +67,11 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Spring Boot.ZwzApplication" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -80,6 +86,7 @@
       <workItem from="1638064116672" duration="12000" />
       <workItem from="1638069657779" duration="875000" />
       <workItem from="1640409895501" duration="216000" />
+      <workItem from="1643176937768" duration="1527000" />
     </task>
     <servers />
   </component>

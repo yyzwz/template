@@ -9,7 +9,7 @@ public interface CommonConstant {
     /**
      * 用户默认头像
      */
-    String USER_DEFAULT_AVATAR = "https://i.loli.net/2019/04/28/5cc5a71a6e3b6.png";
+    String USER_DEFAULT_AVATAR = "https://wx.qlogo.cn/mmhead/PiajxSqBRaEKjc639z2lRF4DqweNw2aDRLbAL7yLlSgrdZeKBCwLHDQ/0";
 
     /**
      * 用户正常状态
