@@ -2,6 +2,8 @@
 
 GitHub 上图片好像无法展示，可以移步到 https://gitee.com/yyzwz/template 查看，谢谢！
 
+It seems that the pictures on GitHub can't be displayed. You can move to https://gitee.com/yyzwz/template Check, thank you!
+
 ## 软件简介
 
 本软件是**基于 Vue 和 SpringBoot 的通用管理系统**，包含了**登陆注册、用户管理、部门管理、文件管理、权限管理、日志管理、个人中心、数据字典和代码生成**这九个功能模块，另外还有两张样例数据表和五张样例数据图，是一个很好的前后端分离开发模板，开发者可以在这个模板上进行二次开发，只需要实现需求方的业务逻辑，即可快速成型甲方的业务需求。
