@@ -1,72 +1,50 @@
-<style lang="less">
-@import "../../../styles/table-common.less";
-</style>
 <template>
 <div class="search">
     <Card>
-        <Row v-show="openSearch" @keydown.enter.native="handleSearch">
-            <Form ref="searchForm" :model="searchForm" inline :label-width="70">
-                <Form-item label="用户名" prop="nickname">
-                    <Input type="text" v-model="searchForm.nickname" clearable placeholder="请输入用户名" style="width: 200px" />
+        <Row>
+            <Form ref="searchForm" :model="searchForm" inline :label-width="40">
+                <Form-item label="姓名" prop="nickname">
+                    <Input type="text" v-model="searchForm.nickname" clearable placeholder="搜索姓名" style="width: 160px" />
                 </Form-item>
                 <Form-item label="部门" prop="department">
-                    <department-choose @on-change="handleSelectDep" style="width: 200px" ref="dep"></department-choose>
+                    <department-choose @on-change="handleSelectDep" placeholder="用户部门" style="width: 160px" ref="dep"></department-choose>
                 </Form-item>
-                <span v-if="drop">
-                    <Form-item label="手机号" prop="mobile">
-                        <Input type="text" v-model="searchForm.mobile" clearable placeholder="请输入手机号" style="width: 200px" />
-                    </Form-item>
-                    <Form-item label="邮箱" prop="email">
-                        <Input type="text" v-model="searchForm.email" clearable placeholder="请输入邮箱" style="width: 200px" />
-                    </Form-item>
-                    <Form-item label="性别" prop="sex">
-                        <dict dict="sex" v-model="searchForm.sex" transfer clearable placeholder="请选择性别" style="width: 200px" />
-                    </Form-item>
-                    <Form-item label="登录账号" prop="username">
-                        <Input type="text" v-model="searchForm.username" clearable placeholder="请输入登录账号" style="width: 200px" />
-                    </Form-item>
-                </span>
-                <Form-item style="margin-left:-35px;" class="br">
-                    <Button @click="handleSearch" type="primary" icon="ios-search" ghost shape="circle">搜索</Button>
-                    <Button @click="handleReset" type="info" ghost shape="circle">重置</Button>
-                    <Button @click="excelData" type="success" icon="md-paper-plane" ghost shape="circle">导出</Button>
-                    <a class="drop-down" @click="dropDown">
-                        {{dropDownContent}}
-                        <Icon :type="dropDownIcon"></Icon>
-                    </a>
+                <Form-item style="margin-left:10px;" class="br">
+                    <Button @click="handleSearch" type="primary" icon="ios-search" ghost shape="circle" size="small">搜索</Button>
+                    <Button @click="handleReset" type="warning" ghost shape="circle" icon="md-refresh" size="small">重置</Button>
+                    <Button @click="add" type="info" icon="md-add" ghost shape="circle" size="small">添加</Button>
+                    <Button @click="importModalVisible=true" type="success" icon="md-paper-plane" ghost shape="circle" size="small">导入</Button>
+                    <Button @click="excelData" type="success" icon="md-paper-plane" ghost shape="circle" size="small">导出</Button>
                 </Form-item>
+                    <Form-item style="position:fixed;right:50px;top:130px">
+                        <Button type="info" @click="showFilterPanelFlag = !showFilterPanelFlag" class="showFilterPanelFlag" icon="md-settings" size="small" ghost>
+                            列筛选</Button>
+                        <Button type="warning" @click="usingTutorialsModal = true" class="showFilterPanelFlag" icon="ios-help-circle-outline" size="small" ghost>
+                            使用教程</Button>
+                        <Modal v-model="usingTutorialsModal" title="使用教程">
+                            <p>1.XXXXXXXXXXXXXXXXXXXXXXXX</p>
+                            <p>2.XXXXXXXXXXXXXXXXXXXXXXXX</p>
+                            <p>3.XXXXXXXXXXXXXXXXXXXXXXXX</p>
+                        </Modal>
+                    </Form-item>
             </Form>
         </Row>
-        <Row class="operation">
-            <Button @click="add" type="primary" icon="md-add" ghost shape="circle">添加用户</Button>
-            <Button @click="delAll" icon="md-trash" type="info" ghost shape="circle">批量删除</Button>
-            <Dropdown @on-click="handleDropdown">
-                <Button>
-                    更多操作
-                    <Icon type="md-arrow-dropdown" />
-                </Button>
-                <DropdownMenu slot="list">
-                    <DropdownItem name="refresh">刷新</DropdownItem>
-                    <DropdownItem name="reset">重置用户密码</DropdownItem>
-                    <DropdownItem name="exportAll">导出全部数据</DropdownItem>
-                    <DropdownItem name="importData">导入数据</DropdownItem>
-                </DropdownMenu>
-            </Dropdown>
-            <Button type="dashed" ghost shape="circle" @click="openSearch=!openSearch">{{openSearch ? "关闭搜索" : "开启搜索"}}</Button>
-            <Button type="dashed" ghost shape="circle" @click="openTip=!openTip">{{openTip ? "关闭提示" : "开启提示"}}</Button>
-        </Row>
-        <Row v-show="openTip">
-            <Alert show-icon>
-                已选择
-                <span class="select-count">{{selectCount}}</span> 项
-                <a class="select-clear" @click="clearSelectAll">清空</a>
-            </Alert>
+        <Row class="operation" style="position:relative;">
+            <transition>
+                <div v-show="showFilterPanelFlag" class="filter-panel">
+                    <CheckboxGroup v-model="selected">
+                        <div v-for="item in mycolumns" :key="item.key">
+                            <Checkbox :label="item.title" style="margin: 2px 5px"></Checkbox>
+                        </div>
+                    </CheckboxGroup>
+                </div>
+            </transition>
         </Row>
         <Row>
-            <Table :loading="loading" border :columns="columns" :data="data" sortable="custom" @on-sort-change="changeSort" @on-selection-change="showSelect" ref="table"></Table>
+            <Table :loading="loading" border stripe :height="height" :columns="columns" :data="data" sortable="custom" @on-sort-change="changeSort" @on-selection-change="showSelect" ref="table" @on-row-click="rowClick" :row-class-name="rowClassName"></Table>
         </Row>
         <Row type="flex" justify="end" class="page">
-            <Page :current="searchForm.pageNumber" :total="total" :page-size="searchForm.pageSize" @on-change="changePage" @on-page-size-change="changePageSize" :page-size-opts="[10,20,50]" size="small" show-total show-elevator show-sizer></Page>
+            <Page :current="searchForm.pageNumber" :total="total" :page-size="searchForm.pageSize" @on-change="changePage" @on-page-size-change="changePageSize" :page-size-opts="[20,30,50]" size="small" show-total show-elevator show-sizer></Page>
         </Row>
     </Card>
     <Drawer title="导入数据" closable v-model="importModalVisible" width="1000">
@@ -77,10 +55,8 @@
             </Upload>
             <Button @click="clearImportData" icon="md-trash">清空数据</Button>
         </div>
-        <Alert type="warning" show-icon>导入前请下载查看导入模版数据文件，确保数据格式正确，不得修改列英文名称。必需数据字段：用户名(唯一)、密码(明文)</Alert>
         <Table :columns="importColumns" border :height="height" :data="importTableData" ref="importTable"></Table>
         <div class="drawer-footer">
-            <Button @click="downloadTemple" type="info">下载导入模板</Button>
             <div style="position:absolute;right:15px;display: inline-block">
                 <Button @click="importModalVisible=false">关闭</Button>
                 <Button :loading="importLoading" :disabled="importTableData.length<=0" @click="importData" style="margin-left:8px" type="primary">
@@ -90,45 +66,52 @@
             </div>
         </div>
     </Drawer>
-    <check-password ref="checkPass" @on-success="resetPass" />
     <addEdit :data="form" :type="showType" v-model="showUser" @on-submit="getUserList" />
 </div>
 </template>
 
 <script>
 import {
-    getUserListData,
+    getUserList,
     enableUser,
     disableUser,
     deleteUser,
-    getAllUserData,
     importUserData,
     resetUserPass
-} from "@/api/index";
-import departmentChoose from "@/views/my-components/zwz/department-choose";
-import checkPassword from "@/views/my-components/zwz/check-password";
-import {
-    userColumns,
-    userData
-} from "@/libs/importTemplate";
+} from "./api.js";
+import departmentChoose from "@/views/template/department-choose";
 import excel from "@/libs/excel";
 import addEdit from "./addEdit.vue";
-import dict from "@/views/my-components/zwz/dict";
+import dict from "@/views/template/dict";
 export default {
     name: "user-manage",
     components: {
         departmentChoose,
-        checkPassword,
         addEdit,
         dict
     },
     data() {
         return {
+            selected: [
+                "编号",
+                "用户名",
+                "登录账号",
+                "头像",
+                "所属部门",
+                "手机",
+                "邮箱",
+                "性别",
+                "类型",
+                "状态",
+                "创建时间",
+                "操作",
+            ],
+            showFilterPanelFlag: false,
+            usingTutorialsModal: false,
             height: 510,
+            selectRow: {},
             showUser: false,
             showType: "0",
-            openSearch: true,
-            openTip: true,
             loading: true,
             reading: false,
             importLoading: false,
@@ -136,66 +119,36 @@ export default {
             exportModalVisible: false,
             importModalVisible: false,
             drop: false,
-            dropDownContent: "展开",
-            dropDownIcon: "ios-arrow-down",
             selectCount: 0,
             selectList: [],
             searchForm: {
-                id: "",
                 nickname: "",
-                username: "",
                 departmentId: "",
-                mobile: "",
-                email: "",
-                sex: "",
-                type: "",
-                status: "",
                 pageNumber: 1,
-                pageSize: 10,
+                pageSize: 20,
                 sort: "createTime",
-                order: "desc",
-                startDate: "",
-                endDate: ""
+                order: "desc"
             },
-            selectDate: null,
             form: {},
             columns: [{
-                    type: "selection",
-                    width: 60,
-                    align: "center",
-                    fixed: "left"
-                },
-                {
+                    title: "编号",
                     type: "index",
-                    width: 60,
+                    width: 80,
                     align: "center",
-                    fixed: "left"
-                },
-                {
-                    title: "登录账号",
-                    key: "username",
-                    minWidth: 125,
-                    sortable: true,
                     fixed: "left"
                 },
                 {
                     title: "用户名",
                     key: "nickname",
-                    minWidth: 125,
+                    minWidth: 150,
                     sortable: true,
-                    fixed: "left",
-                    render: (h, params) => {
-                        return h(
-                            "a", {
-                                on: {
-                                    click: () => {
-                                        this.showDetail(params.row);
-                                    }
-                                }
-                            },
-                            params.row.nickname
-                        );
-                    }
+                    fixed: "left"
+                },
+                {
+                    title: "登录账号",
+                    key: "username",
+                    minWidth: 150,
+                    sortable: true
                 },
                 {
                     title: "头像",
@@ -239,33 +192,23 @@ export default {
                     align: "center",
                     width: 100,
                     render: (h, params) => {
-                        let re = "";
                         if (params.row.type == 1) {
-                            re = "管理员";
-                        } else if (params.row.type == 0) {
-                            re = "普通用户";
+                            return h("div", [
+                                h(
+                                    "span", {
+                                        style: {
+                                            color: "#ff9900",
+                                        },
+                                    },
+                                    "管理员"
+                                ),
+                            ]);
+                        } else {
+                            return h("div", [
+                                "普通用户"
+                            ]);
                         }
-                        return h("div", re);
                     },
-                    filters: [{
-                            label: "普通用户",
-                            value: 0
-                        },
-                        {
-                            label: "管理员",
-                            value: 1
-                        }
-                    ],
-                    filterMultiple: false,
-                    filterRemote: e => {
-                        let v = "";
-                        if (e.length > 0) {
-                            v = e[0];
-                        }
-                        this.searchForm.type = v;
-                        this.searchForm.pageNumber = 1;
-                        this.getUserList();
-                    }
                 },
                 {
                     title: "状态",
@@ -275,43 +218,28 @@ export default {
                     render: (h, params) => {
                         if (params.row.status == 0) {
                             return h("div", [
-                                h("Badge", {
-                                    props: {
-                                        status: "success",
-                                        text: "正常启用"
-                                    }
-                                })
+                                h(
+                                    "span", {
+                                        style: {
+                                            color: "#3CB371",
+                                        },
+                                    },
+                                    "正常启用"
+                                ),
                             ]);
-                        } else if (params.row.status == -1) {
+                        } else {
                             return h("div", [
-                                h("Badge", {
-                                    props: {
-                                        status: "error",
-                                        text: "禁用"
-                                    }
-                                })
+                                h(
+                                    "span", {
+                                        style: {
+                                            color: "#ff9900",
+                                        },
+                                    },
+                                    "禁用"
+                                ),
                             ]);
                         }
                     },
-                    filters: [{
-                            label: "正常启用",
-                            value: 0
-                        },
-                        {
-                            label: "禁用",
-                            value: -1
-                        }
-                    ],
-                    filterMultiple: false,
-                    filterRemote: e => {
-                        let v = "";
-                        if (e.length > 0) {
-                            v = e[0];
-                        }
-                        this.searchForm.status = v;
-                        this.searchForm.pageNumber = 1;
-                        this.getUserList();
-                    }
                 },
                 {
                     title: "创建时间",
@@ -323,52 +251,10 @@ export default {
                 {
                     title: "操作",
                     key: "action",
-                    width: 200,
+                    width: 300,
                     align: "center",
                     fixed: "right",
                     render: (h, params) => {
-                        let enableOrDisable = "";
-                        if (params.row.status == 0) {
-                            enableOrDisable = h(
-                                "Button", {
-                                    props: {
-                                        size: "small",
-                                        ghost: true,
-                                        type: "info",
-                                        shape: "circle"
-                                    },
-                                    style: {
-                                        marginRight: "5px"
-                                    },
-                                    on: {
-                                        click: () => {
-                                            this.disable(params.row);
-                                        }
-                                    }
-                                },
-                                "禁用"
-                            );
-                        } else {
-                            enableOrDisable = h(
-                                "Button", {
-                                    props: {
-                                        type: "success",
-                                        size: "small",
-                                        ghost: true,
-                                        shape: "circle"
-                                    },
-                                    style: {
-                                        marginRight: "5px"
-                                    },
-                                    on: {
-                                        click: () => {
-                                            this.enable(params.row);
-                                        }
-                                    }
-                                },
-                                "启用"
-                            );
-                        }
                         return h("div", [
                             h(
                                 "Button", {
@@ -389,7 +275,48 @@ export default {
                                 },
                                 "编辑"
                             ),
-                            enableOrDisable,
+                            h(
+                                "Button", {
+                                    props: {
+                                        type: "warning",
+                                        size: "small",
+                                        ghost: true,
+                                        shape: "circle"
+                                    },
+                                    style: {
+                                        marginRight: "5px"
+                                    },
+                                    on: {
+                                        click: () => {
+                                            this.resetPass(params.row);
+                                        }
+                                    }
+                                },
+                                "重置密码"
+                            ),
+                            h(
+                                "Button", {
+                                    props: {
+                                        size: "small",
+                                        ghost: true,
+                                        type: (params.row.status == 0 ? "error" : "success"),
+                                        shape: "circle"
+                                    },
+                                    style: {
+                                        marginRight: "5px"
+                                    },
+                                    on: {
+                                        click: () => {
+                                            if (params.row.status == 0) {
+                                                this.disable(params.row);
+                                            } else {
+                                                this.enable(params.row);
+                                            }
+                                        }
+                                    }
+                                },
+                                (params.row.status == 0 ? "禁用" : "启用")
+                            ),
                             h(
                                 "Button", {
                                     props: {
@@ -410,27 +337,19 @@ export default {
                     }
                 }
             ],
-            chooseColumns: [],
             filename: "用户数据",
-            exportTitle: "确认导出",
-            exportType: "",
             importTableData: [],
             importColumns: [],
             uploadfile: {
                 name: ""
             },
-            tempColumns: userColumns,
-            tempData: userData,
             data: [],
-            exportData: [],
             total: 0
         };
     },
     methods: {
         init() {
             this.getUserList();
-            let array = [];
-            this.chooseColumns = array;
         },
         excelData() {
             this.$refs.table.exportCsv({
@@ -449,34 +368,25 @@ export default {
             this.searchForm.pageSize = v;
             this.getUserList();
         },
-        selectDateRange(v) {
-            if (v) {
-                this.searchForm.startDate = v[0];
-                this.searchForm.endDate = v[1];
-            }
-        },
         getUserList() {
             this.loading = true;
-            getUserListData(this.searchForm).then(res => {
+            getUserList(this.searchForm).then(res => {
                 this.loading = false;
                 if (res.success) {
-                    this.data = res.result.content;
-                    this.total = res.result.totalElements;
+                    this.data = res.result.records;
+                    this.total = res.result.total;
                 }
             });
         },
         handleSearch() {
             this.searchForm.pageNumber = 1;
-            this.searchForm.pageSize = 10;
+            this.searchForm.pageSize = 20;
             this.getUserList();
         },
         handleReset() {
             this.$refs.searchForm.resetFields();
             this.searchForm.pageNumber = 1;
             this.searchForm.pageSize = 10;
-            this.selectDate = null;
-            this.searchForm.startDate = "";
-            this.searchForm.endDate = "";
             this.$refs.dep.clearSelect();
             this.searchForm.departmentId = "";
             this.getUserList();
@@ -489,51 +399,14 @@ export default {
             }
             this.getUserList();
         },
-        handleDropdown(name) {
-            if (name == "refresh") {
-                this.getUserList();
-            } else if (name == "reset") {
-                if (this.selectCount <= 0) {
-                    this.$Message.warning("您还未选择要重置密码的用户");
-                    return;
-                }
-                this.$refs.checkPass.show();
-            } else if (name == "exportData") {
-                if (this.selectCount <= 0) {
-                    this.$Message.warning("您还未选择要导出的数据");
-                    return;
-                }
-                this.exportType = "part";
-                this.exportModalVisible = true;
-                this.exportTitle = "确认导出 " + this.selectCount + " 条数据(付费)";
-            } else if (name == "exportAll") {
-                this.exportType = "all";
-                this.exportModalVisible = true;
-                this.exportTitle = "确认导出全部 " + this.total + " 条数据(付费)";
-                getAllUserData().then(res => {
-                    if (res.success) {
-                        this.exportData = res.result;
-                    }
-                });
-            } else if (name == "importData") {
-                this.importModalVisible = true;
-            }
-        },
-        resetPass() {
+        resetPass(e) {
             this.$Modal.confirm({
                 title: "确认重置",
-                content: "您确认要重置所选的 " +
-                    this.selectCount +
-                    " 条用户数据密码为123456?",
+                content: "重置后密码为123456",
                 loading: true,
                 onOk: () => {
-                    let ids = "";
-                    this.selectList.forEach(function (e) {
-                        ids += e.id + ",";
-                    });
-                    ids = ids.substring(0, ids.length - 1);
                     resetUserPass({
-                        ids: ids
+                        ids: e.id
                     }).then(res => {
                         this.$Modal.remove();
                         if (res.success) {
@@ -555,16 +428,10 @@ export default {
                 this.readFile(file);
                 this.file = file;
             } else {
-                this.$Notice.warning({
-                    title: "文件类型错误",
-                    desc: "所选文件‘ " +
-                        file.name +
-                        " ’不是EXCEL文件，请选择后缀为.xlsx或者.xls的EXCEL文件。"
-                });
+                this.$Message.error("不是Excel文件");
             }
             return false;
         },
-        // 读取文件
         readFile(file) {
             this.reading = true;
             const reader = new FileReader();
@@ -598,22 +465,6 @@ export default {
             this.importColumns = [];
             this.uploadfile = {};
         },
-        downloadTemple() {
-            let title = [];
-            let key = [];
-            userColumns.forEach(e => {
-                title.push(e.title);
-                key.push(e.key);
-            });
-            const params = {
-                title: title,
-                key: key,
-                data: userData,
-                autoWidth: true,
-                filename: "导入用户数据模版"
-            };
-            excel.export_array_to_excel(params);
-        },
         importData() {
             this.importLoading = true;
             importUserData(this.importTableData).then(res => {
@@ -628,28 +479,14 @@ export default {
                 }
             });
         },
-        showDetail(v) {
-            // 转换null为""
-            for (let attr in v) {
-                if (v[attr] == null) {
-                    v[attr] = "";
-                }
-            }
-            let str = JSON.stringify(v);
-            let data = JSON.parse(str);
-            this.form = data;
-            this.showType = "0";
-            this.showUser = true;
-        },
         add() {
             this.showType = "2";
             this.showUser = true;
         },
         edit(v) {
-            // 转换null为""
-            for (let attr in v) {
-                if (v[attr] == null) {
-                    v[attr] = "";
+            for (let i in v) {
+                if (v[i] == null) {
+                    v[i] = "";
                 }
             }
             let str = JSON.stringify(v);
@@ -661,13 +498,15 @@ export default {
         enable(v) {
             this.$Modal.confirm({
                 title: "确认启用",
-                content: "您确认要启用用户 " + v.username + " ?",
+                content: "启用用户 " + v.username + " ?",
                 loading: true,
                 onOk: () => {
-                    enableUser(v.id).then(res => {
+                    enableUser({
+                        id: v.id
+                    }).then(res => {
                         this.$Modal.remove();
                         if (res.success) {
-                            this.$Message.success("操作成功");
+                            this.$Message.success("启用成功");
                             this.getUserList();
                         }
                     });
@@ -677,13 +516,15 @@ export default {
         disable(v) {
             this.$Modal.confirm({
                 title: "确认禁用",
-                content: "您确认要禁用用户 " + v.username + " ?",
+                content: "禁用用户 " + v.username + " ?",
                 loading: true,
                 onOk: () => {
-                    disableUser(v.id).then(res => {
+                    disableUser({
+                        id: v.id
+                    }).then(res => {
                         this.$Modal.remove();
                         if (res.success) {
-                            this.$Message.success("操作成功");
+                            this.$Message.success("禁用成功");
                             this.getUserList();
                         }
                     });
@@ -693,7 +534,7 @@ export default {
         remove(v) {
             this.$Modal.confirm({
                 title: "确认删除",
-                content: "您确认要删除用户 " + v.username + " ?",
+                content: "删除用户 " + v.username + " ?",
                 loading: true,
                 onOk: () => {
                     deleteUser({
@@ -708,57 +549,116 @@ export default {
                 }
             });
         },
-        dropDown() {
-            if (this.drop) {
-                this.dropDownContent = "展开";
-                this.dropDownIcon = "ios-arrow-down";
-            } else {
-                this.dropDownContent = "收起";
-                this.dropDownIcon = "ios-arrow-up";
-            }
-            this.drop = !this.drop;
-        },
         showSelect(e) {
-            this.exportData = e;
             this.selectList = e;
             this.selectCount = e.length;
         },
         clearSelectAll() {
             this.$refs.table.selectAll(false);
         },
-        delAll() {
-            if (this.selectCount <= 0) {
-                this.$Message.warning("您还未选择要删除的数据");
-                return;
+        rowClick(row, index) {
+            this.selectRow = row;
+        },
+        rowClassName(row, index) {
+            if (row.id == this.selectRow.id) {
+                return "rowClassNameColor";
             }
-            this.$Modal.confirm({
-                title: "确认删除",
-                content: "您确认要删除所选的 " + this.selectCount + " 条数据?",
-                loading: true,
-                onOk: () => {
-                    let ids = "";
-                    this.selectList.forEach(function (e) {
-                        ids += e.id + ",";
-                    });
-                    ids = ids.substring(0, ids.length - 1);
-                    deleteUser({
-                        ids: ids
-                    }).then(res => {
-                        this.$Modal.remove();
-                        if (res.success) {
-                            this.$Message.success("删除成功");
-                            this.clearSelectAll();
-                            this.getUserList();
-                        }
-                    });
-                }
-            });
-        }
+            return "";
+        },
     },
     mounted() {
-        // 计算高度
-        this.height = Number(document.documentElement.clientHeight - 230);
+        this.height = window.innerHeight - this.$refs.table.$el.offsetTop - 160;
         this.init();
+        this.mycolumns = this.columns;
+        let showcolumns = [];
+        for (var i = 0; i < this.selected.length; i++) {
+            var item = this.selected[i];
+            for (var j = 0; j < this.columns.length; j++) {
+                if (this.columns[j].title == item) {
+                    showcolumns.push(this.columns[j]);
+                }
+            }
+        }
+        this.columns = showcolumns;
+    },
+    watch: {
+        selected: function (newcolumns) {
+            let showcolumns = [];
+            for (var i = 0; i < this.mycolumns.length; i++) {
+                var item = this.mycolumns[i];
+                if (item.title == undefined) showcolumns.push(item);
+                else if (newcolumns.includes(item.title)) showcolumns.push(item);
+            }
+            this.columns = showcolumns;
+        },
     }
 };
 </script>
+
+<style lang="less">
+
+.search {
+    .operation {
+        margin-bottom: 2vh;
+    }
+
+    .select-count {
+        font-weight: 600;
+        color: #40a9ff;
+    }
+
+    .select-clear {
+        margin-left: 10px;
+    }
+
+    .page {
+        margin-top: 2vh;
+    }
+
+    .drop-down {
+        margin-left: 5px;
+    }
+}
+
+.filter-panel {
+    width: 166px;
+    min-height: 120px;
+    height: 200px;
+    position: absolute;
+    background-color: white;
+    z-index: 9999;
+    margin-left: 1px;
+    overflow-y: scroll;
+    border: 1px solid blue;
+    top: 35px;
+    right: 10px;
+}
+
+.openSearch {
+    position: absolute;
+    right: 240px;
+}
+
+.openTip {
+    position: absolute;
+    right: 130px;
+}
+.showFilterPanelFlag {
+    position: static !important;
+    right: 10px;
+    margin-right: 10px;
+}
+.ivu-table td {
+    height: 38px !important;
+}
+
+.ivu-table-cell-with-expand {
+    height: 38px !important;
+    line-height: 38px !important;
+}
+
+.ivu-table .rowClassNameColor td {
+    background-color: #b0b3b6 !important;
+    color: #ffffff !important;
+}
+</style>

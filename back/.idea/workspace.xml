@@ -7,16 +7,40 @@
     <list default="true" id="5a834373-bc20-48f5-8099-5dc2a14cead8" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cn/zwz/common/constant/CommonConstant.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/zwz/common/constant/CommonConstant.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../front/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/../front/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cn/zwz/basics/code/MyBatisPlusCodeUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/zwz/basics/code/MyBatisPlusCodeUtils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cn/zwz/basics/code/vue/ZwzVueGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/zwz/basics/code/vue/ZwzVueGenerator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cn/zwz/data/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/zwz/data/controller/UserController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cn/zwz/data/dao/mapper/UserRoleMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/zwz/data/dao/mapper/UserRoleMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cn/zwz/data/service/IUserRoleService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/zwz/data/service/IUserRoleService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cn/zwz/data/serviceimpl/IUserRoleServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/zwz/data/serviceimpl/IUserRoleServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/mapper/PermissionMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mapper/PermissionMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/mapper/UserRoleMapper.xml" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="GitSEFilterConfiguration">
+    <file-type-list>
+      <filtered-out-file-type name="LOCAL_BRANCH" />
+      <filtered-out-file-type name="REMOTE_BRANCH" />
+      <filtered-out-file-type name="TAG" />
+      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
+    </file-type-list>
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
   </component>
   <component name="MavenImportPreferences">
     <option name="generalSettings">
@@ -27,42 +51,50 @@
     </option>
   </component>
   <component name="ProjectId" id="21UJ1gpt1Z1MhQ0jbfPxyPgjNxe" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="1" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">
-    <property name="RequestMappingsPanelOrder0" value="0" />
-    <property name="RequestMappingsPanelOrder1" value="1" />
-    <property name="RequestMappingsPanelWidth0" value="75" />
-    <property name="RequestMappingsPanelWidth1" value="75" />
-    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
-    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="project.structure.last.edited" value="Artifacts" />
-    <property name="project.structure.proportion" value="0.0" />
-    <property name="project.structure.side.proportion" value="0.2" />
-    <property name="settings.editor.selected.configurable" value="MavenSettings" />
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RequestMappingsPanelOrder0": "0",
+    "RequestMappingsPanelOrder1": "1",
+    "RequestMappingsPanelWidth0": "75",
+    "RequestMappingsPanelWidth1": "75",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "C:/java/git/template/back",
+    "settings.editor.selected.configurable": "MavenSettings",
+    "spring.configuration.checksum": "469bba0a564235dfceede42db14f17b0"
+  }
+}]]></component>
+  <component name="ReactorSettings">
+    <option name="notificationShown" value="true" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\java\git\template\back\src\main\resources\static" />
+      <recent name="C:\java\git\template\back\src\main\resources" />
       <recent name="C:\java\git\template\back\src\main\java\cn\zwz\modules\base\utils" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="cn.zwz.data.controller" />
+      <recent name="cn.zwz.data.serviceimpl.mybatis" />
+      <recent name="cn.zwz.data.service.mybatis" />
+      <recent name="cn.zwz.data.dao.mapper" />
       <recent name="cn.zwz.modules.base.controller" />
-      <recent name="cn.zwz.modules.base.serviceimpl.mybatis" />
-      <recent name="cn.zwz.modules.base.service.mybatis" />
-      <recent name="cn.zwz.modules.base.dao.mapper" />
     </key>
   </component>
   <component name="RunManager">
     <configuration name="ZwzApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true">
-      <module name="template" />
+      <option name="ACTIVE_PROFILES" />
+      <module name="back" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="cn.zwz.ZwzApplication" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="SHORTEN_COMMAND_LINE" value="NONE" />
+      <option name="VM_PARAMETERS" value="-Dfile.encoding=UTF-8 -Ddruid.mysql.usePingMethod=false" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -87,10 +119,250 @@
       <workItem from="1638069657779" duration="875000" />
       <workItem from="1640409895501" duration="216000" />
       <workItem from="1643176937768" duration="1527000" />
+      <workItem from="1643623193524" duration="157000" />
+      <workItem from="1643623451263" duration="4206000" />
+      <workItem from="1643672506990" duration="9216000" />
+      <workItem from="1643692627351" duration="651000" />
+      <workItem from="1643693794415" duration="69000" />
+      <workItem from="1643713104985" duration="615000" />
+      <workItem from="1643758604749" duration="10067000" />
+      <workItem from="1643791524206" duration="6487000" />
+      <workItem from="1643885585823" duration="3695000" />
+      <workItem from="1643930687062" duration="310000" />
+      <workItem from="1643933159132" duration="788000" />
+      <workItem from="1643970607556" duration="703000" />
+      <workItem from="1643975676574" duration="204000" />
+      <workItem from="1643975976676" duration="870000" />
+      <workItem from="1643976886069" duration="140000" />
+      <workItem from="1644017851249" duration="4937000" />
+      <workItem from="1644056886589" duration="675000" />
+      <workItem from="1644103102003" duration="16937000" />
+      <workItem from="1644190333385" duration="2988000" />
+      <workItem from="1644193440476" duration="766000" />
+      <workItem from="1644197813399" duration="4420000" />
+      <workItem from="1644202605816" duration="479000" />
+      <workItem from="1644229238670" duration="17000" />
+      <workItem from="1644232422525" duration="10000" />
+      <workItem from="1644540192465" duration="377000" />
+      <workItem from="1647390475706" duration="723000" />
+      <workItem from="1647736482467" duration="2499000" />
+      <workItem from="1648340779182" duration="2144000" />
+      <workItem from="1648345100334" duration="394000" />
+      <workItem from="1652850444640" duration="3282000" />
+      <workItem from="1653093300500" duration="3599000" />
+      <workItem from="1653100802010" duration="202000" />
+      <workItem from="1653112881923" duration="2249000" />
+      <workItem from="1653723854891" duration="2695000" />
+      <workItem from="1653778973467" duration="2261000" />
+      <workItem from="1653783252188" duration="130000" />
+      <workItem from="1653798728996" duration="1956000" />
+      <workItem from="1653818942640" duration="352000" />
+      <workItem from="1654500536392" duration="485000" />
+      <workItem from="1654846827798" duration="3380000" />
+      <workItem from="1655174153103" duration="2570000" />
+      <workItem from="1655197288253" duration="1284000" />
+      <workItem from="1655254177509" duration="2326000" />
+      <workItem from="1655256583983" duration="9000" />
+      <workItem from="1655256744148" duration="4096000" />
+      <workItem from="1655263436621" duration="5748000" />
+      <workItem from="1655274192056" duration="35000" />
+      <workItem from="1661128679894" duration="8148000" />
+      <workItem from="1662018646250" duration="643000" />
+      <workItem from="1662079214983" duration="3821000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="UnknownFeatures">
+    <option featureType="dependencySupport" implementationName="java:org.springframework:spring-core" />
+    <option featureType="dependencySupport" implementationName="java:org.slf4j:jul-to-slf4j" />
+    <option featureType="dependencySupport" implementationName="java:jakarta.xml.bind:jakarta.xml.bind-api" />
+    <option featureType="dependencySupport" implementationName="java:org.apache.poi:poi-ooxml-schemas" />
+    <option featureType="dependencySupport" implementationName="java:org.apache.xmlbeans:xmlbeans" />
+    <option featureType="dependencySupport" implementationName="java:org.springframework.security:spring-security-web" />
+    <option featureType="dependencySupport" implementationName="java:com.zaxxer:HikariCP" />
+    <option featureType="dependencySupport" implementationName="java:org.abego.treelayout:org.abego.treelayout.core" />
+    <option featureType="dependencySupport" implementationName="java:com.sun.mail:jakarta.mail" />
+    <option featureType="dependencySupport" implementationName="java:org.springframework:spring-webmvc" />
+    <option featureType="dependencySupport" implementationName="java:org.springframework.boot:spring-boot-actuator-autoconfigure" />
+    <option featureType="dependencySupport" implementationName="java:com.google.j2objc:j2objc-annotations" />
+    <option featureType="dependencySupport" implementationName="java:com.alibaba:druid-spring-boot-starter" />
+    <option featureType="dependencySupport" implementationName="java:io.netty:netty-resolver-dns" />
+    <option featureType="dependencySupport" implementationName="java:org.redisson:redisson-spring-boot-starter" />
+    <option featureType="dependencySupport" implementationName="java:com.google.code.gson:gson" />
+    <option featureType="dependencySupport" implementationName="java:org.aspectj:aspectjweaver" />
+    <option featureType="dependencySupport" implementationName="java:xpp3:xpp3_min" />
+    <option featureType="dependencySupport" implementationName="java:io.springfox:springfox-swagger2" />
+    <option featureType="dependencySupport" implementationName="java:org.apache.tomcat.embed:tomcat-embed-core" />
+    <option featureType="dependencySupport" implementationName="java:com.fasterxml:classmate" />
+    <option featureType="dependencySupport" implementationName="java:com.fasterxml.jackson.datatype:jackson-datatype-jsr310" />
+    <option featureType="dependencySupport" implementationName="java:org.hibernate:hibernate-core" />
+    <option featureType="dependencySupport" implementationName="java:io.netty:netty-transport" />
+    <option featureType="dependencySupport" implementationName="java:org.glassfish.jaxb:jaxb-runtime" />
+    <option featureType="dependencySupport" implementationName="java:org.apache.tomcat.embed:tomcat-embed-websocket" />
+    <option featureType="dependencySupport" implementationName="java:ch.qos.logback:logback-classic" />
+    <option featureType="dependencySupport" implementationName="java:com.alibaba:druid" />
+    <option featureType="dependencySupport" implementationName="java:org.springframework.integration:spring-integration-core" />
+    <option featureType="dependencySupport" implementationName="java:com.google.errorprone:error_prone_annotations" />
+    <option featureType="dependencySupport" implementationName="java:org.glassfish.jaxb:txw2" />
+    <option featureType="dependencySupport" implementationName="java:io.swagger.core.v3:swagger-annotations" />
+    <option featureType="dependencySupport" implementationName="java:org.springframework:spring-tx" />
+    <option featureType="dependencySupport" implementationName="java:com.google.guava:listenablefuture" />
+    <option featureType="dependencySupport" implementationName="java:com.fasterxml.jackson.dataformat:jackson-dataformat-yaml" />
+    <option featureType="dependencySupport" implementationName="java:org.springframework.data:spring-data-keyvalue" />
+    <option featureType="dependencySupport" implementationName="java:io.reactivex.rxjava3:rxjava" />
+    <option featureType="dependencySupport" implementationName="java:org.apache.poi:poi-scratchpad" />
+    <option featureType="dependencySupport" implementationName="java:org.springframework.boot:spring-boot-starter-data-redis" />
+    <option featureType="dependencySupport" implementationName="java:org.springframework:spring-jcl" />
+    <option featureType="dependencySupport" implementationName="java:org.springframework:spring-web" />
+    <option featureType="dependencySupport" implementationName="java:com.alibaba:fastjson" />
+    <option featureType="dependencySupport" implementationName="java:io.lettuce:lettuce-core" />
+    <option featureType="dependencySupport" implementationName="java:io.swagger:swagger-annotations" />
+    <option featureType="dependencySupport" implementationName="java:org.springframework.boot:spring-boot-starter-logging" />
+    <option featureType="dependencySupport" implementationName="java:io.springfox:springfox-spring-webflux" />
+    <option featureType="dependencySupport" implementationName="java:org.springframework.boot:spring-boot-starter-aop" />
+    <option featureType="dependencySupport" implementationName="java:org.apache.httpcomponents:httpcore" />
+    <option featureType="dependencySupport" implementationName="java:ch.qos.logback:logback-core" />
+    <option featureType="dependencySupport" implementationName="java:org.springframework.integration:spring-integration-redis" />
+    <option featureType="dependencySupport" implementationName="java:org.checkerframework:checker-qual" />
+    <option featureType="dependencySupport" implementationName="java:org.hibernate.validator:hibernate-validator" />
+    <option featureType="dependencySupport" implementationName="java:com.fasterxml.jackson.core:jackson-databind" />
+    <option featureType="dependencySupport" implementationName="java:org.apache.logging.log4j:log4j-to-slf4j" />
+    <option featureType="dependencySupport" implementationName="java:org.springframework.plugin:spring-plugin-metadata" />
+    <option featureType="dependencySupport" implementationName="java:org.springframework.boot:spring-boot-starter" />
+    <option featureType="dependencySupport" implementationName="java:org.jboss.logging:jboss-logging" />
+    <option featureType="dependencySupport" implementationName="java:org.springframework.boot:spring-boot-devtools" />
+    <option featureType="dependencySupport" implementationName="java:org.slf4j:slf4j-api" />
+    <option featureType="dependencySupport" implementationName="java:org.springframework.retry:spring-retry" />
+    <option featureType="dependencySupport" implementationName="java:com.google.guava:guava" />
+    <option featureType="dependencySupport" implementationName="java:org.yaml:snakeyaml" />
+    <option featureType="dependencySupport" implementationName="java:antlr:antlr" />
+    <option featureType="dependencySupport" implementationName="java:com.baomidou:mybatis-plus-core" />
+    <option featureType="dependencySupport" implementationName="java:org.mybatis:mybatis" />
+    <option featureType="dependencySupport" implementationName="java:org.apache.poi:poi" />
+    <option featureType="dependencySupport" implementationName="java:io.netty:netty-tcnative-classes" />
+    <option featureType="dependencySupport" implementationName="java:org.jboss.marshalling:jboss-marshalling-river" />
+    <option featureType="dependencySupport" implementationName="java:org.springframework.boot:spring-boot-autoconfigure" />
+    <option featureType="dependencySupport" implementationName="java:org.mybatis:mybatis-spring" />
+    <option featureType="dependencySupport" implementationName="java:org.springframework.boot:spring-boot-starter-json" />
+    <option featureType="dependencySupport" implementationName="java:io.projectreactor:reactor-core" />
+    <option featureType="dependencySupport" implementationName="java:org.springframework:spring-expression" />
+    <option featureType="dependencySupport" implementationName="java:com.fasterxml.jackson.datatype:jackson-datatype-jdk8" />
+    <option featureType="dependencySupport" implementationName="java:org.reactivestreams:reactive-streams" />
+    <option featureType="dependencySupport" implementationName="java:org.mapstruct:mapstruct" />
+    <option featureType="dependencySupport" implementationName="java:org.springframework.boot:spring-boot-starter-actuator" />
+    <option featureType="com.intellij.fileTypeFactory" implementationName="application.yml" />
+    <option featureType="dependencySupport" implementationName="java:org.projectlombok:lombok" />
+    <option featureType="dependencySupport" implementationName="java:org.latencyutils:LatencyUtils" />
+    <option featureType="dependencySupport" implementationName="java:dom4j:dom4j" />
+    <option featureType="dependencySupport" implementationName="java:org.apache.httpcomponents:httpclient" />
+    <option featureType="dependencySupport" implementationName="java:mysql:mysql-connector-java" />
+    <option featureType="dependencySupport" implementationName="java:com.github.jsqlparser:jsqlparser" />
+    <option featureType="dependencySupport" implementationName="java:com.fasterxml.jackson.module:jackson-module-parameter-names" />
+    <option featureType="dependencySupport" implementationName="java:org.springframework:spring-jdbc" />
+    <option featureType="dependencySupport" implementationName="java:org.springframework.boot:spring-boot-starter-jdbc" />
+    <option featureType="dependencySupport" implementationName="java:jakarta.transaction:jakarta.transaction-api" />
+    <option featureType="dependencySupport" implementationName="java:org.redisson:redisson-spring-data-25" />
+    <option featureType="dependencySupport" implementationName="java:org.springframework:spring-messaging" />
+    <option featureType="dependencySupport" implementationName="java:org.hdrhistogram:HdrHistogram" />
+    <option featureType="dependencySupport" implementationName="java:io.springfox:springfox-core" />
+    <option featureType="dependencySupport" implementationName="java:org.springframework.boot:spring-boot-starter-security" />
+    <option featureType="dependencySupport" implementationName="java:net.bytebuddy:byte-buddy" />
+    <option featureType="dependencySupport" implementationName="java:commons-codec:commons-codec" />
+    <option featureType="dependencySupport" implementationName="java:io.springfox:springfox-spring-web" />
+    <option featureType="dependencySupport" implementationName="java:org.openjfx:javafx.base" />
+    <option featureType="dependencySupport" implementationName="java:com.baomidou:mybatis-plus" />
+    <option featureType="dependencySupport" implementationName="java:org.springframework.boot:spring-boot-starter-data-jpa" />
+    <option featureType="dependencySupport" implementationName="java:org.springframework.data:spring-data-commons" />
+    <option featureType="dependencySupport" implementationName="java:xml-apis:xml-apis" />
+    <option featureType="dependencySupport" implementationName="java:org.jboss:jandex" />
+    <option featureType="dependencySupport" implementationName="java:org.springframework:spring-aspects" />
+    <option featureType="dependencySupport" implementationName="java:io.netty:netty-resolver" />
+    <option featureType="dependencySupport" implementationName="java:javax.validation:validation-api" />
+    <option featureType="dependencySupport" implementationName="java:org.springframework:spring-websocket" />
+    <option featureType="dependencySupport" implementationName="java:org.springframework:spring-beans" />
+    <option featureType="dependencySupport" implementationName="java:org.hibernate.common:hibernate-commons-annotations" />
+    <option featureType="dependencySupport" implementationName="java:org.springframework.security:spring-security-config" />
+    <option featureType="dependencySupport" implementationName="java:com.baomidou:mybatis-plus-extension" />
+    <option featureType="dependencySupport" implementationName="java:stax:stax-api" />
+    <option featureType="dependencySupport" implementationName="java:org.springframework.security:spring-security-core" />
+    <option featureType="dependencySupport" implementationName="java:org.springframework.data:spring-data-jpa" />
+    <option featureType="dependencySupport" implementationName="java:io.springfox:springfox-swagger-common" />
+    <option featureType="dependencySupport" implementationName="java:org.springframework.boot:spring-boot-actuator" />
+    <option featureType="dependencySupport" implementationName="java:io.netty:netty-buffer" />
+    <option featureType="dependencySupport" implementationName="java:io.springfox:springfox-schema" />
+    <option featureType="dependencySupport" implementationName="java:org.antlr:antlr4-runtime" />
+    <option featureType="dependencySupport" implementationName="java:io.netty:netty-codec-dns" />
+    <option featureType="dependencySupport" implementationName="java:io.netty:netty-common" />
+    <option featureType="dependencySupport" implementationName="java:com.baomidou:mybatis-plus-boot-starter" />
+    <option featureType="dependencySupport" implementationName="java:io.jsonwebtoken:jjwt" />
+    <option featureType="dependencySupport" implementationName="java:org.springframework.boot:spring-boot-starter-mail" />
+    <option featureType="dependencySupport" implementationName="java:org.springframework.boot:spring-boot" />
+    <option featureType="dependencySupport" implementationName="java:javax.cache:cache-api" />
+    <option featureType="dependencySupport" implementationName="java:org.jasypt:jasypt" />
+    <option featureType="dependencySupport" implementationName="java:io.netty:netty-codec" />
+    <option featureType="dependencySupport" implementationName="java:org.springframework.security:spring-security-crypto" />
+    <option featureType="dependencySupport" implementationName="java:org.springframework.boot:spring-boot-starter-tomcat" />
+    <option featureType="dependencySupport" implementationName="java:org.jboss.marshalling:jboss-marshalling" />
+    <option featureType="dependencySupport" implementationName="java:cn.hutool:hutool-all" />
+    <option featureType="dependencySupport" implementationName="java:com.fasterxml.jackson.core:jackson-annotations" />
+    <option featureType="dependencySupport" implementationName="java:com.fasterxml.jackson.core:jackson-core" />
+    <option featureType="dependencySupport" implementationName="java:xmlpull:xmlpull" />
+    <option featureType="dependencySupport" implementationName="java:com.github.ulisesbocchio:jasypt-spring-boot" />
+    <option featureType="dependencySupport" implementationName="java:org.springframework.boot:spring-boot-starter-websocket" />
+    <option featureType="dependencySupport" implementationName="java:com.ibeetl:beetl" />
+    <option featureType="dependencySupport" implementationName="java:jakarta.annotation:jakarta.annotation-api" />
+    <option featureType="dependencySupport" implementationName="java:jakarta.persistence:jakarta.persistence-api" />
+    <option featureType="dependencySupport" implementationName="java:org.springframework:spring-orm" />
+    <option featureType="dependencySupport" implementationName="java:org.apache.poi:poi-ooxml" />
+    <option featureType="dependencySupport" implementationName="java:org.springframework:spring-context-support" />
+    <option featureType="dependencySupport" implementationName="java:org.redisson:redisson" />
+    <option featureType="dependencySupport" implementationName="java:com.google.code.findbugs:jsr305" />
+    <option featureType="dependencySupport" implementationName="java:org.jodd:jodd-core" />
+    <option featureType="dependencySupport" implementationName="java:io.swagger:swagger-models" />
+    <option featureType="dependencySupport" implementationName="java:com.thoughtworks.xstream:xstream" />
+    <option featureType="dependencySupport" implementationName="java:org.springframework:spring-context" />
+    <option featureType="dependencySupport" implementationName="java:com.baomidou:mybatis-plus-annotation" />
+    <option featureType="dependencySupport" implementationName="java:io.micrometer:micrometer-core" />
+    <option featureType="dependencySupport" implementationName="java:com.sun.istack:istack-commons-runtime" />
+    <option featureType="dependencySupport" implementationName="java:org.antlr:antlr4-annotations" />
+    <option featureType="dependencySupport" implementationName="java:org.springframework:spring-aop" />
+    <option featureType="dependencySupport" implementationName="java:io.netty:netty-handler" />
+    <option featureType="dependencySupport" implementationName="java:org.jodd:jodd-bean" />
+    <option featureType="dependencySupport" implementationName="java:com.google.guava:failureaccess" />
+    <option featureType="dependencySupport" implementationName="java:org.springframework.plugin:spring-plugin-core" />
+    <option featureType="dependencySupport" implementationName="java:io.springfox:springfox-spi" />
+    <option featureType="dependencySupport" implementationName="java:javax.annotation:javax.annotation-api" />
+    <option featureType="dependencySupport" implementationName="java:io.springfox:springfox-spring-webmvc" />
+    <option featureType="dependencySupport" implementationName="java:org.springframework.boot:spring-boot-starter-web" />
+    <option featureType="dependencySupport" implementationName="java:io.github.classgraph:classgraph" />
+    <option featureType="dependencySupport" implementationName="java:org.apache.tomcat.embed:tomcat-embed-el" />
+    <option featureType="dependencySupport" implementationName="java:com.github.ulisesbocchio:jasypt-spring-boot-starter" />
+    <option featureType="dependencySupport" implementationName="java:com.sun.activation:jakarta.activation" />
+    <option featureType="dependencySupport" implementationName="java:org.apache.logging.log4j:log4j-api" />
+    <option featureType="dependencySupport" implementationName="java:org.springframework.data:spring-data-redis" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <breakpoint enabled="true" type="java-exception">
+          <properties class="java.lang.ClassNotFoundException" package="java.lang" />
+          <option name="timeStamp" value="3" />
+        </breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

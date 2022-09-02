@@ -1,134 +1,90 @@
 <template>
 <div class="user-edit">
-    <!-- Drawer抽屉 -->
-    <Drawer :title="title" v-model="visible" width="720" draggable :mask-closable="type=='0'">
-        <div :style="{maxHeight: maxHeight}" class="drawer-content">
-            <div class="user-title">
-                <div class="info-title">基本信息</div>
-                <Avatar :src="form.avatar" size="large" v-show="type!='2'" />
+    <Modal :title="title" v-model="visible" width="90" draggable :mask-closable="type=='0'" ok-text="确认提交" @on-ok="submit">
+
+        <Row :gutter="16" justify="center">
+            <div class="info-title"><span v-show="type!='2'">登陆账号{{form.username}}（唯一标识{{form.id}}） </span>
+                <Icon v-show="form.status==-1" type="md-lock" size="18" style="margin-left:10px;cursor:pointer" />
             </div>
-            <Form label-colon v-show="type!='2'">
-                <Row :gutter="32">
-                    <Col span="12">
-                    <FormItem label="用户ID">
-                        {{form.id}}
-                        <Tooltip trigger="hover" placement="right" content="账户已禁用">
-                            <Icon v-show="form.status==-1" type="md-lock" size="18" style="margin-left:10px;cursor:pointer" />
-                        </Tooltip>
-                    </FormItem>
-                    </Col>
-                    <Col span="12">
-                    <FormItem label="登录账号">
-                        {{form.username}}
-                        <Tooltip trigger="hover" placement="right" :content="`密码强度：${form.passStrength}`">
-                            <Icon v-show="form.passStrength" type="md-key" :color="passColor" size="18" style="margin-left:10px;cursor:pointer" />
-                        </Tooltip>
-                    </FormItem>
-                    </Col>
-                </Row>
-            </Form>
-            <Form ref="form" :model="form" :rules="formValidate" label-position="top">
-                <Row :gutter="32" v-if="type=='2'">
-                    <Col span="12">
-                    <FormItem label="登录账号" prop="username">
-                        <Input v-model="form.username" autocomplete="off" :maxlength="16" />
-                    </FormItem>
-                    </Col>
-                    <Col span="12">
-                    <FormItem label="密码" prop="password">
-                        <SetPassword v-model="form.password" @on-change="changePass" />
-                    </FormItem>
-                    </Col>
-                </Row>
-                <Row :gutter="32">
-                    <Col span="12">
-                    <FormItem label="用户名" prop="nickname">
-                        <Input v-model="form.nickname" />
-                    </FormItem>
-                    </Col>
-                    <Col span="12">
-                    <FormItem label="邮箱" prop="email">
-                        <Input v-model="form.email" />
-                    </FormItem>
-                    </Col>
-                </Row>
-                <Row :gutter="32">
-                    <Col span="12">
-                    <FormItem label="手机号" prop="mobile">
-                        <Input v-model="form.mobile" />
-                    </FormItem>
-                    </Col>
-                    <Col span="12">
-                    <FormItem label="性别">
-                        <dict dict="sex" v-model="form.sex" transfer clearable placeholder="请选择性别" />
-                    </FormItem>
-                    </Col>
-                </Row>
-                <Row :gutter="32">
-                    <Col span="12">
-                    <FormItem label="所属部门">
-                        <department-tree-choose @on-change="handleSelectDepTree" ref="depTree"></department-tree-choose>
-                    </FormItem>
-                    </Col>
-                    <Col span="12">
-                    <FormItem label="用户类型">
-                        <Select v-model="form.type" placeholder="请选择">
-                            <Option :value="0">普通用户</Option>
-                            <Option :value="1">管理员</Option>
-                        </Select>
-                    </FormItem>
-                    </Col>
-                </Row>
-                <Row :gutter="32">
-                    <Col span="12">
-                    <FormItem label="头像">
-                        <upload-pic-input v-model="form.avatar"></upload-pic-input>
-                    </FormItem>
-                    </Col>
-                    <Col span="12">
-                    <FormItem label="角色分配" prop="roleIds">
-                        <Select v-model="form.roleIds" multiple>
-                            <Option v-for="item in roleList" :value="item.id" :key="item.id" :label="item.name">
-                                <span style="margin-right:10px;">{{ item.name }}</span>
-                                <span style="color:#ccc;">{{ item.description }}</span>
-                            </Option>
-                        </Select>
-                    </FormItem>
-                    </Col>
-                </Row>
-                <Divider />
-                <p class="info-header">个人资料</p>
-                <Row :gutter="32">
-                    <Col span="12">
-                    <FormItem label="所在地区" prop="addressArray">
-                        <al-cascader v-model="form.addressArray" @on-change="changeAddress" data-type="code" level="2" />
-                    </FormItem>
-                    </Col>
-                    <Col span="12">
-                    <FormItem label="街道地址">
-                        <Input v-model="form.street" />
-                    </FormItem>
-                    </Col>
-                </Row>
-                <Row :gutter="32">
-                    <Col span="12">
-                    <FormItem label="生日">
-                        <DatePicker v-model="form.birth" @on-change="changeBirth" style="display: block" type="date"></DatePicker>
-                    </FormItem>
-                    </Col>
-                    <Col span="24">
-                    <FormItem label="简介">
-                        <Input type="textarea" v-model="form.description" :rows="4" />
-                    </FormItem>
-                    </Col>
-                </Row>
-            </Form>
-        </div>
-        <div class="drawer-footer br" v-show="type!='0'">
-            <Button type="primary" :loading="submitLoading" @click="submit">提交</Button>
-            <Button @click="visible = false">取消</Button>
-        </div>
-    </Drawer>
+        </Row>
+        <Form ref="form" :model="form" :rules="formValidate" label-position="top">
+            <Row :gutter="16" v-if="type=='2'">
+                <Col span="12">
+                <FormItem label="登录账号" prop="username" style="width:100%">
+                    <Input v-model="form.username" autocomplete="off" :maxlength="16" />
+                </FormItem>
+                </Col>
+                <Col span="12">
+                <FormItem label="密码" prop="password" style="width:100%">
+                    <SetPassword v-model="form.password" @on-change="changePass" />
+                </FormItem>
+                </Col>
+            </Row>
+            <Row :gutter="16">
+                <Col span="12">
+                <FormItem label="用户名" prop="nickname" style="width:100%">
+                    <Input v-model="form.nickname" />
+                </FormItem>
+                </Col>
+                <Col span="12">
+                <FormItem label="邮箱" prop="email" style="width:100%">
+                    <Input v-model="form.email" />
+                </FormItem>
+                </Col>
+            </Row>
+            <Row :gutter="16">
+                <Col span="12">
+                <FormItem label="手机号" prop="mobile" style="width:100%">
+                    <Input v-model="form.mobile" />
+                </FormItem>
+                </Col>
+                <Col span="12">
+                <FormItem label="性别" style="width:100%">
+                    <dict dict="sex" v-model="form.sex" transfer clearable placeholder="选择性别" />
+                </FormItem>
+                </Col>
+            </Row>
+            <Row :gutter="16">
+                <Col span="12">
+                <FormItem label="所属部门" style="width:100%">
+                    <department-tree-choose @on-change="handleSelectDepTree" ref="depTree"></department-tree-choose>
+                </FormItem>
+                </Col>
+                <Col span="12">
+                <FormItem label="用户类型" style="width:100%">
+                    <Select v-model="form.type" placeholder="请选择用户类型">
+                        <Option :value="0">普通用户</Option>
+                        <Option :value="1">管理员</Option>
+                    </Select>
+                </FormItem>
+                </Col>
+            </Row>
+            <Row :gutter="16">
+                <Col span="12">
+                <FormItem label="头像" style="width:100%">
+                    <upload-pic-input v-model="form.avatar"></upload-pic-input>
+                </FormItem>
+                </Col>
+                <Col span="12">
+                <FormItem label="角色" prop="roleIds" style="width:100%">
+                    <Select v-model="form.roleIds" multiple>
+                        <Option v-for="item in roleList" :value="item.id" :key="item.id" :label="item.name">
+                            <span style="margin-right:10px;">{{ item.name }}</span>
+                            <span style="color:#ccc;">{{ item.description }}</span>
+                        </Option>
+                    </Select>
+                </FormItem>
+                </Col>
+            </Row>
+            <Row :gutter="16">
+                <Col span="12">
+                <FormItem label="区县" prop="addressArray" style="width:100%">
+                    <al-cascader v-model="form.addressArray" @on-change="changeAddress" data-type="code" level="2" />
+                </FormItem>
+                </Col>
+            </Row>
+        </Form>
+    </Modal>
 </div>
 </template>
 
@@ -137,16 +93,16 @@ import {
     getAllRoleList,
     addUser,
     editUser
-} from "@/api/index";
+} from "./api.js";
 import {
     validateUsername,
     validateMobile,
     validatePassword
 } from "@/libs/validate";
-import departmentTreeChoose from "@/views/my-components/zwz/department-tree-choose";
-import uploadPicInput from "@/views/my-components/zwz/upload-pic-input";
-import SetPassword from "@/views/my-components/zwz/set-password";
-import dict from "@/views/my-components/zwz/dict";
+import departmentTreeChoose from "@/views/template/department-tree-choose";
+import uploadPicInput from "@/views/template/upload-pic-input";
+import SetPassword from "@/views/template/set-password";
+import dict from "@/views/template/dict";
 export default {
     name: "user",
     components: {
@@ -174,12 +130,10 @@ export default {
             title: "",
             passColor: "",
             submitLoading: false,
-            maxHeight: 510,
             form: {
                 addressArray: []
             },
             formValidate: {
-                // 表单验证规则
                 username: [{
                         required: true,
                         message: "请输入登录账号",
@@ -248,18 +202,10 @@ export default {
         changePass(v, grade, strength) {
             this.form.passStrength = strength;
         },
-        changeBirth(v, d) {
-            this.form.birth = v;
-        },
         submit() {
             this.$refs.form.validate(valid => {
                 if (valid) {
-                    if (typeof this.form.birth == "object") {
-                        this.form.birth = this.format(this.form.birth, "yyyy-MM-dd");
-                    }
-
                     if (this.type == "1") {
-                        // 编辑
                         this.submitLoading = true;
                         editUser(this.form).then(res => {
                             this.submitLoading = false;
@@ -270,7 +216,6 @@ export default {
                             }
                         });
                     } else {
-                        // 添加
                         this.submitLoading = true;
                         addUser(this.form).then(res => {
                             this.submitLoading = false;
@@ -289,16 +234,12 @@ export default {
                 return;
             }
             if (this.type == "1") {
-                this.title = "编辑用户";
-                this.maxHeight = Number(document.documentElement.clientHeight - 121) + "px";
+                this.title = "编辑";
             } else if (this.type == "2") {
-                this.title = "添加用户";
-                this.maxHeight = Number(document.documentElement.clientHeight - 121) + "px";
+                this.title = "添加";
             } else {
-                this.title = "用户详情";
-                this.maxHeight = "100%";
+                this.title = "详情";
             }
-            // 清空数据
             this.$refs.form.resetFields();
             if (this.type == "0" || this.type == "1") {
                 // 回显数据
@@ -356,33 +297,5 @@ export default {
 </script>
 
 <style lang="less">
-@import "../../../styles/table-common.less";
 
-.drawer-content {
-    overflow: auto;
-}
-
-.drawer-content::-webkit-scrollbar {
-    display: none;
-}
-
-.user-title {
-    display: flex;
-    align-items: center;
-    margin-bottom: 16px;
-
-    .info-title {
-        font-size: 16px;
-        color: rgba(0, 0, 0, 0.85);
-        display: block;
-        margin-right: 16px;
-    }
-}
-
-.info-header {
-    font-size: 16px;
-    color: rgba(0, 0, 0, 0.85);
-    display: block;
-    margin-bottom: 16px;
-}
 </style>
