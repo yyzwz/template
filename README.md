@@ -1,8 +1,8 @@
 # 【前后端分离开发模板】基于 Vue 和 SpringBoot 的通用管理系统
 
-GitHub 上图片好像无法展示，可以移步到 https://gitee.com/yyzwz/template 查看，谢谢！
+GitHub 上图片好像无法展示，可以移步到 <https://gitee.com/yyzwz/template> 查看，谢谢！
 
-It seems that the pictures on GitHub can't be displayed. You can move to https://gitee.com/yyzwz/template Check, thank you!
+It seems that the pictures on GitHub can't be displayed. You can move to <https://gitee.com/yyzwz/template> Check, thank you!
 
 ## 软件简介
 
@@ -27,14 +27,17 @@ It seems that the pictures on GitHub can't be displayed. You can move to https:/
 - 基于 Vue 和 SpringBoot 的大病保险管理系统 <https://gitee.com/yyzwz/medicineSystem>
 - 基于 Vue 和 SpringBoot 的超市账单管理系统 <https://gitee.com/yyzwz/bill-system>
 - 基于 Vue 和 SpringBoot 的通讯录管理系统 <https://gitee.com/yyzwz/address-book-system>
-- 基于 Vue 和 SpringBoot 的 OA 系统 <https://gitee.com/yyzwz/oa>
+- 基于 Vue 和 SpringBoot 的假日旅社管理系统 <https://gitee.com/yyzwz/holiday-hotel>
+- 基于 Vue 和 SpringBoot 的 OA 系统 <https://gitee.com/yyzwz/hostel>
+- 基于 Vue 和 SpringBoot 的医院门诊预约挂号系统 <https://gitee.com/yyzwz/order-register>
+- 基于 Vue 和 SpringBoot 的资产采购管理系统 <https://gitee.com/yyzwz/asset-purchase>
 
 未来将会开发出更多的管理系统，敬请期待！
 
 ## 免责声明
 
-- 本项目开源，仅供个人学习使用，遵循 GPL-3.0 开源协议，**转发 / 商用授权请联系作者，否则后果自负**，作者 QQ 916077357。
-- 作者拥有本软件构建后的应用系统全部内容所有权及独立的知识产权（**软件著作权登记号：2022SR1338865**），欢迎一切有价值的商业合作，接 Java 类的毕业设计（200R 到 300R）。
+- 本项目开源，仅供个人学习使用，遵循 GPL-3.0 开源协议，**转发 / 商用授权请联系作者，否则后果自负**。
+- 作者拥有本软件构建后的应用系统全部内容所有权及独立的知识产权（**软件著作权登记号：2022SR1338865**）。
 - 如有问题，欢迎在仓库 Issue 留言，看到后会第一时间回复。相关意见会酌情考虑，但没有一定被采纳的承诺或保证。
 
 下载本系统代码的用户，**必须同意以下内容，否则请勿下载**！
@@ -45,6 +48,10 @@ It seems that the pictures on GitHub can't be displayed. You can move to https:/
 4. 必须了解使用本软件的风险，作者不承诺提供一对一的技术支持、使用担保，也不承担任何因本软件而产生的难以预料的问题的相关责任。
 
 ## 更新日志
+
+V1.1.1 2022-09-09
+
+修复按钮级菜单权限无法添加的问题。
 
 V1.1.0 2022-09-02
 

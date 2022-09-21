@@ -310,7 +310,7 @@ public class PermissionController {
         if(Objects.equals(CommonConstant.PERMISSION_OPERATION,permission.getType())) {
             QueryWrapper<Permission> perQw = new QueryWrapper<>();
             perQw.eq("title",permission.getTitle());
-            long permissionByTitleCount = iPermissionService.count();
+            long permissionByTitleCount = iPermissionService.count(perQw);
             if(permissionByTitleCount > 0L){
                 return new ResultUtil<Permission>().setErrorMsg("名称已存在");
             }
