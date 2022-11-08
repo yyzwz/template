@@ -24,7 +24,8 @@
             %>
             <Form-item label="${item.name}" prop="${item.field}">
               <Select v-model="searchForm.${item.field}" placeholder="请选择" clearable style="width: 200px">
-                <Option value="0">请自行编辑下拉菜单</Option>
+                <Option value="选项A">选项A</Option>
+                <Option value="选项B">选项B</Option>
               </Select>
             </Form-item>
             <%

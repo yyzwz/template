@@ -1,6 +1,7 @@
 package cn.zwz.basics.security.utils;
 
-import com.alibaba.fastjson.JSONObject;
+
+import com.alibaba.fastjson2.JSONObject;
 
 import javax.net.ssl.HttpsURLConnection;
 import java.io.*;
@@ -15,7 +16,7 @@ public class WeChatUploadMeidaUtils {
      * @return
      * @throws Exception
      */
-    public static JSONObject UploadMeida(String fileType, String filePath,String token) throws Exception {
+    public static JSONObject UploadMeida(String fileType, String filePath, String token) throws Exception {
         // 返回结果
         String result = null;
         File file = new File(filePath);

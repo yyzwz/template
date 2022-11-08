@@ -7,8 +7,8 @@ import java.security.cert.X509Certificate;
 import java.util.List;
 import javax.net.ssl.*;
 
-import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.JSONObject;
+import com.alibaba.fastjson2.JSON;
+import com.alibaba.fastjson2.JSONObject;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -16,18 +16,18 @@ import lombok.NoArgsConstructor;
 
 public class WeiChatUtils implements X509TrustManager {
 
-    @ApiModelProperty(value = "朗世企业ID")
-    public static final String YH_CORPID = "wwf94bb44e76e308f8";
+    @ApiModelProperty(value = "企业ID")
+    public static final String CORPID = "wwf94bb44e76e308f8";
 
     @ApiModelProperty(value = "企业微信密匙")
-    public static final String YHYY_CORPSECRET = "gK0Ko_byZgG7R84QEyLvs3KgAIocSoYeuZh1wg-AJD4";
+    public static final String CORPSECRET = "";
 
     /**
      * 企业微信 艺涵 应用Token
      * @return
      */
     public static String getToken(){
-        String s= httpsRequest("https://qyapi.weixin.qq.com/cgi-bin/gettoken?corpid=" + YH_CORPID + "&corpsecret=" + YHYY_CORPSECRET,"GET",null);
+        String s= httpsRequest("https://qyapi.weixin.qq.com/cgi-bin/gettoken?corpid=" + CORPID + "&corpsecret=" + CORPSECRET,"GET",null);
         JSONObject err = JSON.parseObject(s);
         if(err.getString("errmsg").equals("ok")){
             return err.getString("access_token");

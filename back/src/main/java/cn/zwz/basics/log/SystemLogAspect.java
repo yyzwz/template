@@ -8,7 +8,7 @@ import cn.zwz.basics.utils.IpInfoUtil;
 import cn.zwz.basics.utils.ThreadPoolUtil;
 import cn.zwz.data.entity.Log;
 import cn.zwz.data.service.LogService;
-import com.alibaba.fastjson.JSONObject;
+import com.alibaba.fastjson2.JSONObject;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.JoinPoint;
