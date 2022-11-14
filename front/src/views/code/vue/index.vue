@@ -107,7 +107,7 @@
         <Input v-model="findBackFieldContent" type="textarea" autosize style="max-height:50vh;overflow:auto;" placeholder="生成结果" />
     </Modal>
 
-    <!-- 生成前端代码 -->
+    <!-- 生成对应位置 -->
     <Modal title="生成代码" v-model="codeModal" :width="1000" styles="top:30px">
         <Tabs v-model="tabName" type="card" @on-click="changeCode">
             <TabPane name="index.vue" label="index.vue"></TabPane>
@@ -147,7 +147,7 @@ export default {
             createCodeContent: "",
             // 接口前缀
             apiPreStr: "",
-            // 生成前端代码窗口是否显示
+            // 生成对应位置窗口是否显示
             codeModal: false,
             form: {
                 sortOrder: 0,

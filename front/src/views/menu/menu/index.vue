@@ -69,12 +69,12 @@
                     </Col>
                     <Col span="12" v-show="form.type==0">
                     <FormItem label="路径" prop="path">
-                        <Input v-model="form.path" style="width:100%" />
+                        <Input v-model="form.path" @on-blur="changeFormPath" style="width:100%" />
                     </FormItem>
                     </Col>
                     <Col span="12" v-show="form.type==1">
                     <FormItem label="请求路径" prop="path">
-                        <Input v-model="form.path" placeholder="若无可填写'无'" style="width:100%" />
+                        <Input v-model="form.path" @on-blur="changeFormPath" placeholder="若无可填写'无'" style="width:100%" />
                     </FormItem>
                     </Col>
                     <Col span="12" v-show="form.type==1">
@@ -86,7 +86,7 @@
                     </Col>
                     <Col span="12" v-show="form.type==-1">
                     <FormItem :label="form.type==-1? '英文名' : '路由英文名'" prop="name">
-                        <Input v-model="form.name" placeholder="需唯一" style="width:100%" />
+                        <Input v-model="form.name" @on-blur="changeFormName" placeholder="需唯一" style="width:100%" />
                     </FormItem>
                     </Col>
                     <Col span="12" v-show="form.type==-1||form.type==0">
@@ -95,7 +95,7 @@
                     </FormItem>
                     </Col>
                     <Col span="12" v-show="form.type==0">
-                    <FormItem label="前端代码" prop="component">
+                    <FormItem label="对应位置" prop="component">
                         <Input v-model="form.component" style="width:100%" />
                     </FormItem>
                     </Col>
@@ -182,7 +182,7 @@
             <FormItem label="图标" prop="icon" v-if="formAdd.type==-1||formAdd.type==0">
                 <icon-choose v-model="formAdd.icon"></icon-choose>
             </FormItem>
-            <FormItem label="前端代码" prop="component" v-if="formAdd.type==0">
+            <FormItem label="对应位置" prop="component" v-if="formAdd.type==0">
                 <Input v-model="formAdd.component" />
             </FormItem>
             <FormItem label="排序值" prop="sortOrder">
@@ -275,7 +275,7 @@ export default {
                 }],
                 component: [{
                     required: true,
-                    message: "前端代码不能为空",
+                    message: "对应位置不能为空",
                     trigger: "blur"
                 }],
                 sortOrder: [{
@@ -326,6 +326,12 @@ export default {
         init() {
             this.getPermissionList();
             this.getDictPermissions();
+        },
+        changeFormPath() {
+            this.form.name = this.form.path;
+        },
+        changeFormName() {
+            this.form.path = this.form.name;
         },
         getDictPermissions() {
             getDictDataByType("permission_type").then(res => {
@@ -438,37 +444,33 @@ export default {
             this.form.type = type;
         },
         submitEdit() {
-            this.$refs.form.validate(valid => {
-                if (valid) {
-                    if (!this.form.id) {
-                        this.$Message.warning("请先点击选择要修改的菜单节点");
-                        return;
-                    }
-                    this.submitLoading = true;
-                    if (this.form.sortOrder == null) {
-                        this.form.sortOrder = "";
-                    }
-                    if (this.form.buttonType == null) {
-                        this.form.buttonType = "";
-                    }
-                    if (this.form.type == 1) {
-                        this.form.name = "";
-                        this.form.icon = "";
-                        this.form.component = "";
-                    }
-                    delete this.form.updateTime;
-                    delete this.form.children;
-                    editPermission(this.form).then(res => {
-                        this.submitLoading = false;
-                        if (res.success) {
-                            this.$Message.success("编辑成功");
-                            // 标记重新获取菜单数据
-                            this.$store.commit("setAdded", false);
-                            util.initRouter(this);
-                            this.init();
-                            this.menuModalVisible = false;
-                        }
-                    });
+            if (!this.form.id) {
+                this.$Message.warning("请先点击选择要修改的菜单节点");
+                return;
+            }
+            this.submitLoading = true;
+            if (this.form.sortOrder == null) {
+                this.form.sortOrder = "";
+            }
+            if (this.form.buttonType == null) {
+                this.form.buttonType = "";
+            }
+            if (this.form.type == 1) {
+                this.form.name = "";
+                this.form.icon = "";
+                this.form.component = "";
+            }
+            delete this.form.updateTime;
+            delete this.form.children;
+            editPermission(this.form).then(res => {
+                this.submitLoading = false;
+                if (res.success) {
+                    this.$Message.success("编辑成功");
+                    // 标记重新获取菜单数据
+                    this.$store.commit("setAdded", false);
+                    util.initRouter(this);
+                    this.init();
+                    this.menuModalVisible = false;
                 }
             });
         },

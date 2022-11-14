@@ -1,10 +1,3 @@
--- --------------------------------------------------------
--- 主机:                           127.0.0.1
--- 服务器版本:                        8.0.26 - MySQL Community Server - GPL
--- 服务器操作系统:                      Win64
--- HeidiSQL 版本:                  11.3.0.6295
--- --------------------------------------------------------
-
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET NAMES utf8 */;
 /*!50503 SET NAMES utf8mb4 */;
@@ -12,13 +5,10 @@
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
-
--- 导出 template 的数据库结构
 DROP DATABASE IF EXISTS `template`;
-CREATE DATABASE IF NOT EXISTS `template` /*!40100 DEFAULT CHARACTER SET utf8 COLLATE utf8_croatian_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
+CREATE DATABASE IF NOT EXISTS `template` /*!40100 DEFAULT CHARACTER SET utf8mb3 COLLATE utf8mb3_croatian_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
 USE `template`;
 
--- 导出  表 template.a_department 结构
 DROP TABLE IF EXISTS `a_department`;
 CREATE TABLE IF NOT EXISTS `a_department` (
   `id` bigint unsigned NOT NULL,
@@ -35,7 +25,6 @@ CREATE TABLE IF NOT EXISTS `a_department` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
--- 正在导出表  template.a_department 的数据：~13 rows (大约)
 DELETE FROM `a_department`;
 /*!40000 ALTER TABLE `a_department` DISABLE KEYS */;
 INSERT INTO `a_department` (`id`, `create_by`, `create_time`, `del_flag`, `update_by`, `update_time`, `parent_id`, `sort_order`, `status`, `title`, `is_parent`) VALUES
@@ -54,7 +43,6 @@ INSERT INTO `a_department` (`id`, `create_by`, `create_time`, `del_flag`, `updat
 	(1527834362656198656, 'admin', '2022-05-21 10:11:13', 0, NULL, NULL, 0, 6.00, 0, '客服部', b'0');
 /*!40000 ALTER TABLE `a_department` ENABLE KEYS */;
 
--- 导出  表 template.a_department_header 结构
 DROP TABLE IF EXISTS `a_department_header`;
 CREATE TABLE IF NOT EXISTS `a_department_header` (
   `id` bigint unsigned NOT NULL,
@@ -69,12 +57,10 @@ CREATE TABLE IF NOT EXISTS `a_department_header` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
--- 正在导出表  template.a_department_header 的数据：~0 rows (大约)
 DELETE FROM `a_department_header`;
 /*!40000 ALTER TABLE `a_department_header` DISABLE KEYS */;
 /*!40000 ALTER TABLE `a_department_header` ENABLE KEYS */;
 
--- 导出  表 template.a_dict 结构
 DROP TABLE IF EXISTS `a_dict`;
 CREATE TABLE IF NOT EXISTS `a_dict` (
   `id` bigint unsigned NOT NULL,
@@ -90,7 +76,6 @@ CREATE TABLE IF NOT EXISTS `a_dict` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
--- 正在导出表  template.a_dict 的数据：~4 rows (大约)
 DELETE FROM `a_dict`;
 /*!40000 ALTER TABLE `a_dict` DISABLE KEYS */;
 INSERT INTO `a_dict` (`id`, `create_by`, `create_time`, `del_flag`, `update_by`, `update_time`, `description`, `title`, `type`, `sort_order`) VALUES
@@ -100,7 +85,6 @@ INSERT INTO `a_dict` (`id`, `create_by`, `create_time`, `del_flag`, `update_by`,
 	(1536613395229446144, 'admin', '2022-06-14 15:35:57', 0, NULL, NULL, '', '在职状态', 'occupationStatus', 4.00);
 /*!40000 ALTER TABLE `a_dict` ENABLE KEYS */;
 
--- 导出  表 template.a_dict_data 结构
 DROP TABLE IF EXISTS `a_dict_data`;
 CREATE TABLE IF NOT EXISTS `a_dict_data` (
   `id` bigint unsigned NOT NULL,
@@ -119,7 +103,6 @@ CREATE TABLE IF NOT EXISTS `a_dict_data` (
   KEY `sort_order` (`sort_order`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
--- 正在导出表  template.a_dict_data 的数据：~24 rows (大约)
 DELETE FROM `a_dict_data`;
 /*!40000 ALTER TABLE `a_dict_data` DISABLE KEYS */;
 INSERT INTO `a_dict_data` (`id`, `create_by`, `create_time`, `del_flag`, `update_by`, `update_time`, `description`, `dict_id`, `sort_order`, `status`, `title`, `value`) VALUES
@@ -149,7 +132,6 @@ INSERT INTO `a_dict_data` (`id`, `create_by`, `create_time`, `del_flag`, `update
 	(1536613447544999936, 'admin', '2022-06-14 15:36:09', 0, NULL, NULL, '', 1536613395229446144, 2.00, 0, '离职', '离职');
 /*!40000 ALTER TABLE `a_dict_data` ENABLE KEYS */;
 
--- 导出  表 template.a_file 结构
 DROP TABLE IF EXISTS `a_file`;
 CREATE TABLE IF NOT EXISTS `a_file` (
   `id` bigint unsigned NOT NULL,
@@ -168,7 +150,6 @@ CREATE TABLE IF NOT EXISTS `a_file` (
   KEY `create_time` (`create_time`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
--- 正在导出表  template.a_file 的数据：~7 rows (大约)
 DELETE FROM `a_file`;
 /*!40000 ALTER TABLE `a_file` DISABLE KEYS */;
 INSERT INTO `a_file` (`id`, `create_by`, `create_time`, `del_flag`, `update_by`, `update_time`, `name`, `size`, `type`, `url`, `f_key`, `location`) VALUES
@@ -181,7 +162,6 @@ INSERT INTO `a_file` (`id`, `create_by`, `create_time`, `del_flag`, `update_by`,
 	(1536614698903015424, 'admin', '2022-06-14 15:41:08', 0, NULL, NULL, '张三简历.pdf', 28091, 'application/pdf', 'C:\\\\oa-file/20220614/2a643018f08a4a4bbfacbb19218ab1e2.pdf', '2a643018f08a4a4bbfacbb19218ab1e2.pdf', 0);
 /*!40000 ALTER TABLE `a_file` ENABLE KEYS */;
 
--- 导出  表 template.a_log 结构
 DROP TABLE IF EXISTS `a_log`;
 CREATE TABLE IF NOT EXISTS `a_log` (
   `id` bigint unsigned NOT NULL,
@@ -205,7 +185,6 @@ CREATE TABLE IF NOT EXISTS `a_log` (
   KEY `create_time` (`create_time`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
--- 正在导出表  template.a_log 的数据：~120 rows (大约)
 DELETE FROM `a_log`;
 /*!40000 ALTER TABLE `a_log` DISABLE KEYS */;
 INSERT INTO `a_log` (`id`, `create_by`, `create_time`, `del_flag`, `update_by`, `update_time`, `cost_time`, `ip`, `ip_info`, `name`, `request_param`, `request_type`, `request_url`, `username`, `log_type`, `code`, `device`) VALUES
@@ -245,7 +224,6 @@ INSERT INTO `a_log` (`id`, `create_by`, `create_time`, `del_flag`, `update_by`, 
 	(1536883517961670656, NULL, '2022-06-15 09:29:19', 0, NULL, '2022-06-15 09:29:19', 39, '127.0.0.1', '本地测试', '查询日志', '{"logType":"1","pageNumber":"1","endDate":"","pageSize":"15","sort":"createTime","ipInfo":"","startDate":"","key":"","order":"desc"}', 'GET', '/zwz/log/getAllByPage', 'admin', 2, 'LOG-01', 'PC端 | Chrome 101.0.0.0 | Windows Windows 10 or Windows Server 2016');
 /*!40000 ALTER TABLE `a_log` ENABLE KEYS */;
 
--- 导出  表 template.a_permission 结构
 DROP TABLE IF EXISTS `a_permission`;
 CREATE TABLE IF NOT EXISTS `a_permission` (
   `id` bigint unsigned NOT NULL,
@@ -270,7 +248,6 @@ CREATE TABLE IF NOT EXISTS `a_permission` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
--- 正在导出表  template.a_permission 的数据：~25 rows (大约)
 DELETE FROM `a_permission`;
 /*!40000 ALTER TABLE `a_permission` DISABLE KEYS */;
 INSERT INTO `a_permission` (`id`, `create_by`, `create_time`, `del_flag`, `update_by`, `update_time`, `description`, `name`, `parent_id`, `type`, `sort_order`, `component`, `path`, `title`, `icon`, `level`, `button_type`, `status`, `show_always`) VALUES
@@ -290,7 +267,7 @@ INSERT INTO `a_permission` (`id`, `create_by`, `create_time`, `del_flag`, `updat
 	(1530689602321518592, 'admin', '2022-05-29 07:16:55', 0, NULL, NULL, NULL, 'dict', 1530689520276738048, 0, 1.00, 'dict/dict/index', 'dict', '数据字典', 'ios-apps', 2, '', 0, b'1'),
 	(1535166254703316992, 'admin', '2022-06-10 15:45:32', 0, NULL, NULL, NULL, 'codeCreate', 125909152017944576, 0, 7.00, 'Main', '/codeCreate', '代码生成', 'ios-brush', 1, '', 0, b'1'),
 	(1535166438371889152, 'admin', '2022-06-10 15:46:16', 0, NULL, NULL, NULL, 'vue', 1535166254703316992, 0, 1.00, 'code/vue/index', 'vue', '前端表格', 'md-bug', 2, '', 0, b'1'),
-	(1536599942410407936, 'admin', '2022-06-14 14:42:30', 0, NULL, NULL, NULL, 'demo', NULL, -1, 2.00, NULL, NULL, '样例演示', 'md-bulb', 0, NULL, 0, NULL),
+	(1536599942410407936, 'admin', '2022-06-14 14:42:30', 0, NULL, NULL, NULL, 'demo', 0, -1, 2.00, NULL, NULL, '样例演示', 'md-bulb', 0, NULL, 0, NULL),
 	(1536600125332393984, 'admin', '2022-06-14 14:43:13', 0, 'admin', '2022-06-14 15:10:31', '', 'tableDemo', 1536599942410407936, 0, 1.00, 'Main', '/tableDemo', '数据展示', 'ios-apps', 1, '', 0, NULL),
 	(1536600268379131904, 'admin', '2022-06-14 14:43:47', 0, NULL, NULL, NULL, 'demo1', 1536600125332393984, 0, 1.00, 'demo/demo1/index', 'demo1', '代码生成样例', 'md-finger-print', 2, '', 0, NULL),
 	(1536604417711804416, 'admin', '2022-06-14 15:00:17', 0, 'admin', '2022-06-14 15:31:57', '', 'demo2', 1536600125332393984, 0, 2.00, 'demo/demo2/index', 'demo2', '复杂表格样例', 'md-archive', 2, '', 0, NULL),
@@ -302,7 +279,6 @@ INSERT INTO `a_permission` (`id`, `create_by`, `create_time`, `del_flag`, `updat
 	(1536875505901506560, 'admin', '2022-06-15 08:57:29', 0, 'admin', '2022-06-15 09:01:01', '', 'antvActive', 1536606273959759872, 0, 5.00, 'demo/antvActive/index', 'antvActive', '动态图表样例', 'ios-apps', 2, '', 0, NULL);
 /*!40000 ALTER TABLE `a_permission` ENABLE KEYS */;
 
--- 导出  表 template.a_role 结构
 DROP TABLE IF EXISTS `a_role`;
 CREATE TABLE IF NOT EXISTS `a_role` (
   `id` bigint unsigned NOT NULL,
@@ -318,7 +294,6 @@ CREATE TABLE IF NOT EXISTS `a_role` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
--- 正在导出表  template.a_role 的数据：~2 rows (大约)
 DELETE FROM `a_role`;
 /*!40000 ALTER TABLE `a_role` DISABLE KEYS */;
 INSERT INTO `a_role` (`id`, `create_by`, `create_time`, `update_by`, `update_time`, `name`, `del_flag`, `default_role`, `description`, `data_type`) VALUES
@@ -326,7 +301,6 @@ INSERT INTO `a_role` (`id`, `create_by`, `create_time`, `update_by`, `update_tim
 	(496138616573953, '', '2022-03-20 09:46:20', 'admin', '2022-03-20 09:46:20', 'ROLE_USER', 0, b'1', '普通用户', 0);
 /*!40000 ALTER TABLE `a_role` ENABLE KEYS */;
 
--- 导出  表 template.a_role_permission 结构
 DROP TABLE IF EXISTS `a_role_permission`;
 CREATE TABLE IF NOT EXISTS `a_role_permission` (
   `id` bigint unsigned NOT NULL,
@@ -340,7 +314,6 @@ CREATE TABLE IF NOT EXISTS `a_role_permission` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
--- 正在导出表  template.a_role_permission 的数据：~25 rows (大约)
 DELETE FROM `a_role_permission`;
 /*!40000 ALTER TABLE `a_role_permission` DISABLE KEYS */;
 INSERT INTO `a_role_permission` (`id`, `create_by`, `create_time`, `del_flag`, `update_by`, `update_time`, `permission_id`, `role_id`) VALUES
@@ -372,7 +345,6 @@ INSERT INTO `a_role_permission` (`id`, `create_by`, `create_time`, `del_flag`, `
 	(1536875525769924610, 'admin', '2022-06-15 08:57:34', 0, NULL, NULL, 1536875505901506560, 496138616573952);
 /*!40000 ALTER TABLE `a_role_permission` ENABLE KEYS */;
 
--- 导出  表 template.a_setting 结构
 DROP TABLE IF EXISTS `a_setting`;
 CREATE TABLE IF NOT EXISTS `a_setting` (
   `id` varchar(255) NOT NULL,
@@ -385,7 +357,6 @@ CREATE TABLE IF NOT EXISTS `a_setting` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
--- 正在导出表  template.a_setting 的数据：~5 rows (大约)
 DELETE FROM `a_setting`;
 /*!40000 ALTER TABLE `a_setting` DISABLE KEYS */;
 INSERT INTO `a_setting` (`id`, `create_by`, `create_time`, `del_flag`, `update_by`, `update_time`, `value`) VALUES
@@ -396,24 +367,22 @@ INSERT INTO `a_setting` (`id`, `create_by`, `create_time`, `del_flag`, `update_b
 	('OSS_USED', 'admin', '2022-03-20 09:46:20', 0, 'admin', '2022-03-20 09:46:20', 'LOCAL_OSS');
 /*!40000 ALTER TABLE `a_setting` ENABLE KEYS */;
 
--- 导出  表 template.a_student 结构
 DROP TABLE IF EXISTS `a_student`;
 CREATE TABLE IF NOT EXISTS `a_student` (
-  `id` varchar(255) COLLATE utf8_croatian_ci NOT NULL,
-  `create_by` varchar(255) COLLATE utf8_croatian_ci DEFAULT NULL,
+  `id` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_croatian_ci NOT NULL,
+  `create_by` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_croatian_ci DEFAULT NULL,
   `create_time` datetime(6) DEFAULT NULL,
   `del_flag` int NOT NULL,
-  `update_by` varchar(255) COLLATE utf8_croatian_ci DEFAULT NULL,
+  `update_by` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_croatian_ci DEFAULT NULL,
   `update_time` datetime(6) DEFAULT NULL,
-  `name` varchar(255) COLLATE utf8_croatian_ci DEFAULT NULL,
-  `number` varchar(255) COLLATE utf8_croatian_ci DEFAULT NULL,
-  `school` varchar(255) COLLATE utf8_croatian_ci DEFAULT NULL,
-  `sex` varchar(255) COLLATE utf8_croatian_ci DEFAULT NULL,
+  `name` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_croatian_ci DEFAULT NULL,
+  `number` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_croatian_ci DEFAULT NULL,
+  `school` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_croatian_ci DEFAULT NULL,
+  `sex` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_croatian_ci DEFAULT NULL,
   `age` decimal(19,2) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8_croatian_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_croatian_ci;
 
--- 正在导出表  template.a_student 的数据：~4 rows (大约)
 DELETE FROM `a_student`;
 /*!40000 ALTER TABLE `a_student` DISABLE KEYS */;
 INSERT INTO `a_student` (`id`, `create_by`, `create_time`, `del_flag`, `update_by`, `update_time`, `name`, `number`, `school`, `sex`, `age`) VALUES
@@ -423,28 +392,26 @@ INSERT INTO `a_student` (`id`, `create_by`, `create_time`, `del_flag`, `update_b
 	('1536601469879455744', 'admin', '2022-06-14 14:48:33.753000', 0, NULL, NULL, '赵六', '004', '宁波大学', '保密', 21.00);
 /*!40000 ALTER TABLE `a_student` ENABLE KEYS */;
 
--- 导出  表 template.a_teacher 结构
 DROP TABLE IF EXISTS `a_teacher`;
 CREATE TABLE IF NOT EXISTS `a_teacher` (
-  `id` varchar(255) COLLATE utf8_croatian_ci NOT NULL,
-  `create_by` varchar(255) COLLATE utf8_croatian_ci DEFAULT NULL,
+  `id` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_croatian_ci NOT NULL,
+  `create_by` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_croatian_ci DEFAULT NULL,
   `create_time` datetime(6) DEFAULT NULL,
   `del_flag` int NOT NULL,
-  `update_by` varchar(255) COLLATE utf8_croatian_ci DEFAULT NULL,
+  `update_by` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_croatian_ci DEFAULT NULL,
   `update_time` datetime(6) DEFAULT NULL,
   `age` decimal(19,2) DEFAULT NULL,
-  `autograph` varchar(255) COLLATE utf8_croatian_ci DEFAULT NULL,
-  `education` varchar(255) COLLATE utf8_croatian_ci DEFAULT NULL,
-  `graduated` varchar(255) COLLATE utf8_croatian_ci DEFAULT NULL,
-  `name` varchar(255) COLLATE utf8_croatian_ci DEFAULT NULL,
-  `remark` varchar(255) COLLATE utf8_croatian_ci DEFAULT NULL,
-  `status` varchar(255) COLLATE utf8_croatian_ci DEFAULT NULL,
+  `autograph` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_croatian_ci DEFAULT NULL,
+  `education` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_croatian_ci DEFAULT NULL,
+  `graduated` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_croatian_ci DEFAULT NULL,
+  `name` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_croatian_ci DEFAULT NULL,
+  `remark` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_croatian_ci DEFAULT NULL,
+  `status` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_croatian_ci DEFAULT NULL,
   `wages` decimal(19,2) DEFAULT NULL,
-  `resume` varchar(255) COLLATE utf8_croatian_ci DEFAULT NULL,
+  `resume` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_croatian_ci DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8_croatian_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_croatian_ci;
 
--- 正在导出表  template.a_teacher 的数据：~1 rows (大约)
 DELETE FROM `a_teacher`;
 /*!40000 ALTER TABLE `a_teacher` DISABLE KEYS */;
 INSERT INTO `a_teacher` (`id`, `create_by`, `create_time`, `del_flag`, `update_by`, `update_time`, `age`, `autograph`, `education`, `graduated`, `name`, `remark`, `status`, `wages`, `resume`) VALUES
@@ -456,7 +423,6 @@ INSERT INTO `a_teacher` (`id`, `create_by`, `create_time`, `del_flag`, `update_b
 	('1536614275123122181', 'admin', '2022-06-14 15:39:26.000000', 0, 'admin', '2022-06-14 15:41:09.841000', 30.00, 'http://127.0.0.1:8080/zwz/file/view/1536614206311370752', '专科', '同济大学', '龚八', '测试', '在职', 3337.00, 'http://127.0.0.1:8080/zwz/file/view/1536614698903015424');
 /*!40000 ALTER TABLE `a_teacher` ENABLE KEYS */;
 
--- 导出  表 template.a_user 结构
 DROP TABLE IF EXISTS `a_user`;
 CREATE TABLE IF NOT EXISTS `a_user` (
   `id` bigint unsigned NOT NULL,
@@ -489,7 +455,6 @@ CREATE TABLE IF NOT EXISTS `a_user` (
   KEY `create_time` (`create_time`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
--- 正在导出表  template.a_user 的数据：~4 rows (大约)
 DELETE FROM `a_user`;
 /*!40000 ALTER TABLE `a_user` DISABLE KEYS */;
 INSERT INTO `a_user` (`id`, `create_by`, `create_time`, `update_by`, `update_time`, `address`, `avatar`, `description`, `email`, `mobile`, `nickname`, `password`, `sex`, `status`, `type`, `username`, `del_flag`, `department_id`, `street`, `pass_strength`, `department_title`, `birth`, `my_door`) VALUES
@@ -499,7 +464,6 @@ INSERT INTO `a_user` (`id`, `create_by`, `create_time`, `update_by`, `update_tim
 	(1527830053524738048, 'admin', '2022-05-21 09:54:05', NULL, NULL, '["110000","110100","110106"]', 'https://wx.qlogo.cn/mmhead/PiajxSqBRaEKjc639z2lRF4DqweNw2aDRLbAL7yLlSgrdZeKBCwLHDQ/0', NULL, 'user4@qq.com', '17896525487', 'user4', '$2a$10$oeP4aplYnswfQ44pK6lAO.Np9BuPYJGRwo17THO7CUNlIQoVGsPmy', '男', 0, 0, 'user4', 0, 1464487332064399361, NULL, '弱', '行政综合部', NULL, NULL);
 /*!40000 ALTER TABLE `a_user` ENABLE KEYS */;
 
--- 导出  表 template.a_user_role 结构
 DROP TABLE IF EXISTS `a_user_role`;
 CREATE TABLE IF NOT EXISTS `a_user_role` (
   `id` bigint unsigned NOT NULL,
@@ -513,7 +477,6 @@ CREATE TABLE IF NOT EXISTS `a_user_role` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
--- 正在导出表  template.a_user_role 的数据：~6 rows (大约)
 DELETE FROM `a_user_role`;
 /*!40000 ALTER TABLE `a_user_role` DISABLE KEYS */;
 INSERT INTO `a_user_role` (`id`, `create_by`, `create_time`, `del_flag`, `update_by`, `update_time`, `role_id`, `user_id`) VALUES

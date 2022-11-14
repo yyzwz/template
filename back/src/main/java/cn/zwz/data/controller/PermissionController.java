@@ -14,6 +14,7 @@ import cn.zwz.data.service.*;
 import cn.zwz.data.utils.VoUtil;
 import cn.zwz.data.utils.ZwzNullUtils;
 import cn.zwz.data.vo.MenuVo;
+import cn.zwz.data.vo.UserByPermissionVo;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.google.gson.Gson;
@@ -118,45 +119,12 @@ public class PermissionController {
         return new ResultUtil<List<UserByPermissionVo>>().setData(ansList);
     }
 
-    @Data
-    private static class UserByPermissionVo{
-        private String userId;
-        private String userName;
-        private String roleStr;
-        private String code;
-        private String mobile;
-    }
-
     @ApiOperation(value = "根据层级查询菜单")
     private List<Permission> getPermissionListByLevel(int level) {
         QueryWrapper<Permission> qw = new QueryWrapper<>();
         qw.eq("level",level);
         qw.orderByAsc("sort_order");
         return iPermissionService.list(qw);
-    }
-    private List<Permission> getPermissionByUserId(String userId) {
-        QueryWrapper<UserRole> urQw = new QueryWrapper<>();
-        urQw.eq("user_id",userId);
-        List<UserRole> userRoleList = iUserRoleService.list(urQw);
-        List<Permission> permissionList = new ArrayList<>();
-        for (UserRole userRole : userRoleList) {
-            QueryWrapper<RolePermission> rpQw = new QueryWrapper<>();
-            rpQw.eq("role_id",userRole.getRoleId());
-            List<RolePermission> rolePermissionList = iRolePermissionService.list(rpQw);
-            for (RolePermission rolePermission : rolePermissionList) {
-                boolean flag = true;
-                for (Permission permission : permissionList) {
-                    if(Objects.equals(permission.getId(),rolePermission.getPermissionId())) {
-                        flag = false;
-                        break;
-                    }
-                }
-                if(flag) {
-                    permissionList.add(iPermissionService.getById(rolePermission.getPermissionId()));
-                }
-            }
-        }
-        return permissionList;
     }
 
     @SystemLog(about = "查询菜单", type = LogType.DATA_CENTER,doType = "PERMISSION-02")
@@ -315,6 +283,15 @@ public class PermissionController {
                 return new ResultUtil<Permission>().setErrorMsg("名称已存在");
             }
         }
+        if(Objects.equals(CommonConstant.PERMISSION_NAV,permission.getType())) {
+            // 顶级菜单添加标识
+            permission.setParentId("0");
+            if(ZwzNullUtils.isNull(permission.getPath())) {
+                permission.setPath(permission.getName());
+            }
+            permission.setDescription("");
+            permission.setComponent("");
+        }
         iPermissionService.saveOrUpdate(permission);
         mySecurityMetadataSource.loadResourceDefine();
         redisTemplate.delete("permission::allList");
@@ -344,5 +321,30 @@ public class PermissionController {
         redisTemplate.delete(keysUserMenu);
         redisTemplate.delete("permission::allList");
         return new ResultUtil<Permission>().setData(permission);
+    }
+
+    private List<Permission> getPermissionByUserId(String userId) {
+        QueryWrapper<UserRole> urQw = new QueryWrapper<>();
+        urQw.eq("user_id",userId);
+        List<UserRole> userRoleList = iUserRoleService.list(urQw);
+        List<Permission> permissionList = new ArrayList<>();
+        for (UserRole userRole : userRoleList) {
+            QueryWrapper<RolePermission> rpQw = new QueryWrapper<>();
+            rpQw.eq("role_id",userRole.getRoleId());
+            List<RolePermission> rolePermissionList = iRolePermissionService.list(rpQw);
+            for (RolePermission rolePermission : rolePermissionList) {
+                boolean flag = true;
+                for (Permission permission : permissionList) {
+                    if(Objects.equals(permission.getId(),rolePermission.getPermissionId())) {
+                        flag = false;
+                        break;
+                    }
+                }
+                if(flag) {
+                    permissionList.add(iPermissionService.getById(rolePermission.getPermissionId()));
+                }
+            }
+        }
+        return permissionList;
     }
 }
