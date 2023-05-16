@@ -4,8 +4,8 @@ import cn.zwz.data.entity.RolePermission;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 
 /**
- * 角色-菜单关系 数据链路层接口
  * @author 郑为中
+ * CSDN: Designer 小郑
  */
 public interface RolePermissionMapper extends BaseMapper<RolePermission> {
 }

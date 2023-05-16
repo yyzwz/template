@@ -10,20 +10,26 @@ import javax.net.ssl.*;
 import com.alibaba.fastjson2.JSON;
 import com.alibaba.fastjson2.JSONObject;
 import io.swagger.annotations.ApiModelProperty;
+import io.swagger.annotations.ApiOperation;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+/**
+ * @author 郑为中
+ * CSDN: Designer 小郑
+ */
+@ApiOperation(value = "HTTP工具类")
 public class WeiChatUtils implements X509TrustManager {
 
     @ApiModelProperty(value = "企业ID")
-    public static final String CORPID = "wwf94bb44e76e308f8";
+    public static final String CORPID = "";
 
     @ApiModelProperty(value = "企业微信密匙")
     public static final String CORPSECRET = "";
 
     /**
-     * 企业微信 艺涵 应用Token
+     * 企业微信 应用Token
      * @return
      */
     public static String getToken(){
@@ -158,7 +164,7 @@ public class WeiChatUtils implements X509TrustManager {
         //    邮箱
         private  String email;
         //    个数必须和参数department的个数一致，
-//    表示在所在的部门内是否为上级。1表示为上级，0表示非上级。
+        //    表示在所在的部门内是否为上级。1表示为上级，0表示非上级。
         private  String is_leader_in_dept;
         //    主部门
         private  String main_department;
@@ -166,8 +172,6 @@ public class WeiChatUtils implements X509TrustManager {
         private List<String> useridlist;
         //    座机
         private String telephone;
-
-        // "external_profile":{"external_attr":[{"type":0,"name":"短号","text":{"value":"649507"}}]
         private ExternalProfile external_profile;
     }
 

@@ -6,13 +6,14 @@ import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.web.access.AccessDeniedHandler;
 import org.springframework.stereotype.Component;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 
 /**
- * 自定义权限拒绝
  * @author 郑为中
+ * CSDN: Designer 小郑
  */
+@ApiOperation(value = "自定义权限文案")
 @Component
 public class ZwzAccessDeniedHandler implements AccessDeniedHandler {
 

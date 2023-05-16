@@ -6,7 +6,6 @@ import cn.zwz.basics.parameter.CommonConstant;
 import cn.zwz.basics.exception.ZwzException;
 import cn.zwz.basics.redis.RedisTemplateHelper;
 import cn.zwz.basics.utils.CommonUtil;
-import cn.zwz.basics.utils.HibernateProxyTypeAdapter;
 import cn.zwz.basics.utils.ResultUtil;
 import cn.zwz.basics.utils.SecurityUtil;
 import cn.zwz.basics.baseVo.Result;
@@ -17,15 +16,12 @@ import cn.zwz.data.service.IDepartmentHeaderService;
 import cn.zwz.data.service.IDepartmentService;
 import cn.zwz.data.service.IUserService;
 import cn.zwz.data.utils.ZwzNullUtils;
+import com.alibaba.fastjson2.JSON;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.reflect.TypeToken;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheConfig;
-import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
@@ -36,8 +32,8 @@ import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
 /**
- * 部门管理
  * @author 郑为中
+ * CSDN: Designer 小郑
  */
 @RestController
 @Api(tags = "部门管理接口")
@@ -45,9 +41,6 @@ import java.util.concurrent.TimeUnit;
 @CacheConfig(cacheNames = "department")
 @Transactional
 public class DepartmentController {
-
-    @Autowired
-    private StringRedisTemplate redisTemplate;
 
     @Autowired
     private RedisTemplateHelper redisTemplateHelper;
@@ -77,17 +70,16 @@ public class DepartmentController {
         List<Department> list = null;
         User nowUser = securityUtil.getCurrUser();
         String key = REDIS_DEPARTMENT_PRE_STR + parentId + REDIS_STEP_STR + nowUser.getId();
-        String value = redisTemplate.opsForValue().get(key);
+        String value = redisTemplateHelper.get(key);
         if(!ZwzNullUtils.isNull(value)){
-            list = new Gson().fromJson(value, new TypeToken<List<Department>>(){}.getType());
-            return new ResultUtil<List<Department>>().setData(list);
+            return new ResultUtil<List<Department>>().setData(JSON.parseArray(value,Department.class));
         }
         QueryWrapper<Department> depQw = new QueryWrapper<>();
         depQw.eq("parent_id",parentId);
         depQw.orderByAsc("sort_order");
         list = iDepartmentService.list(depQw);
         list = setInfo(list);
-        redisTemplate.opsForValue().set(key,new GsonBuilder().registerTypeAdapterFactory(HibernateProxyTypeAdapter.FACTORY).create().toJson(list), 15L, TimeUnit.DAYS);
+        redisTemplateHelper.set(key,JSON.toJSONString(list), 15L, TimeUnit.DAYS);
         return new ResultUtil<List<Department>>().setData(list);
     }
 
@@ -115,7 +107,7 @@ public class DepartmentController {
             }
         }
         Set<String> keyListInSet = redisTemplateHelper.keys(REDIS_DEPARTMENT_PRE_STR + "*");
-        redisTemplate.delete(keyListInSet);
+        redisTemplateHelper.delete(keyListInSet);
         return ResultUtil.success();
     }
 
@@ -151,11 +143,11 @@ public class DepartmentController {
                 iUserService.saveOrUpdate(user);
             }
             Set<String> keysUser = redisTemplateHelper.keys("user:" + "*");
-            redisTemplate.delete(keysUser);
+            redisTemplateHelper.delete(keysUser);
         }
         Set<String> keys = redisTemplateHelper.keys("department:" + "*");
         if(keys != null) {
-            redisTemplate.delete(keys);
+            redisTemplateHelper.delete(keys);
         }
         return ResultUtil.success();
     }
@@ -169,10 +161,10 @@ public class DepartmentController {
         }
         Set<String> keyListInSet = redisTemplateHelper.keys("department:" + "*");
         if(keyListInSet != null) {
-            redisTemplate.delete(keyListInSet);
+            redisTemplateHelper.delete(keyListInSet);
         }
         Set<String> keysUserRoleData = redisTemplateHelper.keys("userRole::depIds:" + "*");
-        redisTemplate.delete(keysUserRoleData);
+        redisTemplateHelper.delete(keysUserRoleData);
         return ResultUtil.success();
     }
 

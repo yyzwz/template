@@ -23,16 +23,18 @@ if(entity.isTree){
 import org.springframework.data.annotation.Transient;
 import com.baomidou.mybatisplus.annotation.TableField;
 
-import javax.persistence.Column;
+import jakarta.persistence.Column;
 import java.math.BigDecimal;
 <%
 }
 %>
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
 
 /**
+ * ${entity.description} 实体类
  * @author ${entity.author}
+ * CSDN: Designer 小郑
  */
 @Data
 @Entity

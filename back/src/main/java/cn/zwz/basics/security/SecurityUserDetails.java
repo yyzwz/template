@@ -17,7 +17,9 @@ import java.util.Objects;
 
 /**
  * @author 郑为中
+ * CSDN: Designer 小郑
  */
+@ApiOperation(value = "查询用户的角色和菜单权限")
 public class SecurityUserDetails extends User implements UserDetails {
 
     private static final long serialVersionUID = 1L;

@@ -12,7 +12,7 @@
                 <Form-item style="margin-left:10px;" class="br">
                     <Button @click="handleSearch" type="primary" icon="ios-search" ghost shape="circle" size="small">搜索</Button>
                     <Button @click="handleReset" type="warning" ghost shape="circle" icon="md-refresh" size="small">重置</Button>
-                    <Button @click="add" type="info" icon="md-add" ghost shape="circle" size="small">添加</Button>
+                    <Button @click="add" type="info" icon="md-add" ghost shape="circle" size="small" :disabled="!$route.meta.permTypes.includes('add')">添加</Button>
                     <Button @click="importModalVisible=true" type="success" icon="md-paper-plane" ghost shape="circle" size="small">导入</Button>
                     <Button @click="excelData" type="success" icon="md-paper-plane" ghost shape="circle" size="small">导出</Button>
                 </Form-item>

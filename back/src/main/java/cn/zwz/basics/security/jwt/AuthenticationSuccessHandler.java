@@ -7,7 +7,7 @@ import cn.zwz.basics.baseVo.TokenUser;
 import cn.zwz.basics.parameter.ZwzLoginProperties;
 import cn.hutool.core.util.StrUtil;
 import cn.zwz.data.utils.ZwzNullUtils;
-import com.google.gson.Gson;
+import com.alibaba.fastjson2.JSON;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,9 +18,9 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.web.authentication.SavedRequestAwareAuthenticationSuccessHandler;
 import org.springframework.stereotype.Component;
 
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -29,9 +29,10 @@ import java.util.UUID;
 import java.util.concurrent.TimeUnit;
 
 /**
- * 登录成功处理类
  * @author 郑为中
+ * CSDN: Designer 小郑
  */
+@ApiOperation(value = "登录成功回调")
 @Slf4j
 @Component
 public class AuthenticationSuccessHandler extends SavedRequestAwareAuthenticationSuccessHandler {
@@ -51,7 +52,7 @@ public class AuthenticationSuccessHandler extends SavedRequestAwareAuthenticatio
     private static final String TOKEN_REPLACE_STR_BACK = "";
 
     @Override
-    @ApiOperation(value = "登陆成功回调")
+    @ApiOperation(value = "登录成功回调")
     @SystemLog(about = "登录系统", type = LogType.LOGIN)
     public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication ac) throws IOException, ServletException {
         String saveLogin = request.getParameter(ZwzLoginProperties.SAVE_LOGIN_PRE);
@@ -80,10 +81,10 @@ public class AuthenticationSuccessHandler extends SavedRequestAwareAuthenticatio
         }
         if(saveLoginFlag){
             redisTemplate.opsForValue().set(ZwzLoginProperties.USER_TOKEN_PRE + username, token, tokenProperties.getUserSaveLoginTokenDays(), TimeUnit.DAYS);
-            redisTemplate.opsForValue().set(ZwzLoginProperties.HTTP_TOKEN_PRE + token, new Gson().toJson(user), tokenProperties.getUserSaveLoginTokenDays(), TimeUnit.DAYS);
+            redisTemplate.opsForValue().set(ZwzLoginProperties.HTTP_TOKEN_PRE + token, JSON.toJSONString(user), tokenProperties.getUserSaveLoginTokenDays(), TimeUnit.DAYS);
         }else{
             redisTemplate.opsForValue().set(ZwzLoginProperties.USER_TOKEN_PRE + username, token, tokenProperties.getUserTokenInvalidDays(), TimeUnit.MINUTES);
-            redisTemplate.opsForValue().set(ZwzLoginProperties.HTTP_TOKEN_PRE + token, new Gson().toJson(user), tokenProperties.getUserTokenInvalidDays(), TimeUnit.MINUTES);
+            redisTemplate.opsForValue().set(ZwzLoginProperties.HTTP_TOKEN_PRE + token, JSON.toJSONString(user), tokenProperties.getUserTokenInvalidDays(), TimeUnit.MINUTES);
         }
         ResponseUtil.out(response, ResponseUtil.resultMap(RESPONSE_SUCCESS_FLAG,RESPONSE_SUCCESS_CODE,"登录成功", token));
     }

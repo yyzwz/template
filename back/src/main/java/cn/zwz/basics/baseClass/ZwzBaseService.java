@@ -8,9 +8,10 @@ import java.io.Serializable;
 import java.util.List;
 
 /**
- * 基类服务层
  * @author 郑为中
+ * CSDN: Designer 小郑
  */
+@ApiOperation(value = "模板服务层")
 @FunctionalInterface
 public interface ZwzBaseService<E, ID extends Serializable> {
 

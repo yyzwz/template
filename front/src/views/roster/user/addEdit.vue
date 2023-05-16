@@ -3,7 +3,7 @@
     <Modal :title="title" v-model="visible" width="90" draggable :mask-closable="type=='0'" ok-text="确认提交" @on-ok="submit">
 
         <Row :gutter="16" justify="center">
-            <div class="info-title"><span v-show="type!='2'">登陆账号{{form.username}}（唯一标识{{form.id}}） </span>
+            <div class="info-title"><span v-show="type!='2'">登录账号{{form.username}}（唯一标识{{form.id}}） </span>
                 <Icon v-show="form.status==-1" type="md-lock" size="18" style="margin-left:10px;cursor:pointer" />
             </div>
         </Row>

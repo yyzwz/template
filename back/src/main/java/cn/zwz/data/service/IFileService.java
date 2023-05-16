@@ -4,8 +4,8 @@ import cn.zwz.data.entity.File;
 import com.baomidou.mybatisplus.extension.service.IService;
 
 /**
- * 系统文件 服务层接口
  * @author 郑为中
+ * CSDN: Designer 小郑
  */
 public interface IFileService extends IService<File> {
 

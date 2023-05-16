@@ -20,7 +20,7 @@
               if(item.searchType=="text"){
               %>
               <Form-item label="" prop="${item.field}">
-                <Input type="text" v-model="searchForm.${item.field}" placeholder="${item.name}" clearable style="width: 120px"/>
+                <Input type="text" v-model="searchForm.${item.field}" placeholder="${item.name}" clearable style="width: 150px"/>
               </Form-item>
               <%
               }
@@ -29,7 +29,7 @@
               if(item.searchType=="select"){
               %>
               <Form-item label="" prop="${item.field}">
-                <Select v-model="searchForm.${item.field}" placeholder="${item.name}" clearable style="width: 200px">
+                <Select v-model="searchForm.${item.field}" placeholder="${item.name}" clearable style="width: 150px">
                   <Option value="0">下拉框值A</Option>
                   <Option value="0">下拉框值B</Option>
                 </Select>
@@ -41,7 +41,7 @@
               if(item.searchType=="date"){
               %>
               <Form-item label="" prop="${item.field}">
-                <DatePicker type="date" v-model="searchForm.${item.field}" placeholder="${item.name}" clearable style="width: 200px"></DatePicker>
+                <DatePicker type="date" v-model="searchForm.${item.field}" placeholder="${item.name}" clearable style="width: 150px"></DatePicker>
               </Form-item>
               <%
               }
@@ -50,7 +50,7 @@
               if(item.searchType=="daterange"){
               %>
               <Form-item label="" prop="${item.field}">
-                <DatePicker v-model="selectDate" type="daterange" format="yyyy-MM-dd" clearable @on-change="selectDateRange" placeholder="${item.name}" style="width: 200px"></DatePicker>
+                <DatePicker v-model="selectDate" type="daterange" format="yyyy-MM-dd" clearable @on-change="selectDateRange" placeholder="${item.name}" style="width: 150px"></DatePicker>
               </Form-item>
               <%
               }
@@ -59,7 +59,7 @@
               if(item.searchType=="area"){
               %>
               <Form-item label="" prop="${item.field}">
-                <al-cascader v-model="searchForm.${item.field}" data-type="code" level="${item.searchLevel}" style="width:200px"/>
+                <al-cascader v-model="searchForm.${item.field}" data-type="code" level="${item.searchLevel}" style="width:150px"/>
               </Form-item>
               <%
               }
@@ -225,35 +225,34 @@ export default {
       ],
       modal1: false,
       <% if(searchSize>0){ %>
-      openSearch: true, // 显示搜索
+      openSearch: true,
       <% }%>
-      openTip: true, // 显示提示
+      openTip: true,
       formData: {},
       currView: "index",
-      loading: true, // 表单加载状态
+      loading: true,
       <% if(hideSearch) { %>
       drop: false,
       dropDownContent: "展开",
       dropDownIcon: "ios-arrow-down",
       <% } %>
-      searchForm: { // 搜索框初始化对象
-        pageNumber: 1, // 当前页数
-        pageSize: 15, // 页面大小
-        sort: "createTime", // 默认排序字段
-        order: "desc", // 默认排序方式
+      searchForm: {
+        pageNumber: 1,
+        pageSize: 15,
+        sort: "createTime",
+        order: "desc",
         <% if(daterangeSearch){ %>
-        startDate: "", // 起始时间
-        endDate: "" // 终止时间
+        startDate: "",
+        endDate: ""
         <% } %>
       },
       <% if(daterangeSearch){ %>
       selectDate: null,
       <% } %>
-      selectList: [], // 多选数据
-      selectCount: 0, // 多选计数
+      selectList: [],
+      selectCount: 0,
       selectRow: 0,
       columns: [
-      // 表头
       {
         type: "selection",
         width: 60,
@@ -263,7 +262,7 @@ export default {
       },
       {
         title: "序号",
-        width: 85,
+        width: 90,
         align: "center",
         fixed: "left",
         sortType: true,
@@ -283,7 +282,7 @@ export default {
       {
         title: "${item.name}",
         key: "${item.field}",
-        minWidth: 120,
+        minWidth: 180,
         tooltip: true,
         <%
         if(item.sortable){
@@ -322,7 +321,7 @@ export default {
         key: "createBy",
         sortable: true,
         sortType: "desc",
-        minWidth: 100,
+        minWidth: 180,
         align: "center",
         tooltip: true,
       },
@@ -336,7 +335,7 @@ export default {
       {
         title: "修改者",
         key: "updateBy",
-        minWidth: 100,
+        minWidth: 180,
         align: "center",
         tooltip: true,
       },
@@ -389,10 +388,10 @@ export default {
         }
       }
     ],
-      data: [], // 表单数据
-      pageNumber: 1, // 当前页数
-      pageSize: 10, // 页面大小
-      total: 0, // 表单数据总数
+      data: [],
+      pageNumber: 1,
+      pageSize: 10,
+      total: 0,
       showFilterPanelFlag: false,
     };
   },
@@ -443,7 +442,6 @@ export default {
       this.searchForm.startDate = "";
       this.searchForm.endDate = "";
       <% } %>
-      // 重新加载数据
       this.getDataList();
     },
     changeSort(e) {
@@ -496,17 +494,6 @@ export default {
         <%
         } else {
         %>
-        // 带多条件搜索参数获取表单数据 请自行修改接口
-        // this.getRequest("请求路径", this.searchForm).then(res => {
-        //   this.loading = false;
-        //   if (res.success) {
-        //     this.data = res.result.content;
-        //     this.total = res.result.totalElements;
-        //   }
-        // });
-        // 以下为模拟数据
-        //this.data = [
-        //];
         this.total = this.data.length;
         this.loading = false;
         <%
@@ -517,7 +504,6 @@ export default {
       this.currView = "add";
     },
     edit(v) {
-      // 转换null为""
       for (let attr in v) {
         if (v[attr] == null) {
           v[attr] = "";
@@ -531,11 +517,9 @@ export default {
     remove(v) {
       this.$Modal.confirm({
         title: "确认删除",
-        // 记得确认修改此处
-        content: "您确认要删除 " + v.name + " ?",
+        content: "您确认要删除 ?",
         loading: true,
         onOk: () => {
-          // 删除
           <%
             if(api){
             %>
@@ -549,14 +533,6 @@ export default {
             <%
             } else {
             %>
-            // this.deleteRequest("请求地址，如/deleteByIds/" + v.id).then(res => {
-            //   this.$Modal.remove();
-            //   if (res.success) {
-            //     this.$Message.success("操作成功");
-            //     this.getDataList();
-            //   }
-            // });
-            // 模拟请求成功
             this.$Message.success("操作成功");
             this.$Modal.remove();
             this.getDataList();
@@ -581,7 +557,6 @@ export default {
             ids += e.id + ",";
           });
           ids = ids.substring(0, ids.length - 1);
-          // 批量删除
           <%
             if(api){
             %>
@@ -596,14 +571,6 @@ export default {
             <%
             } else {
             %>
-            // this.deleteRequest("请求地址，如/deleteByIds/" + ids).then(res => {
-            //   this.$Modal.remove();
-            //   if (res.success) {
-            //     this.$Message.success("操作成功");
-            //     this.clearSelectAll();
-            //     this.getDataList();
-            //   }
-            // });
             // 模拟请求成功
             this.$Message.success("操作成功");
             this.$Modal.remove();
@@ -637,7 +604,7 @@ export default {
        for (var i = 0; i < this.mycolumns.length; i++) {
          var item = this.mycolumns[i];
          if (item.title == undefined) showcolumns.push(item);
-         else if (newcolumns.contains(item.title)) showcolumns.push(item);
+         else if (newcolumns.includes(item.title)) showcolumns.push(item);
        }
        this.columns = showcolumns;
      },
@@ -645,7 +612,6 @@ export default {
 };
 </script>
 <style lang="less">
-// @import "../../../styles/table-common.less";
 .search {
     .operation {
         margin-bottom: 2vh;

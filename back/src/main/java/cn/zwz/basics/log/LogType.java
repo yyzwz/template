@@ -1,9 +1,12 @@
 package cn.zwz.basics.log;
 
+import io.swagger.annotations.ApiOperation;
+
 /**
- * 系统日志的类型
  * @author 郑为中
+ * CSDN: Designer 小郑
  */
+@ApiOperation(value = "日志枚举类")
 public enum LogType {
 
     /**
@@ -17,17 +20,17 @@ public enum LogType {
     LOGIN,
 
     /**
-     * 3  数据中心
+     * 3  系统基础模块
      */
     DATA_CENTER,
 
     /**
-     * 4  扩展模块展示
+     * 4  更多开发模块
      */
     MORE_MOUDLE,
 
     /**
-     * 2  图表
+     * 5  图表
      */
     CHART
 }

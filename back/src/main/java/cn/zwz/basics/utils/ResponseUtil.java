@@ -1,19 +1,21 @@
 package cn.zwz.basics.utils;
 
-import com.google.gson.Gson;
+import com.alibaba.fastjson2.JSONObject;
 import io.swagger.annotations.ApiModelProperty;
+import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 
-import javax.servlet.ServletOutputStream;
-import javax.servlet.http.HttpServletResponse;
+import jakarta.servlet.ServletOutputStream;
+import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Response 回调前端
  * @author 郑为中
+ * CSDN: Designer 小郑
  */
+@ApiOperation(value = "API接口回调工具类")
 @Slf4j
 public class ResponseUtil {
 
@@ -28,7 +30,7 @@ public class ResponseUtil {
             httpServletResponse.setCharacterEncoding(CHARACTER_ENCODING);
             httpServletResponse.setContentType(CONTENT_TYPE);
             outputStream = httpServletResponse.getOutputStream();
-            outputStream.write(new Gson().toJson(responseMap).getBytes());
+            outputStream.write(JSONObject.toJSONString(responseMap).getBytes());
         } catch (Exception exception) {
             log.warn(exception + "Response转换JSON错误");
         } finally{

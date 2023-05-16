@@ -1,11 +1,13 @@
 package cn.zwz.basics.parameter;
 
 import io.swagger.annotations.ApiModelProperty;
+import io.swagger.annotations.ApiOperation;
 
 /**
- * 系统基础常量
  * @author 郑为中
+ * CSDN: Designer 小郑
  */
+@ApiOperation(value = "系统基础常量")
 public interface CommonConstant {
 
     @ApiModelProperty(value = "正常")

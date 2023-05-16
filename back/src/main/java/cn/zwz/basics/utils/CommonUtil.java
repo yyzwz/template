@@ -1,8 +1,5 @@
 package cn.zwz.basics.utils;
 
-import cn.zwz.basics.parameter.CommonConstant;
-import cn.zwz.basics.exception.ZwzException;
-import cn.zwz.data.utils.ZwzNullUtils;
 import io.swagger.annotations.ApiOperation;
 
 import java.security.SecureRandom;
@@ -11,9 +8,10 @@ import java.util.Random;
 import java.util.UUID;
 
 /**
- * 公用工具类
  * @author 郑为中
+ * CSDN: Designer 小郑
  */
+@ApiOperation(value = "公共工具类")
 public class CommonUtil {
 
     private static SecureRandom random = new SecureRandom();

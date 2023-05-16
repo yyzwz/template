@@ -1,6 +1,5 @@
 package cn.zwz.basics.security;
 
-import cn.zwz.basics.exception.ZwzException;
 import cn.zwz.data.entity.User;
 import cn.zwz.data.service.IUserService;
 import cn.zwz.data.utils.ZwzNullUtils;
@@ -16,9 +15,10 @@ import org.springframework.stereotype.Component;
 import java.util.concurrent.TimeUnit;
 
 /**
- * 根据账号/手机号查询用户所有信息
  * @author 郑为中
+ * CSDN: Designer 小郑
  */
+@ApiOperation(value = "登录判断类")
 @Component
 public class UserDetailsServiceImpl implements UserDetailsService {
 
@@ -37,12 +37,16 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         String value = redisTemplate.opsForValue().get(loginFailFlag);
         Long timeRest = redisTemplate.getExpire(loginFailFlag, TimeUnit.MINUTES);
         if(!ZwzNullUtils.isNull(value)){
-            throw new ZwzException("试错超限，请您在" + timeRest + "分钟后再登");
+            throw new UsernameNotFoundException("试错超限，请您在" + timeRest + "分钟后再登");
         }
         QueryWrapper<User> userQw = new QueryWrapper<>();
         userQw.and(wrapper -> wrapper.eq("username", username).or().eq("mobile",username));
         userQw.orderByDesc("create_time");
         userQw.last("limit 1");
-        return new SecurityUserDetails(iUserService.getOne(userQw));
+        User superUser = iUserService.getOne(userQw);
+        if(superUser == null) {
+            throw new UsernameNotFoundException(username + "不存在");
+        }
+        return new SecurityUserDetails(superUser);
     }
 }

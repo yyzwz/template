@@ -22,9 +22,10 @@ import java.io.InputStream;
 
 /**
  * @author 郑为中
+ * CSDN: Designer 小郑
  */
 @RestController
-@Api(tags = "文件上传")
+@Api(tags = "文件上传接口")
 @RequestMapping("/zwz/upload")
 @Transactional
 public class UploadController {

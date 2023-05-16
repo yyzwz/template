@@ -6,7 +6,6 @@ import cn.zwz.basics.utils.ResultUtil;
 import cn.zwz.basics.baseVo.PageVo;
 import cn.zwz.basics.baseVo.Result;
 import cn.zwz.data.utils.ZwzNullUtils;
-import cn.zwz.data.vo.RedisInfo;
 import cn.zwz.data.vo.RedisVo;
 import cn.hutool.core.date.DateUtil;
 import io.swagger.annotations.Api;
@@ -23,11 +22,11 @@ import java.util.*;
 import java.util.concurrent.TimeUnit;
 
 /**
- * Redis
  * @author 郑为中
+ * CSDN: Designer 小郑
  */
 @RestController
-@Api(tags = "Redis缓存管理接口")
+@Api(tags = "缓存管理接口")
 @RequestMapping("/zwz/redis")
 @Transactional
 public class RedisController {
@@ -132,21 +131,6 @@ public class RedisController {
             }
         }
         return new ResultUtil<Page<RedisVo>>().setData(page);
-    }
-
-    @RequestMapping(value = "/info", method = RequestMethod.GET)
-    @ApiOperation(value = "获取Redis信息")
-    public Result<Object> info(){
-        List<RedisInfo> ans = new ArrayList<>();
-        Properties redisSetting = redisTemplate.getConnectionFactory().getConnection().info();
-        Set<Object> keys = redisSetting.keySet();
-        for(Object key : keys){
-            RedisInfo redisInfo = new RedisInfo();
-            redisInfo.setValue(redisSetting.get(key).toString());
-            redisInfo.setKey(key.toString());
-            ans.add(redisInfo);
-        }
-        return new ResultUtil<Object>().setData(ans);
     }
 
     @RequestMapping(value = "/getByKey/{key}", method = RequestMethod.GET)

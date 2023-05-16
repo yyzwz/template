@@ -1,41 +1,38 @@
 package cn.zwz.basics.security;
 
-import cn.zwz.basics.security.jwt.JwtRoleFilter;
+import cn.zwz.basics.redis.RedisTemplateHelper;
+import cn.zwz.basics.security.jwt.*;
 import cn.zwz.basics.utils.SecurityUtil;
-import cn.zwz.basics.parameter.NoAuthenticationProperties;
 import cn.zwz.basics.parameter.ZwzLoginProperties;
-import cn.zwz.basics.security.jwt.AuthenticationFailHandler;
-import cn.zwz.basics.security.jwt.AuthenticationSuccessHandler;
-import cn.zwz.basics.security.jwt.ZwzAccessDeniedHandler;
-import cn.zwz.basics.security.permission.MyFilterSecurityInterceptor;
 import cn.zwz.basics.security.validate.ImageValidateFilter;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.data.redis.core.StringRedisTemplate;
-import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
-import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.AuthenticationProvider;
+import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
+import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
+import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.config.annotation.web.configurers.ExpressionUrlAuthorizationConfigurer;
 import org.springframework.security.config.http.SessionCreationPolicy;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.web.access.intercept.FilterSecurityInterceptor;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 /**
- * SpringSecurity 配置
  * @author 郑为中
+ * CSDN: Designer 小郑
  */
+@ApiOperation(value = "SpringSecurity配置类")
 @Configuration
-@EnableGlobalMethodSecurity(prePostEnabled=true)
-public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
+@EnableMethodSecurity
+public class WebSecurityConfig {
 
     @Autowired
     private ZwzLoginProperties zwzLoginProperties;
-
-    @Autowired
-    private NoAuthenticationProperties noAuthenticationProperties;
 
     @Autowired
     private UserDetailsServiceImpl userDetailsService;
@@ -50,66 +47,65 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     private ZwzAccessDeniedHandler zwzAccessDeniedHandler;
 
     @Autowired
-    private MyFilterSecurityInterceptor myFilterSecurityInterceptor;
-
-    @Autowired
     private ImageValidateFilter imageValidateFilter;
 
     @Autowired
-    private StringRedisTemplate stringRedisTemplate;
+    private RedisTemplateHelper redisTemplate;
 
     @Autowired
     private SecurityUtil securityUtil;
 
-    @Override
-    protected void configure(AuthenticationManagerBuilder authenticationManagerBuilder) throws Exception {
-        authenticationManagerBuilder.userDetailsService(userDetailsService).passwordEncoder(new BCryptPasswordEncoder());
-    }
+    @Bean
+    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 
-    @Override
-    @ApiOperation(value = "SpringSecurity配置")
-    protected void configure(HttpSecurity httpSecurity) throws Exception {
-        ExpressionUrlAuthorizationConfigurer<HttpSecurity>.ExpressionInterceptUrlRegistry expressionInterceptUrlRegistry = httpSecurity.authorizeRequests();
-        for(String authenticationUrl : noAuthenticationProperties.getAuthentication()){
-            expressionInterceptUrlRegistry.antMatchers(authenticationUrl).permitAll();
-        }
-        expressionInterceptUrlRegistry.and().formLogin()
-                // 默认提示登陆的接口
-                .loginPage("/zwz/common/needLogin")
-                // 默认登陆的接口
-                .loginProcessingUrl("/zwz/login")
-                .permitAll()
-                // 登陆成功
-                .successHandler(authenticationSuccessHandler)
-                // 登陆失败
-                .failureHandler(authenticationFailHandler)
-                .and()
-                // IFrame跨域
-                .headers().frameOptions().disable()
-                .and()
+        http.authorizeHttpRequests().requestMatchers("/zwz/dictData/getByType/**","/zwz/file/view/**","/zwz/user/regist","/zwz/common/**","/*/*.js","/*/*.css","/*/*.png","/*/*.ico", "/swagger-ui.html").permitAll()
+                .and().formLogin().loginPage("/zwz/common/needLogin").loginProcessingUrl("/zwz/login").permitAll()
+                .successHandler(authenticationSuccessHandler).failureHandler(authenticationFailHandler).and()
+                .headers().frameOptions().disable().and()
                 .logout()
                 .permitAll()
                 .and()
-                .authorizeRequests()
+                .authorizeHttpRequests()
                 .anyRequest()
-                // 请求的身份认证
                 .authenticated()
                 .and()
-                // 跨域配置
                 .cors().and()
-                // 关闭跨域拦截
                 .csrf().disable()
-                // 配置JWT
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
-                // 系统菜单权限拦截
                 .exceptionHandling().accessDeniedHandler(zwzAccessDeniedHandler)
                 .and()
-                // 验证码过滤
-                .addFilterBefore(imageValidateFilter, UsernamePasswordAuthenticationFilter.class)
-                // 备用过滤器
-                .addFilterBefore(myFilterSecurityInterceptor, FilterSecurityInterceptor.class)
-                // JWT认证过滤
-                .addFilter(new JwtRoleFilter(authenticationManager(), zwzLoginProperties, stringRedisTemplate, securityUtil));
+                .authenticationProvider(authenticationProvider())
+                .addFilterBefore(authenticationJwtTokenFilter(), UsernamePasswordAuthenticationFilter.class)
+                .addFilterBefore(imageValidateFilter, UsernamePasswordAuthenticationFilter.class);
+        return http.build();
+    }
+
+    @Bean
+    public UserDetailsService userDetailsService() {
+        return username -> userDetailsService.loadUserByUsername(username);
+    }
+
+    @Bean
+    public PasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
+    }
+
+    @Bean
+    public AuthenticationProvider authenticationProvider() {
+        DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
+        authProvider.setUserDetailsService(userDetailsService());
+        authProvider.setPasswordEncoder(passwordEncoder());
+        return authProvider;
+    }
+
+    @Bean
+    public AuthenticationManager authenticationManager(AuthenticationConfiguration config) throws Exception {
+        return config.getAuthenticationManager();
+    }
+
+    @Bean
+    public JwtTokenOncePerRequestFilter authenticationJwtTokenFilter() throws Exception {
+        return new JwtTokenOncePerRequestFilter(redisTemplate, securityUtil, zwzLoginProperties);
     }
 }

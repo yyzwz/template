@@ -1,14 +1,16 @@
 package cn.zwz.basics.code.bean;
 
 import io.swagger.annotations.ApiModelProperty;
+import io.swagger.annotations.ApiOperation;
 import lombok.Data;
 
 import java.math.BigDecimal;
 
 /**
- * 实体类字段
  * @author 郑为中
+ * CSDN: Designer 小郑
  */
+@ApiOperation(value = "代码生成器基础类")
 @Data
 public class Field {
 

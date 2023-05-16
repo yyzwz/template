@@ -1,13 +1,15 @@
 package cn.zwz.basics.log;
 
 import io.swagger.annotations.ApiModelProperty;
+import io.swagger.annotations.ApiOperation;
 
 import java.lang.annotation.*;
 
 /**
- * 日志注解
  * @author 郑为中
+ * CSDN: Designer 小郑
  */
+@ApiOperation(value = "日志实体类")
 @Target({ElementType.PARAMETER, ElementType.METHOD})
 @Retention(RetentionPolicy.RUNTIME)
 @Documented

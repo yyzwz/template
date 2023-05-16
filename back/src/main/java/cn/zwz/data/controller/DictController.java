@@ -20,8 +20,8 @@ import java.util.List;
 import java.util.Objects;
 
 /**
- * 数据字典
  * @author 郑为中
+ * CSDN: Designer 小郑
  */
 @RestController
 @Api(tags = "字典管理接口")

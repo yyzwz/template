@@ -3,10 +3,8 @@ package cn.zwz.data.controller;
 import cn.zwz.basics.log.SystemLog;
 import cn.zwz.basics.redis.RedisTemplateHelper;
 import cn.zwz.basics.utils.*;
-import cn.zwz.basics.security.SecurityUserDetails;
 import cn.zwz.basics.parameter.CommonConstant;
 import cn.zwz.basics.log.LogType;
-import cn.zwz.basics.exception.ZwzException;
 import cn.zwz.basics.baseVo.PageVo;
 import cn.zwz.basics.baseVo.Result;
 import cn.zwz.data.entity.*;
@@ -23,23 +21,21 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheConfig;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.data.redis.core.StringRedisTemplate;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-import javax.validation.Valid;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceContext;
+import jakarta.validation.Valid;
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 import java.util.*;
 import java.util.stream.Collectors;
 
 /**
- * 用户
  * @author 郑为中
+ * CSDN: Designer 小郑
  */
 @RestController
 @Api(tags = "用户接口")
@@ -106,7 +102,7 @@ public class UserController {
         QueryWrapper<User> userQw = new QueryWrapper<>();
         userQw.and(wrapper -> wrapper.eq("username", u.getUsername()).or().eq("mobile",u.getMobile()));
         if(iUserService.count(userQw) > 0L) {
-            return ResultUtil.error("登陆账号/手机号重复");
+            return ResultUtil.error("登录账号/手机号重复");
         }
         String encryptPass = new BCryptPasswordEncoder().encode(u.getPassword());
         u.setPassword(encryptPass).setType(0);
@@ -250,7 +246,7 @@ public class UserController {
     @CacheEvict(key = "#u.username")
     public Result<Object> edit(User u,@RequestParam(required = false) String[] roleIds){
         User customaryUser = iUserService.getById(u.getId());
-        // 登陆账号和密码不能发生变更
+        // 登录账号和密码不能发生变更
         u.setUsername(customaryUser.getUsername());
         u.setPassword(customaryUser.getPassword());
         if(!Objects.equals(customaryUser.getMobile(),u.getMobile())) {
@@ -297,7 +293,7 @@ public class UserController {
         QueryWrapper<User> userQw = new QueryWrapper<>();
         userQw.and(wrapper -> wrapper.eq("username", u.getUsername()).or().eq("mobile",u.getMobile()));
         if(iUserService.count(userQw) > 0L) {
-            return ResultUtil.error("登陆账号/手机号重复");
+            return ResultUtil.error("登录账号/手机号重复");
         }
         if(!ZwzNullUtils.isNull(u.getDepartmentId())){
             Department department = iDepartmentService.getById(u.getDepartmentId());

@@ -1,14 +1,16 @@
 package cn.zwz.basics.code.bean;
 
 import io.swagger.annotations.ApiModelProperty;
+import io.swagger.annotations.ApiOperation;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 /**
- * 子项VO
  * @author 郑为中
+ * CSDN: Designer 小郑
  */
+@ApiOperation(value = "代码生成器基础类")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor

@@ -1,5 +1,6 @@
 package cn.zwz.data.vo;
 
+import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
@@ -7,7 +8,9 @@ import java.util.List;
 
 /**
  * @author 郑为中
+ * CSDN: Designer 小郑
  */
+@Api(tags = "菜单VO类")
 @Data
 public class MenuVo {
 

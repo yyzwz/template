@@ -23,12 +23,12 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.Objects;
 
 /**
- * 数据字典值
  * @author 郑为中
+ * CSDN: Designer 小郑
  */
 @RestController
 @RequestMapping("/zwz/dictData")
-@Api(tags = "字典数据值")
+@Api(tags = "字典数据值接口")
 @Transactional
 public class DictDataController {
 

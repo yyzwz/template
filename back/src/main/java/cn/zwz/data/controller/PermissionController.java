@@ -1,6 +1,5 @@
 package cn.zwz.data.controller;
 
-import cn.zwz.basics.baseVo.PageVo;
 import cn.zwz.basics.log.LogType;
 import cn.zwz.basics.log.SystemLog;
 import cn.zwz.basics.parameter.CommonConstant;
@@ -8,25 +7,21 @@ import cn.zwz.basics.redis.RedisTemplateHelper;
 import cn.zwz.basics.utils.ResultUtil;
 import cn.zwz.basics.utils.SecurityUtil;
 import cn.zwz.basics.baseVo.Result;
-import cn.zwz.basics.security.permission.MySecurityMetadataSource;
 import cn.zwz.data.entity.*;
 import cn.zwz.data.service.*;
 import cn.zwz.data.utils.VoUtil;
 import cn.zwz.data.utils.ZwzNullUtils;
 import cn.zwz.data.vo.MenuVo;
 import cn.zwz.data.vo.UserByPermissionVo;
+import com.alibaba.fastjson2.JSON;
+import com.alibaba.fastjson2.JSONObject;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.baomidou.mybatisplus.core.metadata.IPage;
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheConfig;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
-import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
@@ -38,9 +33,10 @@ import java.util.concurrent.TimeUnit;
 
 /**
  * @author 郑为中
+ * CSDN: Designer 小郑
  */
 @RestController
-@Api(tags = "菜单/权限管理接口")
+@Api(tags = "菜单管理接口")
 @RequestMapping("/zwz/permission")
 @CacheConfig(cacheNames = "permission")
 @Transactional
@@ -50,9 +46,6 @@ public class PermissionController {
     private SecurityUtil securityUtil;
 
     @Autowired
-    private MySecurityMetadataSource mySecurityMetadataSource;
-
-    @Autowired
     private IRolePermissionService iRolePermissionService;
 
     @Autowired
@@ -60,9 +53,6 @@ public class PermissionController {
 
     @Autowired
     private IUserRoleService iUserRoleService;
-
-    @Autowired
-    private StringRedisTemplate redisTemplate;
 
     @Autowired
     private RedisTemplateHelper redisTemplateHelper;
@@ -134,10 +124,9 @@ public class PermissionController {
         List<MenuVo> menuList = new ArrayList<>();
         User currUser = securityUtil.getCurrUser();
         String keyInRedis = "permission::userMenuList:" + currUser.getId();
-        String valueInRedis = redisTemplate.opsForValue().get(keyInRedis);
+        String valueInRedis = redisTemplateHelper.get(keyInRedis);
         if(!ZwzNullUtils.isNull(valueInRedis)){
-            menuList = new Gson().fromJson(valueInRedis, new TypeToken<List<MenuVo>>(){}.getType());
-            return new ResultUtil<List<MenuVo>>().setData(menuList);
+            return new ResultUtil<List<MenuVo>>().setData(JSON.parseArray(valueInRedis,MenuVo.class));
         }
         // 拥有的菜单列表
         List<Permission> list = getPermissionByUserId(currUser.getId());
@@ -198,7 +187,8 @@ public class PermissionController {
             }
             vo.setChildren(firstMenu);
         }
-        redisTemplate.opsForValue().set(keyInRedis, new Gson().toJson(menuList), 10L, TimeUnit.DAYS);
+
+        redisTemplateHelper.set(keyInRedis, JSONObject.toJSONString(menuList), 10L, TimeUnit.DAYS);
         return new ResultUtil<List<MenuVo>>().setData(menuList);
     }
 
@@ -265,8 +255,7 @@ public class PermissionController {
         for(String id:ids){
             iPermissionService.removeById(id);
         }
-        mySecurityMetadataSource.loadResourceDefine();
-        redisTemplate.delete("permission::allList");
+        redisTemplateHelper.delete("permission::allList");
         return ResultUtil.success();
     }
 
@@ -293,8 +282,7 @@ public class PermissionController {
             permission.setComponent("");
         }
         iPermissionService.saveOrUpdate(permission);
-        mySecurityMetadataSource.loadResourceDefine();
-        redisTemplate.delete("permission::allList");
+        redisTemplateHelper.delete("permission::allList");
         return new ResultUtil<Permission>().setData(permission);
     }
 
@@ -314,12 +302,11 @@ public class PermissionController {
             }
         }
         iPermissionService.saveOrUpdate(permission);
-        mySecurityMetadataSource.loadResourceDefine();
         Set<String> keysUser = redisTemplateHelper.keys("user:" + "*");
-        redisTemplate.delete(keysUser);
+        redisTemplateHelper.delete(keysUser);
         Set<String> keysUserMenu = redisTemplateHelper.keys("permission::userMenuList:*");
-        redisTemplate.delete(keysUserMenu);
-        redisTemplate.delete("permission::allList");
+        redisTemplateHelper.delete(keysUserMenu);
+        redisTemplateHelper.delete("permission::allList");
         return new ResultUtil<Permission>().setData(permission);
     }
 

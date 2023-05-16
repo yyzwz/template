@@ -14,9 +14,10 @@ import java.util.Date;
 import java.util.Objects;
 
 /**
- * MybatisPlus字段填充
  * @author 郑为中
+ * CSDN: Designer 小郑
  */
+@ApiOperation(value = "MybatisPlus字段填充")
 @Slf4j
 @Component
 public class MyMetaObjectHandler implements MetaObjectHandler {
@@ -39,7 +40,7 @@ public class MyMetaObjectHandler implements MetaObjectHandler {
     private static final String DEFALUT_STR = "API接口";
 
     @Override
-    @ApiOperation(value = "新增填充")
+    @ApiOperation(value = "新增方法填充")
     public void insertFill(MetaObject metaObject) {
         try {
             Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
@@ -61,7 +62,7 @@ public class MyMetaObjectHandler implements MetaObjectHandler {
     }
 
     @Override
-    @ApiOperation(value = "编辑填充")
+    @ApiOperation(value = "编辑方法填充")
     public void updateFill(MetaObject metaObject) {
         try {
             Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();

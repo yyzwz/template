@@ -3,13 +3,9 @@ package cn.zwz.data.controller;
 import cn.zwz.basics.baseVo.Result;
 import cn.zwz.basics.log.LogType;
 import cn.zwz.basics.log.SystemLog;
-import cn.zwz.basics.parameter.SettingConstant;
 import cn.zwz.basics.utils.ResultUtil;
 import cn.zwz.data.entity.Setting;
 import cn.zwz.data.service.ISettingService;
-import cn.zwz.data.vo.*;
-import cn.hutool.core.util.StrUtil;
-import com.google.gson.Gson;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,11 +14,11 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Objects;
 
 /**
- * 设置
  * @author 郑为中
+ * CSDN: Designer 小郑
  */
 @RestController
-@Api(tags = "设置接口")
+@Api(tags = "全局设置接口")
 @RequestMapping("/zwz/setting")
 public class SettingController {
 

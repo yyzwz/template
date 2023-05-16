@@ -20,10 +20,11 @@ import org.springframework.web.bind.annotation.*;
 
 /**
  * @author 郑为中
+ * CSDN: Designer 小郑
  */
 @Slf4j
 @RestController
-@Api(tags = "mybatis用户接口")
+@Api(tags = "新用户接口")
 @RequestMapping("/zwz/myUser")
 @Transactional
 public class MyUserController {

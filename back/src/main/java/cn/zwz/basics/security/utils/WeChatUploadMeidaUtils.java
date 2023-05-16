@@ -1,12 +1,17 @@
 package cn.zwz.basics.security.utils;
 
-
 import com.alibaba.fastjson2.JSONObject;
+import io.swagger.annotations.ApiOperation;
 
 import javax.net.ssl.HttpsURLConnection;
 import java.io.*;
 import java.net.URL;
 
+/**
+ * @author 郑为中
+ * CSDN: Designer 小郑
+ */
+@ApiOperation(value = "日志枚举类")
 public class WeChatUploadMeidaUtils {
     /**
      * 新增临时素材

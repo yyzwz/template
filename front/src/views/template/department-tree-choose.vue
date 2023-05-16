@@ -67,7 +67,9 @@ export default {
             });
         },
         loadData(item, callback) {
-            loadDepartment(item.id).then(res => {
+            loadDepartment({
+                parentId: item.id
+            }).then(res => {
                 if (res.success) {
                     res.result.forEach(function (e) {
                         if (e.isParent) {

@@ -1,27 +1,24 @@
 package cn.zwz.data.utils;
 
-import cn.zwz.basics.parameter.SettingConstant;
 import cn.zwz.basics.exception.ZwzException;
 import cn.zwz.data.entity.Setting;
 import cn.zwz.data.service.ISettingService;
-import cn.zwz.data.vo.OssSetting;
-import cn.zwz.data.utils.FileManage;
 import cn.hutool.core.date.DateUtil;
 import cn.hutool.core.io.FileUtil;
-import cn.hutool.core.util.StrUtil;
 import cn.zwz.data.vo.OssSettingVo;
-import com.google.gson.Gson;
+import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
 
-import javax.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpServletResponse;
 import java.io.*;
 
 /**
- * 本地文件工具类
  * @author 郑为中
+ * CSDN: Designer 小郑
  */
+@Api(tags = "本地文件工具类")
 @Component
 public class ZwzFileUtils implements FileManage {
 

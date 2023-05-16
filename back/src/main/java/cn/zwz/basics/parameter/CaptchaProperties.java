@@ -1,6 +1,7 @@
 package cn.zwz.basics.parameter;
 
 import io.swagger.annotations.ApiModelProperty;
+import io.swagger.annotations.ApiOperation;
 import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
@@ -9,9 +10,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * URL验证
  * @author 郑为中
+ * CSDN: Designer 小郑
  */
+@ApiOperation(value = "验证码接口配置")
 @Data
 @Configuration
 @ConfigurationProperties(prefix = "intercept")

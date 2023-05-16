@@ -8,9 +8,10 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 /**
- * MybatisPlus配置类
  * @author 郑为中
+ * CSDN: Designer 小郑
  */
+@ApiOperation(value = "MybatisPlus配置类")
 @Configuration
 @MapperScan({"cn.zwz.*.mapper", "cn.zwz.*.*.mapper"})
 public class MybatisPlusConfig {

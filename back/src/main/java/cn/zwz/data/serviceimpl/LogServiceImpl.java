@@ -7,8 +7,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 /**
- * 日志接口实现
  * @author 郑为中
+ * CSDN: Designer 小郑
  */
 @Service
 @Transactional

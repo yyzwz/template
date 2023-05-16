@@ -14,17 +14,17 @@
                 <div class="loginRight">
                     <Row class="loginRow">
                         <Tabs v-model="tabName" @on-click="changeTabName" class="loginTab">
-                            <TabPane label="账号密码登陆" name="userAndPassword">
+                            <TabPane label="账号密码登录" name="userAndPassword">
                                 <Form ref="usernameLoginForm" :model="form" :rules="usernameLoginFormRules" class="form">
                                     <FormItem prop="username" class="loginInput">
                                         <Row>
-                                            <Input v-model="form.username" size="large" clearable placeholder="登陆账号" autocomplete="off">
+                                            <Input v-model="form.username" size="large" clearable placeholder="登录账号" autocomplete="off">
                                             <Icon class="iconfont icon-yonghu" slot="prefix" style="line-height:50px" />
                                             </Input>
                                         </Row>
                                     </FormItem>
                                     <FormItem prop="password">
-                                        <Input style="height:50px;line-height:50px" type="password" v-model="form.password" size="large" placeholder="请输入登陆密码" password autocomplete="off">
+                                        <Input style="height:50px;line-height:50px" type="password" v-model="form.password" size="large" placeholder="请输入登录密码" password autocomplete="off">
                                         <Icon class="iconfont icon-mima1" slot="prefix" style="line-height:50px" />
                                         </Input>
                                     </FormItem>
@@ -39,15 +39,15 @@
                                     </FormItem>
                                 </Form>
                                 <Row type="flex" justify="space-between" align="middle">
-                                    <Checkbox v-model="saveLogin" size="large">是否自动登陆</Checkbox>
+                                    <Checkbox v-model="saveLogin" size="large">是否自动登录</Checkbox>
                                     <router-link to="/regist">
                                         <a class="forget-pass">没有账号？点我注册</a>
                                     </router-link>
                                 </Row>
                                 <Row>
                                     <Button class="login-btn" type="primary" size="large" :loading="loading" @click="submitLogin" long>
-                                        <span v-if="!loading" style="letter-spacing:20px; font-weight:bold">登陆</span>
-                                        <span v-else>正在登陆...请稍后}</span>
+                                        <span v-if="!loading" style="letter-spacing:20px; font-weight:bold">登录</span>
+                                        <span v-else>正在登录...请稍后}</span>
                                     </Button>
                                 </Row>
                             </TabPane>

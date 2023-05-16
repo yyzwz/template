@@ -28,19 +28,20 @@ spring:
     show-sql: true
     hibernate:
       ddl-auto: update
-  redis:
-    host: 127.0.0.1
-    database: 0
-    port: 6379
-    timeout: 3S
   servlet:
     multipart:
-      max-file-size: 50MB
-      max-request-size: 50MB
+      max-file-size: 10240MB
+      max-request-size: 10240MB
   jackson:
     time-zone: GMT+8
     serialization:
       fail-on-empty-beans: false
+  data:
+    redis:
+      host: 127.0.0.1
+      database: 0
+      timeout: 3S
+      port: 6379
 intercept:
   verification:
     - /zwz/login
@@ -49,25 +50,6 @@ intercept:
     - /zwz/user/smsLogin
     - /zwz/user/resetByMobile
     - /zwz/user/changeMobile
-release:
-  authentication:
-    - /zwz/actuator/**
-    - /zwz/dictData/getByType/**
-    - /zwz/file/view/**
-    - /zwz/ws/**
-    - /zwz/setting/notice
-    - /zwz/user/regist
-    - /zwz/common/**
-    - /**/*.js
-    - /**/*.css
-    - /**/*.png
-    - /**/*.ico
-    - /zwz/test/**
-  limiting:
-    - /**/*.js
-    - /**/*.css
-    - /**/*.png
-    - /**/*.ico
 mybatis-plus:
   global-config:
     db-config:

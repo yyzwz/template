@@ -1,7 +1,7 @@
 package cn.zwz.data.utils;
 
-import cn.zwz.data.vo.OssSetting;
 import cn.zwz.data.vo.OssSettingVo;
+import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -9,7 +9,9 @@ import java.io.InputStream;
 
 /**
  * @author 郑为中
+ * CSDN: Designer 小郑
  */
+@Api(tags = "文件配置接口类")
 public interface FileManage {
 
     @ApiOperation(value = "删除文件")

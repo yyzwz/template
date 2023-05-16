@@ -26,11 +26,11 @@ import java.util.Objects;
 import java.util.concurrent.TimeUnit;
 
 /**
- * 企业微信验证码
  * @author 郑为中
+ * CSDN: Designer 小郑
  */
 @RestController
-@Api(tags = "企微验证码")
+@Api(tags = "企业微信验证码登录接口")
 @RequestMapping("/zwz/qwVerificationCode")
 @Transactional
 public class QwVerificationCodeController {
@@ -61,7 +61,7 @@ public class QwVerificationCodeController {
         /**
          * 这里需要实现判断发给谁的业务逻辑
          */
-        ZwzWxNoticeUtils.sendTuWenMessage("zwz", "OA登陆验证","验证码 " + verificationCode + "，1分钟后失效","https://gitee.com/yyzwz","https://bkimg.cdn.bcebos.com/pic/37d12f2eb9389b503a80d4b38b35e5dde6116ed7", WeiChatUtils.getToken());
+        ZwzWxNoticeUtils.sendTuWenMessage("zwz", "OA登录验证","验证码 " + verificationCode + "，1分钟后失效","https://gitee.com/yyzwz","https://bkimg.cdn.bcebos.com/pic/37d12f2eb9389b503a80d4b38b35e5dde6116ed7", WeiChatUtils.getToken());
         redisTemplate.set("qwsms:" + jobNumber,verificationCode,60, TimeUnit.SECONDS);
         return ResultUtil.success();
     }

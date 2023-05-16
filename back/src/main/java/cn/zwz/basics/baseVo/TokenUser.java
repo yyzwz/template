@@ -1,6 +1,7 @@
 package cn.zwz.basics.baseVo;
 
 import io.swagger.annotations.ApiModelProperty;
+import io.swagger.annotations.ApiOperation;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -9,9 +10,10 @@ import java.io.Serializable;
 import java.util.List;
 
 /**
- * 用户Token VO类
  * @author 郑为中
+ * CSDN: Designer 小郑
  */
+@ApiOperation(value = "临时用户类")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor

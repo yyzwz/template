@@ -6,8 +6,8 @@ import cn.zwz.test.entity.Teacher;
 import java.util.List;
 
 /**
- * 教师数据处理层
  * @author 郑为中
+ * CSDN: Designer 小郑
  */
 public interface TeacherMapper extends BaseMapper<Teacher> {
 

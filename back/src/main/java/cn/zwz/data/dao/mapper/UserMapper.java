@@ -4,8 +4,8 @@ import cn.zwz.data.entity.User;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 
 /**
- * 用户 数据链路层接口
  * @author 郑为中
+ * CSDN: Designer 小郑
  */
 public interface UserMapper extends BaseMapper<User> {
 }

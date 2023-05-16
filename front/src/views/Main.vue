@@ -175,7 +175,7 @@ export default {
                 this.$store.commit("addOpenSubmenu", pathArr[1].name);
             }
             let userInfo = JSON.parse(Cookies.get("userInfo"));
-            console.log("当前登陆者的信息：", userInfo);
+            console.log("当前登录者的信息：", userInfo);
             this.username = userInfo.nickname;
             this.userId = userInfo.id;
             this.checkTag(this.$route.name);

@@ -8,8 +8,8 @@ import org.apache.ibatis.annotations.Param;
 import java.util.List;
 
 /**
- * 用户-角色关系 数据链路层接口
  * @author 郑为中
+ * CSDN: Designer 小郑
  */
 public interface UserRoleMapper extends BaseMapper<UserRole> {
 }

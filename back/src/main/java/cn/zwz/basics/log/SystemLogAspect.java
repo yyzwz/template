@@ -19,7 +19,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 
-import javax.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletRequest;
 import java.lang.reflect.Method;
 import java.util.Date;
 import java.util.HashMap;
@@ -27,9 +27,10 @@ import java.util.Map;
 import java.util.Objects;
 
 /**
- * Spring AOP实现日志管理
  * @author 郑为中
+ * CSDN: Designer 小郑
  */
+@ApiOperation(value = "日志实现类")
 @Aspect
 @Component
 @Slf4j

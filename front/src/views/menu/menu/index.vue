@@ -302,7 +302,7 @@ export default {
                 tooltip: true,
                 sortable: false,
             }, {
-                title: "登陆账号",
+                title: "登录账号",
                 key: "code",
                 minWidth: 120,
                 tooltip: true,

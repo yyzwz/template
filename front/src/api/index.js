@@ -1,7 +1,7 @@
 import { getRequest, postRequest, putRequest, postBodyRequest, getNoAuthRequest, postNoAuthRequest } from '@/libs/axios';
 
 export const uploadFile = "/zwz/upload/file"
-export const drawCodeImage = "/zwz/common/captcha/draw/"
+export const drawCodeImage = "/zwz/common/draw/"
 export const getMenuList = "/zwz/permission/getMenuList"
 
 
@@ -15,7 +15,7 @@ export const regist = (params) => {
     return postNoAuthRequest('/user/regist', params)
 }
 export const initCaptcha = (params) => {
-    return getNoAuthRequest('/common/captcha/init', params)
+    return getNoAuthRequest('/common/init', params)
 }
 export const ipInfo = (params) => {
     return getRequest('/common/ip/info', params)

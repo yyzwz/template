@@ -3,6 +3,7 @@ package cn.zwz.basics.utils;
 import cn.zwz.basics.exception.ZwzException;
 import cn.zwz.basics.baseVo.TokenUser;
 import cn.zwz.basics.parameter.ZwzLoginProperties;
+import cn.zwz.basics.redis.RedisTemplateHelper;
 import cn.zwz.data.entity.*;
 import cn.zwz.data.service.IPermissionService;
 import cn.zwz.data.service.IRoleService;
@@ -11,11 +12,10 @@ import cn.zwz.data.utils.ZwzNullUtils;
 import cn.zwz.data.vo.PermissionDTO;
 import cn.zwz.data.vo.RoleDTO;
 import cn.hutool.core.util.StrUtil;
+import com.alibaba.fastjson2.JSON;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.google.gson.Gson;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -26,9 +26,10 @@ import java.util.*;
 import java.util.concurrent.TimeUnit;
 
 /**
- * 鉴权工具类
  * @author 郑为中
+ * CSDN: Designer 小郑
  */
+@ApiOperation(value = "鉴权工具类")
 @Component
 public class SecurityUtil {
 
@@ -36,7 +37,7 @@ public class SecurityUtil {
     private ZwzLoginProperties tokenProperties;
 
     @Autowired
-    private StringRedisTemplate redisTemplate;
+    private RedisTemplateHelper redisTemplate;
 
     @Autowired
     private IUserService iUserService;
@@ -111,18 +112,18 @@ public class SecurityUtil {
         TokenUser tokenUser = new TokenUser(selectUser.getUsername(), permissionTitleList, saved);
         // 单点登录删除旧Token
         if(tokenProperties.getSsoFlag()) {
-            String oldToken = redisTemplate.opsForValue().get(ZwzLoginProperties.USER_TOKEN_PRE + selectUser.getUsername());
+            String oldToken = redisTemplate.get(ZwzLoginProperties.USER_TOKEN_PRE + selectUser.getUsername());
             if (StrUtil.isNotBlank(oldToken)) {
                 redisTemplate.delete(ZwzLoginProperties.HTTP_TOKEN_PRE + oldToken);
             }
         }
         // 保存至Redis备查
         if(saved){
-            redisTemplate.opsForValue().set(ZwzLoginProperties.USER_TOKEN_PRE + selectUser.getUsername(), ansUserToken, tokenProperties.getUserSaveLoginTokenDays(), TimeUnit.DAYS);
-            redisTemplate.opsForValue().set(ZwzLoginProperties.HTTP_TOKEN_PRE + ansUserToken, new Gson().toJson(tokenUser), tokenProperties.getUserSaveLoginTokenDays(), TimeUnit.DAYS);
+            redisTemplate.set(ZwzLoginProperties.USER_TOKEN_PRE + selectUser.getUsername(), ansUserToken, tokenProperties.getUserSaveLoginTokenDays(), TimeUnit.DAYS);
+            redisTemplate.set(ZwzLoginProperties.HTTP_TOKEN_PRE + ansUserToken, JSON.toJSONString(tokenUser), tokenProperties.getUserSaveLoginTokenDays(), TimeUnit.DAYS);
         }else{
-            redisTemplate.opsForValue().set(ZwzLoginProperties.USER_TOKEN_PRE + selectUser.getUsername(), ansUserToken, tokenProperties.getUserTokenInvalidDays(), TimeUnit.MINUTES);
-            redisTemplate.opsForValue().set(ZwzLoginProperties.HTTP_TOKEN_PRE + ansUserToken, new Gson().toJson(tokenUser), tokenProperties.getUserTokenInvalidDays(), TimeUnit.MINUTES);
+            redisTemplate.set(ZwzLoginProperties.USER_TOKEN_PRE + selectUser.getUsername(), ansUserToken, tokenProperties.getUserTokenInvalidDays(), TimeUnit.MINUTES);
+            redisTemplate.set(ZwzLoginProperties.HTTP_TOKEN_PRE + ansUserToken, JSON.toJSONString(tokenUser), tokenProperties.getUserTokenInvalidDays(), TimeUnit.MINUTES);
         }
         return ansUserToken;
     }
@@ -148,7 +149,7 @@ public class SecurityUtil {
     public User getCurrUser(){
         Object selectUser = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         if(Objects.equals("anonymousUser",selectUser.toString())){
-            throw new ZwzException("登陆失效");
+            throw new ZwzException("登录失效");
         }
         UserDetails user = (UserDetails) selectUser;
         return selectByUserName(user.getUsername());

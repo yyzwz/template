@@ -7,12 +7,13 @@ import io.swagger.annotations.ApiModel;
 import lombok.Data;
 import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
 import java.math.BigDecimal;
 
 /**
  * @author 郑为中
+ * CSDN: Designer 小郑
  */
 @Data
 @Entity

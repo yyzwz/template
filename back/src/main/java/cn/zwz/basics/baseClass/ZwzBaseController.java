@@ -13,9 +13,10 @@ import java.io.Serializable;
 import java.util.List;
 
 /**
- * 基类控制器
  * @author 郑为中
+ * CSDN: Designer 小郑
  */
+@ApiOperation(value = "模板控制器层")
 public abstract class ZwzBaseController<E, ID extends Serializable> {
 
     @Autowired

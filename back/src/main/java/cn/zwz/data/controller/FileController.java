@@ -26,9 +26,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-import javax.servlet.http.HttpServletResponse;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceContext;
+import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.net.URLEncoder;
 import java.util.HashMap;
@@ -36,12 +36,12 @@ import java.util.Map;
 import java.util.Objects;
 
 /**
- * 系统文件
  * @author 郑为中
+ * CSDN: Designer 小郑
  */
 @Slf4j
 @Controller
-@Api(tags = "文件管理")
+@Api(tags = "文件管理接口")
 @RequestMapping("/zwz/file")
 @Transactional
 public class FileController {

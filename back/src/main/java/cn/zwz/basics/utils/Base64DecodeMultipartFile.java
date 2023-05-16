@@ -9,9 +9,10 @@ import java.util.Base64;
 import java.io.*;
 
 /**
- * base64转为multipartFile工具类
  * @author 郑为中
+ * CSDN: Designer 小郑
  */
+@ApiOperation(value = "文件工具类")
 public class Base64DecodeMultipartFile implements MultipartFile {
 
     @ApiModelProperty(value = "图片内容")

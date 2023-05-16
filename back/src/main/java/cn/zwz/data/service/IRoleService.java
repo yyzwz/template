@@ -4,8 +4,8 @@ import cn.zwz.data.entity.Role;
 import com.baomidou.mybatisplus.extension.service.IService;
 
 /**
- * 角色 服务层接口
  * @author 郑为中
+ * CSDN: Designer 小郑
  */
 public interface IRoleService extends IService<Role> {
 

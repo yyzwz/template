@@ -1,6 +1,5 @@
 package cn.zwz.basics.utils;
 
-import cn.hutool.core.util.StrUtil;
 import cn.zwz.basics.exception.ZwzException;
 import cn.zwz.data.utils.ZwzNullUtils;
 import io.swagger.annotations.ApiModelProperty;
@@ -14,9 +13,10 @@ import java.io.OutputStream;
 import java.util.Random;
 
 /**
- * 随机字符验证码生成工具类
  * @author 郑为中
+ * CSDN: Designer 小郑
  */
+@ApiOperation(value = "验证码工具类")
 public class CreateVerifyCode {
 
     @ApiModelProperty(value = "验证码")

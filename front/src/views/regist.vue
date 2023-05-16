@@ -129,7 +129,7 @@ export default {
                 }],
                 password: [{
                         required: true,
-                        message: "请输入登陆密码",
+                        message: "请输入登录密码",
                         trigger: "blur"
                     },
                     {
