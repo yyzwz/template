@@ -15,8 +15,8 @@
             <Col span="15">
             <Row class="operation">
                 <Col span="12">
-                <Button @click="addMenu" type="primary" shape="circle" ghost icon="md-add">添加菜单</Button>
-                <Button @click="deletePermissionFx" type="error" shape="circle" ghost icon="md-trash">删除菜单</Button>
+                <Button @click="addMenu" type="primary" shape="circle" ghost icon="md-add" :disabled="!$route.meta.permTypes.includes('add')">添加菜单</Button>
+                <Button @click="deletePermissionFx" type="error" shape="circle" ghost icon="md-trash" :disabled="!$route.meta.permTypes.includes('delete')">删除菜单</Button>
                 <Button @click="getPermissionList" type="success" shape="circle" ghost icon="md-trash">刷新菜单</Button>
                 <i-switch v-model="strict" size="large" style="margin-left:5px">
                     <span slot="open">级联</span>
@@ -39,7 +39,7 @@
                 </Col>
                 <Divider dashed />
             </Row>
-            <Form ref="form" :model="form" :label-width="110" :rules="formValidate">
+            <Form ref="form" :model="form" :label-width="130" :rules="formValidate">
                 <Row :gutter="16">
                     <Col span="12">
                     <FormItem label="类型" prop="type">
@@ -70,11 +70,6 @@
                     <Col span="12" v-show="form.type==0">
                     <FormItem label="路径" prop="path">
                         <Input v-model="form.path" @on-blur="changeFormPath" style="width:100%" />
-                    </FormItem>
-                    </Col>
-                    <Col span="12" v-show="form.type==1">
-                    <FormItem label="请求路径" prop="path">
-                        <Input v-model="form.path" @on-blur="changeFormPath" placeholder="若无可填写'无'" style="width:100%" />
                     </FormItem>
                     </Col>
                     <Col span="12" v-show="form.type==1">
@@ -114,9 +109,7 @@
                     </Col>
                     <Col span="12">
                     <Form-item>
-                        <Button style="margin-right:5px" @click="submitEdit" ghost shape="circle" :loading="submitLoading" type="primary" icon="ios-create-outline">保存菜单</Button>
-                        <Divider type="vertical" />
-                        <Button icon="ios-undo" type="error" ghost shape="circle" @click="handleReset">重置菜单</Button>
+                        <Button style="margin-right:5px" @click="submitEdit" ghost shape="circle" :loading="submitLoading" type="primary" icon="ios-create-outline" :disabled="!$route.meta.permTypes.includes('edit')">保存菜单</Button>
                     </Form-item>
                     </Col>
                 </Row>
@@ -158,11 +151,6 @@
             </FormItem>
             <FormItem label="路径" prop="path" v-if="formAdd.type==0">
                 <Input v-model="formAdd.path" />
-            </FormItem>
-            <FormItem label="请求路径" prop="path" v-if="formAdd.type==1" class="block-tool">
-                <Tooltip placement="right" :max-width="230" transfer content="填写后端请求URL，后端将作权限拦截，若无可填写'无'或其他">
-                    <Input v-model="formAdd.path" />
-                </Tooltip>
             </FormItem>
             <FormItem label="按钮权限类型" prop="buttonType" v-if="formAdd.type==1">
                 <Select v-model="formAdd.buttonType" placeholder="请选择或输入搜索" filterable clearable>
@@ -539,6 +527,8 @@ export default {
             if (this.form.level == 0) {
                 this.formAdd.path = "/";
                 this.formAdd.component = "Main";
+            } else if (this.form.level == 2) {
+                this.formAdd.path = "无";
             }
             this.menuModalVisible = true;
         },

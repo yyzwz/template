@@ -49,13 +49,6 @@ export default {
         handleSubmit() {
             this.$refs.form.validate(valid => {
                 if (valid) {
-                    // this.postRequest("请求路径", this.form).then(res => {
-                    //   this.submitLoading = false;
-                    //   if (res.success) {
-                    //     this.$Message.success("添加成功");
-                    //     this.closeCurrentPage();
-                    //   }
-                    // });
                     // 模拟成功
                     this.submitLoading = false;
                     this.$Message.success("添加成功");

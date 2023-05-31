@@ -16,17 +16,17 @@
                     <Button @click="importModalVisible=true" type="success" icon="md-paper-plane" ghost shape="circle" size="small">导入</Button>
                     <Button @click="excelData" type="success" icon="md-paper-plane" ghost shape="circle" size="small">导出</Button>
                 </Form-item>
-                    <Form-item style="position:fixed;right:50px;top:130px">
-                        <Button type="info" @click="showFilterPanelFlag = !showFilterPanelFlag" class="showFilterPanelFlag" icon="md-settings" size="small" ghost>
-                            列筛选</Button>
-                        <Button type="warning" @click="usingTutorialsModal = true" class="showFilterPanelFlag" icon="ios-help-circle-outline" size="small" ghost>
-                            使用教程</Button>
-                        <Modal v-model="usingTutorialsModal" title="使用教程">
-                            <p>1.XXXXXXXXXXXXXXXXXXXXXXXX</p>
-                            <p>2.XXXXXXXXXXXXXXXXXXXXXXXX</p>
-                            <p>3.XXXXXXXXXXXXXXXXXXXXXXXX</p>
-                        </Modal>
-                    </Form-item>
+                <Form-item style="position:fixed;right:50px;top:130px">
+                    <Button type="info" @click="showFilterPanelFlag = !showFilterPanelFlag" class="showFilterPanelFlag" icon="md-settings" size="small" ghost>
+                        列筛选</Button>
+                    <Button type="warning" @click="usingTutorialsModal = true" class="showFilterPanelFlag" icon="ios-help-circle-outline" size="small" ghost>
+                        使用教程</Button>
+                    <Modal v-model="usingTutorialsModal" title="使用教程">
+                        <p>1.XXXXXXXXXXXXXXXXXXXXXXXX</p>
+                        <p>2.XXXXXXXXXXXXXXXXXXXXXXXX</p>
+                        <p>3.XXXXXXXXXXXXXXXXXXXXXXXX</p>
+                    </Modal>
+                </Form-item>
             </Form>
         </Row>
         <Row class="operation" style="position:relative;">
@@ -255,6 +255,7 @@ export default {
                     align: "center",
                     fixed: "right",
                     render: (h, params) => {
+                        var that = this;
                         return h("div", [
                             h(
                                 "Button", {
@@ -262,7 +263,8 @@ export default {
                                         type: "primary",
                                         size: "small",
                                         ghost: true,
-                                        shape: "circle"
+                                        shape: "circle",
+                                        disabled: !(that.$route.meta.permTypes && that.$route.meta.permTypes.includes("edit"))
                                     },
                                     style: {
                                         marginRight: "5px"
@@ -323,7 +325,8 @@ export default {
                                         type: "error",
                                         size: "small",
                                         ghost: true,
-                                        shape: "circle"
+                                        shape: "circle",
+                                        disabled: !(that.$route.meta.permTypes && that.$route.meta.permTypes.includes("delete"))
                                     },
                                     on: {
                                         click: () => {
@@ -596,7 +599,6 @@ export default {
 </script>
 
 <style lang="less">
-
 .search {
     .operation {
         margin-bottom: 2vh;
@@ -643,11 +645,13 @@ export default {
     position: absolute;
     right: 130px;
 }
+
 .showFilterPanelFlag {
     position: static !important;
     right: 10px;
     margin-right: 10px;
 }
+
 .ivu-table td {
     height: 38px !important;
 }

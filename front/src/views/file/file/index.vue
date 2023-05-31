@@ -19,8 +19,8 @@
                     <Form-item style="margin-left:-35px;" class="br">
                         <Button @click="handleSearch" ghost shape="circle" type="primary" icon="ios-search" size="small">搜索</Button>
                         <Button @click="handleReset" ghost shape="circle" type="warning" icon="md-refresh" size="small">重置</Button>
-                        <Button @click="uploadVisible=true" ghost shape="circle" type="success" icon="md-cloud-upload" size="small">上传文件</Button>
-                        <Button @click="fileSaveSettingModal=true" ghost shape="circle" type="info" icon="md-settings" size="small">配置</Button>
+                        <Button @click="uploadVisible=true" ghost shape="circle" type="success" icon="md-cloud-upload" size="small" :disabled="!$route.meta.permTypes.includes('add')">上传文件</Button>
+                        <Button @click="fileSaveSettingModal=true" ghost shape="circle" type="info" icon="md-settings" size="small" :disabled="!$route.meta.permTypes.includes('enable')">配置</Button>
                     </Form-item>
                 </Form>
             </Row>
@@ -328,6 +328,7 @@ export default {
                     fixed: "right",
                     minWidth: 260,
                     render: (h, params) => {
+                        var that = this;
                         return h("div", [
                             h(
                                 "Button", {
@@ -392,7 +393,8 @@ export default {
                                         type: "error",
                                         size: "small",
                                         ghost: true,
-                                        shape: "circle"
+                                        shape: "circle",
+                                        disabled: !(that.$route.meta.permTypes && that.$route.meta.permTypes.includes("delete"))
                                     },
                                     style: {
                                         marginRight: "5px"

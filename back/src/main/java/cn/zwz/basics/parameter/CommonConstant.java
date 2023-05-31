@@ -40,9 +40,6 @@ public interface CommonConstant {
     @ApiModelProperty(value = "总部门ID")
     String PARENT_ID = "0";
 
-    @ApiModelProperty(value = "用词")
-    String[] STOP_WORDS = {"anonymoususer"};
-
     @ApiModelProperty(value = "头像URL")
-    String USER_DEFAULT_AVATAR = "https://wx.qlogo.cn/mmhead/PiajxSqBRaEKjc639z2lRF4DqweNw2aDRLbAL7yLlSgrdZeKBCwLHDQ/0";
+    String USER_DEFAULT_AVATAR = "https://jujia.lucheng.gov.cn/app/file/view/1663719005518696451";
 }

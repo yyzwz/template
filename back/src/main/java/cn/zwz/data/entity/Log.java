@@ -5,6 +5,7 @@ import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+import jakarta.persistence.Column;
 import lombok.Data;
 import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
@@ -46,6 +47,7 @@ public class Log extends ZwzBaseEntity {
     @ApiModelProperty(value = "请求方式")
     private String requestType;
 
+    @Column(columnDefinition ="TEXT")
     @ApiModelProperty(value = "参数")
     private String requestParam;
 

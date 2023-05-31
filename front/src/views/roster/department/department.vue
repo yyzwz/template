@@ -2,8 +2,8 @@
 <div class="search">
     <Card>
         <Row class="operation">
-            <Button @click="add" type="primary" icon="md-add" ghost shape="circle" size="small">添加</Button>
-            <Button @click="delAll" icon="md-trash" type="error" ghost shape="circle" size="small">删除</Button>
+            <Button @click="add" type="primary" icon="md-add" ghost shape="circle" size="small" :disabled="!$route.meta.permTypes.includes('add')">添加</Button>
+            <Button @click="delAll" icon="md-trash" type="error" ghost shape="circle" size="small" :disabled="!$route.meta.permTypes.includes('delete')">删除</Button>
             <Button @click="getParentList" icon="md-refresh" type="info" ghost shape="circle" size="small">刷新</Button>
             <Button @click="excelData" type="success" icon="md-paper-plane" ghost shape="circle" size="small">导出用户</Button>
             <i-switch v-model="strict" size="large" style="margin-left:5px">
@@ -87,8 +87,7 @@
                     </Col>
                     <Col span="8">
                     <Form-item class="br">
-                        <Button @click="submitEdit" :loading="submitLoading" type="success" ghost shape="circle" icon="ios-create-outline" size="small">保存</Button>
-                        <Button @click="handleReset" type="warning" ghost shape="circle" size="small" icon="md-refresh">重置</Button>
+                        <Button @click="submitEdit" :loading="submitLoading" type="success" ghost shape="circle" icon="ios-create-outline" size="small" :disabled="!$route.meta.permTypes.includes('edit')">保存</Button>
                     </Form-item>
                     </Col>
                 </Row>

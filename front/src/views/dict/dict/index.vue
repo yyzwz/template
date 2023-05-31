@@ -5,9 +5,9 @@
             <Col v-if="expand" span="4">
             <Row class="operation">
                 <Button @click="refreshDict" type="success" ghost size="small">搜索</Button>
-                <Button @click="addDcit" type="info" ghost size="small">添加</Button>
-                <Button @click="editDcit" type="warning" ghost size="small" :disabled="!this.selectNode.id">编辑</Button>
-                <Button @click="delDcit" type="error" ghost size="small">删除</Button>
+                <Button @click="addDcit" type="info" ghost size="small" :disabled="!$route.meta.permTypes.includes('add')">添加</Button>
+                <Button @click="editDcit" type="warning" ghost size="small" :disabled="!this.selectNode.id || !$route.meta.permTypes.includes('edit')">编辑</Button>
+                <Button @click="delDcit" type="error" ghost size="small" :disabled="!$route.meta.permTypes.includes('delete')">删除</Button>
             </Row>
             <Row :gutter="16">
                 <Alert type="success" show-icon v-show="editTitle">
@@ -253,13 +253,13 @@ export default {
                 {
                     title: "键",
                     key: "title",
-                    minWidth: 120,
+                    minWidth: 180,
                     sortable: true
                 },
                 {
                     title: "值",
                     key: "value",
-                    minWidth: 120,
+                    minWidth: 180,
                     sortable: true
                 },
                 {
@@ -307,6 +307,7 @@ export default {
                     align: "center",
                     fixed: "right",
                     render: (h, params) => {
+                        var that = this;
                         return h("div", [
                             h(
                                 "Button", {
@@ -314,7 +315,8 @@ export default {
                                         type: "primary",
                                         size: "small",
                                         ghost: true,
-                                        icon: "ios-brush"
+                                        icon: "ios-brush",
+                                        disabled: !(that.$route.meta.permTypes && that.$route.meta.permTypes.includes("delete"))
                                     },
                                     style: {
                                         marginRight: "5px"
@@ -333,7 +335,8 @@ export default {
                                         type: "error",
                                         size: "small",
                                         ghost: true,
-                                        icon: "md-close"
+                                        icon: "md-close",
+                                        disabled: !(that.$route.meta.permTypes && that.$route.meta.permTypes.includes("delete"))
                                     },
                                     on: {
                                         click: () => {

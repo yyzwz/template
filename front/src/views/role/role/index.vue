@@ -12,7 +12,7 @@
                 <Form-item label="">
                     <Button type="success" @click="init" ghost shape="circle" size="small" icon="md-refresh">搜索</Button>
                     <Divider type="vertical" />
-                    <Button @click="addRoleFx" type="primary" ghost shape="circle" size="small" icon="md-add">添加角色</Button>
+                    <Button @click="addRoleFx" type="primary" ghost shape="circle" size="small" icon="md-add" :disabled="!$route.meta.permTypes.includes('delete')">添加角色</Button>
                 </Form-item>
             </Form>
         </Row>
@@ -21,7 +21,7 @@
             <Table :loading="loading" border stripe size="small" :columns="columns" :data="data" ref="table" sortable="custom" @on-sort-change="changeSort"></Table>
         </Row>
         <Row type="flex" justify="end" class="page">
-            <Page :current="searchForm.pageNumber" :total="total" :page-size="searchForm.pageSize" @on-change="changePage" @on-page-size-change="changePageSize" :page-size-opts="[10,20,50]" size="small" show-total show-elevator show-sizer></Page>
+            <Page :current="searchForm.pageNumber" :total="total" :page-size="searchForm.pageSize" @on-change="changePage" @on-page-size-change="changePageSize" :page-size-opts="[15,20,50]" size="small" show-total show-elevator show-sizer></Page>
         </Row>
     </Card>
 
@@ -136,6 +136,7 @@ export default {
                     fixed: "right",
                     width: 380,
                     render: (h, params) => {
+                        var that = this;
                         return h("div", [
                             h(
                                 "Button", {
@@ -144,7 +145,8 @@ export default {
                                         size: "small",
                                         ghost: true,
                                         shape: "circle",
-                                        icon: "ios-brush"
+                                        icon: "ios-brush",
+                                        disabled: !(that.$route.meta.permTypes && that.$route.meta.permTypes.includes("enable"))
                                     },
                                     style: {
                                         marginRight: "5px"
@@ -189,7 +191,8 @@ export default {
                                         size: "small",
                                         ghost: true,
                                         shape: "circle",
-                                        icon: "md-color-wand"
+                                        icon: "md-color-wand",
+                                        disabled: !(that.$route.meta.permTypes && that.$route.meta.permTypes.includes("edit"))
                                     },
                                     style: {
                                         marginRight: "5px"
@@ -209,7 +212,8 @@ export default {
                                         size: "small",
                                         ghost: true,
                                         shape: "circle",
-                                        icon: "ios-undo"
+                                        icon: "ios-undo",
+                                        disabled: !(that.$route.meta.permTypes && that.$route.meta.permTypes.includes("delete"))
                                     },
                                     on: {
                                         click: () => {

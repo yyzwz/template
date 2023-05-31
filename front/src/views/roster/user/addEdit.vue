@@ -76,13 +76,6 @@
                 </FormItem>
                 </Col>
             </Row>
-            <Row :gutter="16">
-                <Col span="12">
-                <FormItem label="区县" prop="addressArray" style="width:100%">
-                    <al-cascader v-model="form.addressArray" @on-change="changeAddress" data-type="code" level="2" />
-                </FormItem>
-                </Col>
-            </Row>
         </Form>
     </Modal>
 </div>

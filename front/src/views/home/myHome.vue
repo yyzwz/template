@@ -45,23 +45,18 @@
             </Row>
             <Row :gutter="16">
                 <Col :span="12">
-                <FormItem label="所在区县" prop="username">
-                    <al-cascader v-model="userForm.addressArray" :disabled="!editFlag" @on-change="changeAddress" data-type="code" level="2" style="width: 100%" />
-                </FormItem>
-                </Col>
-                <Col :span="12">
                 <FormItem label="家庭地址" prop="nickname">
                     <Input v-model="userForm.street" :readonly="!editFlag" style="width: 100%" />
                 </FormItem>
                 </Col>
-            </Row>
-            <Row :gutter="16">
                 <Col :span="12">
                 <FormItem label="生日" prop="username">
                     <DatePicker v-model="userForm.birth" @on-change="changeBirth" :readonly="!editFlag" style="width: 100%" type="date"></DatePicker>
                 </FormItem>
                 </Col>
-                <Col :span="12">
+            </Row>
+            <Row :gutter="16">
+                <Col :span="24">
                 <FormItem label="个性签名" prop="nickname">
                     <Input v-model="userForm.description" type="textarea" :readonly="!editFlag" style="width: 100%" :autosize="{minRows: 3,maxRows: 5}" placeholder="个性签名"></Input>
                 </FormItem>
