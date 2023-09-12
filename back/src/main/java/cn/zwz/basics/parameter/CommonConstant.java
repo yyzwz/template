@@ -41,5 +41,5 @@ public interface CommonConstant {
     String PARENT_ID = "0";
 
     @ApiModelProperty(value = "头像URL")
-    String USER_DEFAULT_AVATAR = "https://jujia.lucheng.gov.cn/app/file/view/1663719005518696451";
+    String USER_DEFAULT_AVATAR = "https://asoa-1305425069.cos.ap-shanghai.myqcloud.com/1669635627773202432.png";
 }

@@ -807,12 +807,12 @@ CREATE TABLE IF NOT EXISTS `a_teacher` (
 
 DELETE FROM `a_teacher`;
 INSERT INTO `a_teacher` (`id`, `create_by`, `create_time`, `del_flag`, `update_by`, `update_time`, `age`, `autograph`, `education`, `graduated`, `name`, `remark`, `status`, `wages`, `resume`) VALUES
-	('1536614275123122176', 'admin', '2022-06-14 15:39:26.000000', 0, 'admin', '2023-05-31 10:05:23.579000', 30.00, 'https://jujia.lucheng.gov.cn/app/file/view/1663728513460604931', '博士', '同济大学', '张三', '测试', '在职', 9960.00, 'https://jujia.lucheng.gov.cn/app/file/view/1663728494519128066'),
-	('1536614275123122177', 'admin', '2022-06-14 15:39:26.000000', 0, 'admin', '2022-06-14 15:41:09.841000', 30.00, 'https://jujia.lucheng.gov.cn/app/file/view/1663728513460604931', '本科', '同济大学', '李四', '测试', '在职', 7778.00, 'https://jujia.lucheng.gov.cn/app/file/view/1663728494519128066'),
-	('1536614275123122178', 'admin', '2022-06-14 15:39:26.000000', 0, 'admin', '2022-06-14 15:41:09.841000', 30.00, 'https://jujia.lucheng.gov.cn/app/file/view/1663728513460604931', '硕士', '同济大学', '王五', '测试', '在职', 8889.00, 'https://jujia.lucheng.gov.cn/app/file/view/1663728494519128066'),
-	('1536614275123122179', 'admin', '2022-06-14 15:39:26.000000', 0, 'admin', '2022-06-14 15:41:09.841000', 30.00, 'https://jujia.lucheng.gov.cn/app/file/view/1663728513460604931', '硕士', '同济大学', '赵六', '测试', '在职', 4445.00, 'https://jujia.lucheng.gov.cn/app/file/view/1663728494519128066'),
-	('1536614275123122180', 'admin', '2022-06-14 15:39:26.000000', 0, 'admin', '2022-06-14 15:41:09.841000', 30.00, 'https://jujia.lucheng.gov.cn/app/file/view/1663728513460604931', '专科', '同济大学', '郑七', '测试', '在职', 1118.00, 'https://jujia.lucheng.gov.cn/app/file/view/1663728494519128066'),
-	('1536614275123122181', 'admin', '2022-06-14 15:39:26.000000', 0, 'admin', '2022-06-14 15:41:09.841000', 30.00, 'https://jujia.lucheng.gov.cn/app/file/view/1663728513460604931', '专科', '同济大学', '龚八', '测试', '在职', 3337.00, 'https://jujia.lucheng.gov.cn/app/file/view/1663728494519128066');
+	('1536614275123122176', 'admin', '2022-06-14 15:39:26.000000', 0, 'admin', '2023-05-31 10:05:23.579000', 30.00, 'https://asoa-1305425069.cos.ap-shanghai.myqcloud.com/1669635627773202432.png', '博士', '同济大学', '张三', '测试', '在职', 9960.00, 'https://asoa-1305425069.cos.ap-shanghai.myqcloud.com/1669635627773202432.png'),
+	('1536614275123122177', 'admin', '2022-06-14 15:39:26.000000', 0, 'admin', '2022-06-14 15:41:09.841000', 30.00, 'https://asoa-1305425069.cos.ap-shanghai.myqcloud.com/1669635627773202432.png', '本科', '同济大学', '李四', '测试', '在职', 7778.00, 'https://asoa-1305425069.cos.ap-shanghai.myqcloud.com/1669635627773202432.png'),
+	('1536614275123122178', 'admin', '2022-06-14 15:39:26.000000', 0, 'admin', '2022-06-14 15:41:09.841000', 30.00, 'https://asoa-1305425069.cos.ap-shanghai.myqcloud.com/1669635627773202432.png', '硕士', '同济大学', '王五', '测试', '在职', 8889.00, 'https://asoa-1305425069.cos.ap-shanghai.myqcloud.com/1669635627773202432.png'),
+	('1536614275123122179', 'admin', '2022-06-14 15:39:26.000000', 0, 'admin', '2022-06-14 15:41:09.841000', 30.00, 'https://asoa-1305425069.cos.ap-shanghai.myqcloud.com/1669635627773202432.png', '硕士', '同济大学', '赵六', '测试', '在职', 4445.00, 'https://asoa-1305425069.cos.ap-shanghai.myqcloud.com/1669635627773202432.png'),
+	('1536614275123122180', 'admin', '2022-06-14 15:39:26.000000', 0, 'admin', '2022-06-14 15:41:09.841000', 30.00, 'https://asoa-1305425069.cos.ap-shanghai.myqcloud.com/1669635627773202432.png', '专科', '同济大学', '郑七', '测试', '在职', 1118.00, 'https://asoa-1305425069.cos.ap-shanghai.myqcloud.com/1669635627773202432.png'),
+	('1536614275123122181', 'admin', '2022-06-14 15:39:26.000000', 0, 'admin', '2022-06-14 15:41:09.841000', 30.00, 'https://asoa-1305425069.cos.ap-shanghai.myqcloud.com/1669635627773202432.png', '专科', '同济大学', '龚八', '测试', '在职', 3337.00, 'https://asoa-1305425069.cos.ap-shanghai.myqcloud.com/1669635627773202432.png');
 
 DROP TABLE IF EXISTS `a_user`;
 CREATE TABLE IF NOT EXISTS `a_user` (
@@ -823,7 +823,7 @@ CREATE TABLE IF NOT EXISTS `a_user` (
   `update_time` datetime(6) DEFAULT NULL,
   `address` varchar(255) DEFAULT NULL,
   `avatar` varchar(255) DEFAULT NULL,
-  `description` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `description` varchar(255) DEFAULT NULL,
   `email` varchar(255) DEFAULT NULL,
   `mobile` varchar(255) DEFAULT NULL,
   `nickname` varchar(20) NOT NULL,
@@ -848,10 +848,10 @@ CREATE TABLE IF NOT EXISTS `a_user` (
 
 DELETE FROM `a_user`;
 INSERT INTO `a_user` (`id`, `create_by`, `create_time`, `update_by`, `update_time`, `address`, `avatar`, `description`, `email`, `mobile`, `nickname`, `password`, `sex`, `status`, `type`, `username`, `del_flag`, `department_id`, `street`, `pass_strength`, `department_title`, `birth`, `my_door`) VALUES
-	('1464764315201572864', '', '2022-03-20 09:46:20.000000', 'admin', '2023-05-31 10:01:43.495000', '["330000","330600","330602"]', 'https://jujia.lucheng.gov.cn/app/file/view/1663719005518696451', '浙江大学', '916077357@qq.com', '17857054388', '管理员', '$2a$10$PS04ecXfknNd3V8d.ymLTObQciapMU4xU8.GADBZZsuTZr7ymnagy', '男', 0, 1, 'admin', 0, '1464487288363945985', '', '弱', '部门A', '2023-05-16 14:36:38.000000', 'user-adminZWZ666department-adminZWZ666file-adminZWZ666role-manageZWZ666menu-manageZWZ666log-manage'),
-	('1464764315201572865', '', '2022-03-20 09:46:20.000000', 'admin', '2022-05-21 09:11:48.000000', '["110000","110100","110105"]', 'https://jujia.lucheng.gov.cn/app/file/view/1663719005518696451', '浙江大学', '13600000001@qq.com', '13600000001', '用户A', '$2a$10$E59nactOiILAzQvfcs0JFOYuZp06d4bLhugEadyQuygpmiLc0W.ha', '女', 0, 0, '13600000001', 0, '1464487288363945985', '', '弱', '部门A', '2023-05-16 14:35:43.000000', ''),
-	('1464772465946398721', '', '2022-03-20 09:46:20.000000', 'admin', '2022-05-21 09:53:33.000000', '["110000","110100","110105"]', 'https://jujia.lucheng.gov.cn/app/file/view/1663719005518696451', '浙江大学', '13600000002@qq.com', '13600000002', '用户B', '$2a$10$vJyLo1RhFORH/SAu3sc9aeb37I5JRy5UugaN7fIt/e2vvsz6JWJCm', '女', 0, 0, '13600000002', 0, '1464487288363945985', '', '弱', '部门A', '2023-05-16 14:35:44.000000', ''),
-	('1527830053524738048', 'admin', '2022-05-21 09:54:05.000000', NULL, NULL, '["110000","110100","110106"]', 'https://jujia.lucheng.gov.cn/app/file/view/1663719005518696451', '浙江大学', '13600000003@qq.com', '13600000003', '用户C', '$2a$10$oeP4aplYnswfQ44pK6lAO.Np9BuPYJGRwo17THO7CUNlIQoVGsPmy', '男', 0, 0, '13600000003', 0, '1464487288363945985', '', '弱', '部门A', '2023-05-16 14:35:44.000000', '');
+	('1464764315201572864', '', '2022-03-20 09:46:20.000000', 'admin', '2023-05-31 10:01:43.495000', '["330000","330600","330602"]', 'https://asoa-1305425069.cos.ap-shanghai.myqcloud.com/1669635627773202432.png', '浙江大学', '916077357@qq.com', '17857054388', '管理员', '$2a$10$PS04ecXfknNd3V8d.ymLTObQciapMU4xU8.GADBZZsuTZr7ymnagy', '男', 0, 1, 'admin', 0, '1464487288363945985', '', '弱', '部门A', '2023-05-16 14:36:38.000000', 'user-adminZWZ666department-adminZWZ666file-adminZWZ666role-manageZWZ666menu-manageZWZ666log-manage'),
+	('1464764315201572865', '', '2022-03-20 09:46:20.000000', 'admin', '2022-05-21 09:11:48.000000', '["110000","110100","110105"]', 'https://asoa-1305425069.cos.ap-shanghai.myqcloud.com/1669635627773202432.png', '浙江大学', '13600000001@qq.com', '13600000001', '用户A', '$2a$10$E59nactOiILAzQvfcs0JFOYuZp06d4bLhugEadyQuygpmiLc0W.ha', '女', 0, 0, '13600000001', 0, '1464487288363945985', '', '弱', '部门A', '2023-05-16 14:35:43.000000', ''),
+	('1464772465946398721', '', '2022-03-20 09:46:20.000000', 'admin', '2022-05-21 09:53:33.000000', '["110000","110100","110105"]', 'https://asoa-1305425069.cos.ap-shanghai.myqcloud.com/1669635627773202432.png', '浙江大学', '13600000002@qq.com', '13600000002', '用户B', '$2a$10$vJyLo1RhFORH/SAu3sc9aeb37I5JRy5UugaN7fIt/e2vvsz6JWJCm', '女', 0, 0, '13600000002', 0, '1464487288363945985', '', '弱', '部门A', '2023-05-16 14:35:44.000000', ''),
+	('1527830053524738048', 'admin', '2022-05-21 09:54:05.000000', NULL, NULL, '["110000","110100","110106"]', 'https://asoa-1305425069.cos.ap-shanghai.myqcloud.com/1669635627773202432.png', '浙江大学', '13600000003@qq.com', '13600000003', '用户C', '$2a$10$oeP4aplYnswfQ44pK6lAO.Np9BuPYJGRwo17THO7CUNlIQoVGsPmy', '男', 0, 0, '13600000003', 0, '1464487288363945985', '', '弱', '部门A', '2023-05-16 14:35:44.000000', '');
 
 DROP TABLE IF EXISTS `a_user_role`;
 CREATE TABLE IF NOT EXISTS `a_user_role` (
