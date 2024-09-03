@@ -1,7 +1,7 @@
 {
-  "name": "template",
+  "name": "zwzframe",
   "version": "1.0.0",
-  "description": "基于Vue和SpringBoot的通用管理系统",
+  "description": "前后端分离开发模版",
   "author": "郑为中 <916077357@qq.com>",
   "private": true,
   "scripts": {

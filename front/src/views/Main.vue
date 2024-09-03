@@ -3,8 +3,8 @@
     <div class="sidebar-menu-con menu-bar" :style="{width: shrink ? '60px' : '220px', overflow: shrink ? 'visible' : 'auto'}">
         <shrinkable-menu :shrink="shrink" @on-change="handleSubmenuChange" :theme="menuTheme" :before-push="beforePush" :open-names="openedSubmenuArr" :menu-list="menuList">
             <div slot="top" class="logo-con">
-                <img v-show="!shrink" src="../assets/logo.png" key="max-logo" />
-                <img v-show="shrink" src="../assets/logo-min.png" key="min-logo" />
+                <span v-show="!shrink" class="shrinkSpan1">前后端分离开发模版<br/>ZWZ · 2024</span>
+                <span v-show="shrink" class="shrinkSpan1">ZWZ</span>
             </div>
         </shrinkable-menu>
     </div>
@@ -287,4 +287,11 @@ export default {
 
 <style lang="less">
 @import "./main.less";
+.shrinkSpan1 {
+    font-size: 18px;
+    line-height: 22px;
+    color: #E478D6;
+    box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.3);
+    font-weight: 550;
+}
 </style>

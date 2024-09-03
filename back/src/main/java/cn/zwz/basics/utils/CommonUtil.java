@@ -3,9 +3,7 @@ package cn.zwz.basics.utils;
 import io.swagger.annotations.ApiOperation;
 
 import java.security.SecureRandom;
-import java.util.Objects;
-import java.util.Random;
-import java.util.UUID;
+import java.util.*;
 
 /**
  * @author 郑为中
@@ -47,4 +45,31 @@ public class CommonUtil {
         int num = random.nextInt(999999);
         return String.format("%06d", num);
     }
+
+    /**
+    @SystemLog(about = "查询图表数据", type = LogType.CHART,doType = "CHART-01")
+    @RequestMapping(value = "/getAntvVoList", method = RequestMethod.GET)
+    @ApiOperation(value = "查询图表数据")
+    public Result<List<AntvVo>> getAntvVoList(){
+        List<AntvVo> ansList = new ArrayList<>();
+        List<Teacher> teacherList = iTeacherService.list();
+        for (Teacher o : teacherList) {
+            boolean flag = false;
+            for (AntvVo vo : ansList) {
+                if(Objects.equals(vo.getTitle(),o.getName())) {
+                    flag = true;
+                    vo.setValue(vo.getValue().add(o.getWages()));
+                    break;
+                }
+            }
+            if(!flag) {
+                AntvVo vo = new AntvVo();
+                vo.setTitle(o.getName());
+                vo.setType("工资金额");
+                vo.setValue(o.getWages());
+                ansList.add(vo);
+            }
+        }
+        return new ResultUtil<List<AntvVo>>().setData(ansList);
+    }*/
 }

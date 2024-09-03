@@ -2,7 +2,7 @@
 <div>
     <Row class="header">
         <img src="../../assets/logo.png" width="220px">
-        <div class="description">基于Vue和SpringBoot的通用管理系统</div>
+        <div class="description">前后端分离开发模版</div>
     </Row>
 </div>
 </template>

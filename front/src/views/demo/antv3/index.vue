@@ -17,129 +17,129 @@ export default {
             stackedColumnPlot: {},
             data1: [
                 {
-                    title: '2022-03',
+                    title: '2024-08',
                     value: 220,
                     type: '浏览人数'
                 },
                 {
-                    title: '2022-04',
+                    title: '2024-09',
                     value: 300,
                     type: '浏览人数'
                 },
                 {
-                    title: '2022-05',
+                    title: '2024-10',
                     value: 250,
                     type: '浏览人数'
                 },
                 {
-                    title: '2022-06',
+                    title: '2024-11',
                     value: 220,
                     type: '浏览人数'
                 },
                 {
-                    title: '2022-07',
+                    title: '2024-12',
                     value: 362,
                     type: '浏览人数'
                 },
                 {
-                    title: '2022-03',
+                    title: '2024-08',
                     value: 350,
                     type: '浏览人数'
                 },
                 {
-                    title: '2022-04',
+                    title: '2024-09',
                     value: 900,
                     type: '浏览人数'
                 },
                 {
-                    title: '2022-05',
+                    title: '2024-10',
                     value: 300,
                     type: '浏览人数'
                 },
                 {
-                    title: '2022-06',
+                    title: '2024-11',
                     value: 450,
                     type: '浏览人数'
                 },
                 {
-                    title: '2022-07',
+                    title: '2024-12',
                     value: 470,
                     type: '浏览人数'
                 },
                 {
-                    title: '2022-03',
+                    title: '2024-08',
                     value: 220,
                     type: '意向人数'
                 },
                 {
-                    title: '2022-04',
+                    title: '2024-09',
                     value: 300,
                     type: '意向人数'
                 },
                 {
-                    title: '2022-05',
+                    title: '2024-10',
                     value: 250,
                     type: '意向人数'
                 },
                 {
-                    title: '2022-06',
+                    title: '2024-11',
                     value: 220,
                     type: '意向人数'
                 },
                 {
-                    title: '2022-07',
+                    title: '2024-12',
                     value: 362,
                     type: '意向人数'
                 }
             ],
             data2: [
                 {
-                    title: '2022-03',
+                    title: '2024-08',
                     value: 10,
                     type: '成交比例'
                 },
                 {
-                    title: '2022-04',
+                    title: '2024-09',
                     value: 25,
                     type: '成交比例'
                 },
                 {
-                    title: '2022-05',
+                    title: '2024-10',
                     value: 10,
                     type: '成交比例'
                 },
                 {
-                    title: '2022-06',
+                    title: '2024-11',
                     value: 30,
                     type: '成交比例'
                 },
                 {
-                    title: '2022-07',
+                    title: '2024-12',
                     value: 10,
                     type: '成交比例'
                 },
                 {
-                    title: '2022-03',
+                    title: '2024-08',
                     value: 5,
                     type: '成交增长率'
                 },
                 {
-                    title: '2022-04',
+                    title: '2024-09',
                     value: 18,
                     type: '成交增长率'
                 },
                 {
-                    title: '2022-05',
+                    title: '2024-10',
                     value: 20,
                     type: '成交增长率'
                 },
                 {
-                    title: '2022-06',
+                    title: '2024-11',
                     value: 15,
                     type: '成交增长率'
                 },
                 {
-                    title: '2022-07',
+                    title: '2024-12',
                     value: 20,
                     type: '成交增长率'
                 },
