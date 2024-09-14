@@ -3,7 +3,7 @@
     <Card>
         <div class="operation">
             <Row>
-                <Form ref="searchForm" :model="searchForm" inline :label-width="85">
+                <Form label-colon ref="searchForm" :model="searchForm" inline :label-width="90">
                     <Form-item label="原文件名" prop="name">
                         <Input type="text" v-model="searchForm.name" placeholder="请输入文件名" clearable style="width: 160px" />
                     </Form-item>

@@ -2,10 +2,12 @@
 <div class="search">
     <Card>
         <Row class="operation">
-            <Button @click="add" type="primary" icon="md-add" ghost shape="circle" size="small" :disabled="!$route.meta.permTypes.includes('add')">添加</Button>
-            <Button @click="delAll" icon="md-trash" type="error" ghost shape="circle" size="small" :disabled="!$route.meta.permTypes.includes('delete')">删除</Button>
-            <Button @click="getParentList" icon="md-refresh" type="info" ghost shape="circle" size="small">刷新</Button>
-            <Button @click="excelData" type="success" icon="md-paper-plane" ghost shape="circle" size="small">导出用户</Button>
+            <ButtonGroup>
+                <Button @click="add" type="primary" icon="md-add" ghost :disabled="!$route.meta.permTypes.includes('add')">添加</Button>
+                <Button @click="delAll" icon="md-trash" type="error" ghost :disabled="!$route.meta.permTypes.includes('delete')">删除</Button>
+                <Button @click="getParentList" icon="md-refresh" type="info" ghost>刷新</Button>
+                <Button @click="excelData" type="success" icon="md-paper-plane" ghost>导出用户</Button>
+            </ButtonGroup>
             <i-switch v-model="strict" size="large" style="margin-left:5px">
                 <span slot="open">级联</span>
                 <span slot="close">单选</span>
@@ -25,7 +27,7 @@
             </div>
             </Col>
             <Col span="16">
-            <Form ref="form" :model="form" :label-width="100" :rules="formValidate">
+            <Form ref="form" label-colon :model="form" :label-width="100" :rules="formValidate">
                 <Row :gutter="16">
                     <Col span="12">
                     <FormItem label="上级部门" prop="parentTitle">
@@ -87,7 +89,7 @@
                     </Col>
                     <Col span="8">
                     <Form-item class="br">
-                        <Button @click="submitEdit" :loading="submitLoading" type="success" ghost shape="circle" icon="ios-create-outline" size="small" :disabled="!$route.meta.permTypes.includes('edit')">保存</Button>
+                        <Button @click="submitEdit" :loading="submitLoading" type="success" ghost icon="ios-create-outline" :disabled="!$route.meta.permTypes.includes('edit')">保存</Button>
                     </Form-item>
                     </Col>
                 </Row>
@@ -101,7 +103,7 @@
             <Table :loading="userLoading" border :columns="userColumns" :data="userData" ref="table" sortable="custom" @on-sort-change="changeSort" @on-selection-change="changeSelect" @on-row-click="rowClick" :row-class-name="rowClassName"></Table>
         </Row>
         <Row type="flex" justify="end" class="page">
-            <Page :current="searchForm.pageNumber" :total="userTotal" :page-size="searchForm.pageSize" @on-change="changePage" @on-page-size-change="changePageSize" :page-size-opts="[10,20,50]" size="small" show-total show-elevator show-sizer></Page>
+            <Page :current="searchForm.pageNumber" :total="userTotal" :page-size="searchForm.pageSize" @on-change="changePage" @on-page-size-change="changePageSize" :page-size-opts="[10,20,50]" show-total show-elevator show-sizer></Page>
         </Row>
     </Card>
 

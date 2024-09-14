@@ -2,25 +2,29 @@
 <div class="search">
     <Card>
         <Row>
-            <Form ref="searchForm" :model="searchForm" inline :label-width="40">
+            <Form ref="searchForm" label-colon :model="searchForm" inline :label-width="50">
                 <Form-item label="姓名" prop="nickname">
-                    <Input type="text" v-model="searchForm.nickname" clearable placeholder="搜索姓名" style="width: 160px" />
+                    <Input type="text" v-model="searchForm.nickname" clearable placeholder="搜索姓名" style="width: 160px" search enter-button @on-search="handleSearch" />
                 </Form-item>
                 <Form-item label="部门" prop="department">
                     <department-choose @on-change="handleSelectDep" placeholder="用户部门" style="width: 160px" ref="dep"></department-choose>
                 </Form-item>
                 <Form-item style="margin-left:10px;" class="br">
-                    <Button @click="handleSearch" type="primary" icon="ios-search" ghost shape="circle" size="small">搜索</Button>
-                    <Button @click="handleReset" type="warning" ghost shape="circle" icon="md-refresh" size="small">重置</Button>
-                    <Button @click="add" type="info" icon="md-add" ghost shape="circle" size="small" :disabled="!$route.meta.permTypes.includes('add')">添加</Button>
-                    <Button @click="importModalVisible=true" type="success" icon="md-paper-plane" ghost shape="circle" size="small">导入</Button>
-                    <Button @click="excelData" type="success" icon="md-paper-plane" ghost shape="circle" size="small">导出</Button>
+                    <ButtonGroup>
+                        <Button @click="handleSearch" type="primary" icon="ios-search" ghost>搜索</Button>
+                        <Button @click="handleReset" type="warning" ghost icon="md-refresh">重置</Button>
+                        <Button @click="add" type="info" icon="md-add" ghost :disabled="!$route.meta.permTypes.includes('add')">添加</Button>
+                        <Button @click="importModalVisible=true" type="success" icon="md-paper-plane" ghost>导入</Button>
+                        <Button @click="excelData" type="success" icon="md-paper-plane" ghost>导出</Button>
+                    </ButtonGroup>
                 </Form-item>
                 <Form-item style="position:fixed;right:50px;top:130px">
-                    <Button type="info" @click="showFilterPanelFlag = !showFilterPanelFlag" class="showFilterPanelFlag" icon="md-settings" size="small" ghost>
-                        列筛选</Button>
-                    <Button type="warning" @click="usingTutorialsModal = true" class="showFilterPanelFlag" icon="ios-help-circle-outline" size="small" ghost>
-                        使用教程</Button>
+                    <ButtonGroup>
+                        <Button type="info" @click="showFilterPanelFlag = !showFilterPanelFlag" class="showFilterPanelFlag" icon="md-settings" ghost>
+                            列筛选</Button>
+                        <Button type="warning" @click="usingTutorialsModal = true" class="showFilterPanelFlag" icon="ios-help-circle-outline" ghost>
+                            使用教程</Button>
+                    </ButtonGroup>
                     <Modal v-model="usingTutorialsModal" title="使用教程">
                         <p>1.XXXXXXXXXXXXXXXXXXXXXXXX</p>
                         <p>2.XXXXXXXXXXXXXXXXXXXXXXXX</p>
@@ -263,7 +267,6 @@ export default {
                                         type: "primary",
                                         size: "small",
                                         ghost: true,
-                                        shape: "circle",
                                         disabled: !(that.$route.meta.permTypes && that.$route.meta.permTypes.includes("edit"))
                                     },
                                     style: {
@@ -282,8 +285,7 @@ export default {
                                     props: {
                                         type: "warning",
                                         size: "small",
-                                        ghost: true,
-                                        shape: "circle"
+                                        ghost: true
                                     },
                                     style: {
                                         marginRight: "5px"
@@ -302,7 +304,6 @@ export default {
                                         size: "small",
                                         ghost: true,
                                         type: (params.row.status == 0 ? "error" : "success"),
-                                        shape: "circle"
                                     },
                                     style: {
                                         marginRight: "5px"
@@ -325,7 +326,6 @@ export default {
                                         type: "error",
                                         size: "small",
                                         ghost: true,
-                                        shape: "circle",
                                         disabled: !(that.$route.meta.permTypes && that.$route.meta.permTypes.includes("delete"))
                                     },
                                     on: {
